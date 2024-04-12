@@ -6,7 +6,7 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-#include "vector_doubles.h"
+#include "vector.h"
 using namespace myStd;
 
 #include <iostream>
@@ -27,7 +27,7 @@ void selection_sort(Iterator first, Iterator last);
 
 template <typename T> // Updated to accept a template vector class
 void print_vector(const vector<T>& v);
-
+/*
 int main()
 {
     const int initSize = 5;
@@ -59,7 +59,7 @@ int main()
 
     return 0;
 }
-
+*/
 template <typename Iterator>
 Iterator low(Iterator first, Iterator last)
 // Return an iterator to the element in [first:last) that has the lowest value

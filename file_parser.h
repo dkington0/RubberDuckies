@@ -6,7 +6,7 @@
 
 using namespace std;
 
-fstream& read_file(fstream&);
+void read_file();
 
 
 #endif
