@@ -26,6 +26,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         file_parser.h
         file_parser.cpp
         vector.h
+        vector.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Project1 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
