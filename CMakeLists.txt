@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(RubberDuckies VERSION 0.1 LANGUAGES CXX)
+project(Project1 VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -14,43 +14,48 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        shape.cpp
-        shape.h
-        shape.ui
+        mainwindow.cpp
+        mainwindow.h
+        mainwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(RubberDuckies
+    qt_add_executable(Project1
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        file_parser.h
+        file_parser.cpp
+        vector.h
+        vector.cpp
+        shape_list.txt
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET RubberDuckies APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET Project1 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(RubberDuckies SHARED
+        add_library(Project1 SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(RubberDuckies
+        add_executable(Project1
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(RubberDuckies PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Project1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.RubberDuckies)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.Project1)
 endif()
-set_target_properties(RubberDuckies PROPERTIES
+set_target_properties(Project1 PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -59,12 +64,12 @@ set_target_properties(RubberDuckies PROPERTIES
 )
 
 include(GNUInstallDirs)
-install(TARGETS RubberDuckies
+install(TARGETS Project1
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(RubberDuckies)
+    qt_finalize_executable(Project1)
 endif()
