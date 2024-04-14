@@ -25,6 +25,7 @@ tags
 *.debug
 Makefile*
 *.prl
+build
 *.app
 moc_*.cpp
 ui_*.h
@@ -44,6 +45,10 @@ CMakeLists.txt.user*
 
 # Vim temporary files
 .*.swp
+
+# QtCreator CMake
+CMakeLists.txt.user*
+CMakeLists.txt.user
 
 # Visual Studio generated files
 *.ib_pdb_index

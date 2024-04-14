@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/files">
+        <file>shape_list.txt</file>
+    </qresource>
+</RCC>

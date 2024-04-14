@@ -4,11 +4,11 @@
 
 int main(int argc, char *argv[])
 {
-    
-    // Test code for file parsing
-    read_file();
 
     QApplication a(argc, argv);
+    QString directory_path = a.applicationDirPath();
+    read_file(directory_path.toStdString());
+
     MainWindow w;
     w.show();
     return a.exec();
