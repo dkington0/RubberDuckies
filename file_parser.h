@@ -1,13 +1,15 @@
 #ifndef FILE_PARSER_H
 #define FILE_PARSER_H
 
-#include <fstream>
+//#include <fstream>
 #include <iostream>
-#include <Qstring>
+#include <QString>
+#include <QFile>
 
 using namespace std;
 
-void read_file(fstream& inData);
+void read_file(const string);
+void parse_file(QFile&);
 
 
 #endif
