@@ -3,10 +3,11 @@
 
 #include <fstream>
 #include <iostream>
+#include <Qstring>
 
 using namespace std;
 
-void read_file();
+void read_file(fstream& inData);
 
 
 #endif

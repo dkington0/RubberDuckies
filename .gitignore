@@ -31,6 +31,7 @@ Makefile*
 *build-*
 *.qm
 *.prl
+build
 
 # Qt unit tests
 target_wrapper.*
@@ -44,6 +45,7 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+CMakeLists.txt.user
 
 # QtCreator 4.8< compilation database
 compile_commands.json

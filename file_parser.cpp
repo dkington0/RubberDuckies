@@ -1,8 +1,9 @@
 #include "file_parser.h"
 
-void read_file() {
-    ifstream inData;
-    inData.open("shape_list.txt");
+void read_file(fstream& inData) {
+
+
+    inData.open(":/shape_list.txt");
 
     string shapeArray[5] {};
     if (inData.eof()) {
