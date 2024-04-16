@@ -68,7 +68,7 @@ void parse_file(fstream& inData) {
     string current;
 
     while (getline(inData, current)) {
-        if (current != "") { // means that a new shape is starting
+        if (!current.empty()) { // means that a new shape is starting
             cout << current << endl;
             int id {};
 
@@ -161,6 +161,57 @@ void parse_file(fstream& inData) {
 }
 
 void readLine(fstream& inData, int id) {
-//    while((getline(inData, current)) && (current != "")) { // program is still reading from shape if the string is not empty
+    string current {};
+
+    cout << "Start of Read Line fcn" << endl;
+    while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
+        cout << current << endl;
+
+        // Shape Dimension
+        // splice off "ShapeDimensions:"
+        int numCommas {};
+        size_t commaIndex {};
+        while (current.find(',', commaIndex) != string::npos) {
+            commaIndex = current.find(',', commaIndex);
+            cout << commaIndex++ << endl;
+            numCommas++;
+        }
+        unique_ptr<int[]> dimensions = make_unique(numCommas);
+
+        cout << "Number of Commas in SHape index: " << numCommas << endl;
+        // Pen Color
+
+        // Pen Width
+
+        // Pen Style
+
+        // Pen Cap Style
+
+        // Pen Join Style
+
+    }
+    cout << "End of Read Line fcn" << endl;
+    return;
+}
+
+void readPolyLine(fstream&, int) {
+    return;
+}
+void readPolygon(fstream&, int) {
+    return;
+}
+void readRectangle(fstream&, int) {
+    return;
+}
+void readSquare(fstream&, int) {
+    return;
+}
+void readEllipse(fstream&, int) {
+    return;
+}
+void readCircle(fstream&, int) {
+    return;
+}
+void readText(fstream&, int) {
     return;
 }

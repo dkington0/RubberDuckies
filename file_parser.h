@@ -5,6 +5,7 @@
 #include <iostream>
 #include <QString>
 #include <QFile>
+#include <memory>
 
 using namespace std;
 
