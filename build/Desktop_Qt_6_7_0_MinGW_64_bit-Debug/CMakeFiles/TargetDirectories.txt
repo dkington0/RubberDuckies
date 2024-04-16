@@ -1,9 +1,9 @@
-C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/RubberDuckies.dir
+C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/Project1.dir
 C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
 C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
 C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
 C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/install.dir
 C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
 C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
-C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/RubberDuckies_autogen_timestamp_deps.dir
-C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/RubberDuckies_autogen.dir
+C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/Project1_autogen_timestamp_deps.dir
+C:/Users/Daniel (School).D-7706/Desktop/Git_Repo/RubberDuckies/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/Project1_autogen.dir
