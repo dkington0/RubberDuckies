@@ -13,7 +13,8 @@ public:
     Line();
     ~Line();
 
-    overload void DrawShape();
+    void DrawShape() override;
+    void SetShape() override;
 };
 
 #endif // LINE_H

@@ -24,8 +24,8 @@ class Shape : public QMainWindow
         ~Shape();
 
 
-        virtual void DrawShape();   // Will draw the shape on the window area
-        virtual void SetShape();    //
+        virtual void DrawShape()=0;   // Will draw the shape on the window area
+        virtual void SetShape()=0;    // Set the values of the shape
 
 
 
