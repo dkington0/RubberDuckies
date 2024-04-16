@@ -26,6 +26,7 @@ tags
 Makefile*
 *.prl
 build
+build/
 *.app
 moc_*.cpp
 ui_*.h
