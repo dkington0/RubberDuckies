@@ -1,19 +1,20 @@
-#ifndef POLYLINE_H
-#define POLYLINE_H
+#ifndef polyline_H
+#define polyline_H
 #include "vector.h"
 #include "Shape.h"
 
-class Polyline : public Shape
+class polyline : public Shape
 {
 private:
     myStd::vector<QPoint> points;
 
 public:
-    Polyline();
-    ~Polyline();
+    polyline();
+    polyline(int);  // Number of points
+    ~polyline();
 
     void DrawShape() override;
     void SetShape() override;
 };
 
-#endif // POLYLINE_H
+#endif // polyline_H
