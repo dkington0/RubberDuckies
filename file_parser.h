@@ -11,5 +11,4 @@ using namespace std;
 void read_file(const string);
 void parse_file(QFile&);
 
-
 #endif
