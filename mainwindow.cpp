@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "QMessageBox"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,3 +13,15 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_login_clicked()
+{
+    QString username = ui->lineEdit_user->text();
+    QString password = ui->lineEdit_pass->text();
+
+    if(username == "admin" && password == "password")
+        QMessageBox::information(this,"Login", "validated successfully");
+    else
+        QMessageBox::warning(this, "Login", "Username and password incorrect");
+}
+
