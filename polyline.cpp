@@ -1,3 +1,3 @@
 #include "polyline.h"
 
-Polyline::Polyline() {}
+polyline::polyline() {}
