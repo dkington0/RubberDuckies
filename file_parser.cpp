@@ -1,17 +1,17 @@
 #include "file_parser.h"
-#include <fstream>
+#include "vector.h"
 
 struct TestLine {
     int id {};
-    int dimensions[4] {};
+    unique_ptr<int[]> dimensions;
     string penColor {};
     int penWidth {};
     string penStyle {};
     string penCapStyle {};
     string penJoinStyle {};
 
-    TestLine(int i, int d, string color, int penW, string penSty, string penCapSty, string penJoinSty)
-        : id{i}, dimensions{d}, penColor{color}, penWidth{penW}, penStyle{penSty}, penCapStyle{penCapSty}, penJoinStyle{penJoinSty} {};
+    TestLine(int i, unique_ptr<int[]> d, string color, int penW, string penSty, string penCapSty, string penJoinSty)
+        : id{i}, dimensions{std::move(d)}, penColor{color}, penWidth{penW}, penStyle{penSty}, penCapStyle{penCapSty}, penJoinStyle{penJoinSty} {};
 };
 
 enum ShapeType {
@@ -163,22 +163,84 @@ void parse_file(fstream& inData) {
 void readLine(fstream& inData, int id) {
     string current {};
 
+    myStd::vector<int> dimensions;
+
     cout << "Start of Read Line fcn" << endl;
     while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
-        cout << current << endl;
+        string paramSubStr {};
+        if (current.find(":") != string::npos) {
+            paramSubStr = current.substr(0, current.find(":")); // splices beginning of string up until the colon
+            cout << "Param SubStr: " << paramSubStr << endl;
+            if (paramSubStr == "ShapeDimensions") {
+
+                string dimensionsSubStr = current.substr(current.find(':')+1);
+                cout << "Dimension Sub String:" << dimensionsSubStr << endl;
+
+                while (dimensionsSubStr.find(' ') != string::npos) {
+
+
+                }
+
+                // 1- check if a
+
+                /*
+                // store shape dimensions
+                size_t nextSpaceIndex {};
+
+                cout << "Shape Dimensions Substring after colon:" << dimensionsSubStr << endl;
+                // splice dimension line starting at the first instance of whitespace after the colon
+                // search current for shape dimensions, and add them to the dimensions vector
+                while (dimensionsSubStr.find(' ', nextSpaceIndex) != string::npos) {
+
+                    string newDimension = dimensionsSubStr.substr(nextSpaceIndex, (dimensionsSubStr.find(' ', nextSpaceIndex)-(nextSpaceIndex+1)));
+
+                    cout << "New dimension: " << newDimension << endl;
+                    nextSpaceIndex = dimensionsSubStr.find(' ', nextSpaceIndex) + 1;
+                    //commaIndex++;
+                    dimensions.push_back(stoi(newDimension));
+                    //numCommas++;
+                }
+                //dimensions = new int[numCommas+1];
+                //cout << "Number of commas + 1: " << numCommas+1 << endl;
+                */
+            }
+            else if (paramSubStr == "PenColor") {
+                // store pen color
+            }
+            else if (paramSubStr == "PenWidth") {
+                // store pen width
+            }
+            else if (paramSubStr == "PenStyle") {
+                // store pen style
+            }
+            else if (paramSubStr == "PenCapStyle") {
+                // store pen cap style
+            }
+            else if (paramSubStr == "PenJoinStyle") {
+                // store pen join style
+            }
+            else {
+                // throw
+                cout << "Error During Read Line Function: Unidentified parameter string" << endl;
+                //delete [] dimensions;
+                return;
+            }
+        } else {
+            cout << "Error During Read Line Function: failed to find \":\" in current string" << endl;
+            //delete [] dimensions;
+            return;
+            //throw
+        }
+
+
+
 
         // Shape Dimension
         // splice off "ShapeDimensions:"
-        int numCommas {};
-        size_t commaIndex {};
-        while (current.find(',', commaIndex) != string::npos) {
-            commaIndex = current.find(',', commaIndex);
-            cout << commaIndex++ << endl;
-            numCommas++;
-        }
-        unique_ptr<int[]> dimensions = make_unique(numCommas);
 
-        cout << "Number of Commas in SHape index: " << numCommas << endl;
+// There is no comma at the end - a shape with 3 commas would have 4 dimensions
+
+        //cout << "Number of Commas in SHape index: " << numCommas << endl;
         // Pen Color
 
         // Pen Width
@@ -190,7 +252,9 @@ void readLine(fstream& inData, int id) {
         // Pen Join Style
 
     }
+    //unique_ptr<int[]> paramShapeDimensions(std::move(dimensions));
     cout << "End of Read Line fcn" << endl;
+
     return;
 }
 
