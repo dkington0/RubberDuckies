@@ -19,7 +19,7 @@ void MainWindow::on_login_clicked()
     QString username = ui->lineEdit_user->text();
     QString password = ui->lineEdit_pass->text();
 
-    if(username == "admin" && password == "password")
+    if (username == "admin" && password == "password")
         QMessageBox::information(this,"Login", "validated successfully");
     else
         QMessageBox::warning(this, "Login", "Username and password incorrect");
