@@ -1,6 +1,7 @@
 #include "file_parser.h"
 #include "vector.h"
 
+
 struct TestLine {
     int id {};
     unique_ptr<int[]> dimensions;
@@ -173,63 +174,67 @@ void readLine(fstream& inData, int id) {
             cout << "Param SubStr: " << paramSubStr << endl;
             if (paramSubStr == "ShapeDimensions") {
 
-                string dimensionsSubStr = current.substr(current.find(':')+1);
+                string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
                 cout << "Dimension Sub String:" << dimensionsSubStr << endl;
+                bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
 
-                while (dimensionsSubStr.find(' ') != string::npos) {
+                while (hasMoreDimensions) {
+                    size_t rBoundPosition {};
+                    string newDimensionStr {};
 
+                    //size_t lBoundPosition {};
+                    // check first character
+                    if (dimensionsSubStr.at(0) == ' ') {// if the first character is a space, we know there is a dimension
+                        if (dimensionsSubStr.find(',', 1) != string::npos) {
+                            rBoundPosition = dimensionsSubStr.find(',', 1);
 
+                        } else {
+                            rBoundPosition = dimensionsSubStr.length()-1;
+                            //throw
+                            //cout << "Neither \',\' or \' \' found in string" << endl;
+                            //break;
+                        }
+                        newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
+                        dimensions.push_back(stoi(newDimensionStr));
+
+                        if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
+                            hasMoreDimensions = false;
+                        else
+                            dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
+                    } else {
+                        //throw
+                        cout << "Error in Read Line fcn: whitespace for next dimension not found." << endl;
+                    }
                 }
-
-                // 1- check if a
-
                 /*
-                // store shape dimensions
-                size_t nextSpaceIndex {};
-
-                cout << "Shape Dimensions Substring after colon:" << dimensionsSubStr << endl;
-                // splice dimension line starting at the first instance of whitespace after the colon
-                // search current for shape dimensions, and add them to the dimensions vector
-                while (dimensionsSubStr.find(' ', nextSpaceIndex) != string::npos) {
-
-                    string newDimension = dimensionsSubStr.substr(nextSpaceIndex, (dimensionsSubStr.find(' ', nextSpaceIndex)-(nextSpaceIndex+1)));
-
-                    cout << "New dimension: " << newDimension << endl;
-                    nextSpaceIndex = dimensionsSubStr.find(' ', nextSpaceIndex) + 1;
-                    //commaIndex++;
-                    dimensions.push_back(stoi(newDimension));
-                    //numCommas++;
-                }
-                //dimensions = new int[numCommas+1];
-                //cout << "Number of commas + 1: " << numCommas+1 << endl;
+                for (int i {}; i < dimensions.size(); i++)
+                    cout << dimensions[i] << " ";
+                cout << endl;
                 */
             }
             else if (paramSubStr == "PenColor") {
-                // store pen color
+                cout << "Pen Color line" << endl;
             }
             else if (paramSubStr == "PenWidth") {
-                // store pen width
+                cout << "Pen Width line" << endl;
             }
             else if (paramSubStr == "PenStyle") {
-                // store pen style
+                cout << "Pen Style Line" << endl;
             }
             else if (paramSubStr == "PenCapStyle") {
-                // store pen cap style
+                cout << "Pen Cap Style" << endl;
             }
             else if (paramSubStr == "PenJoinStyle") {
-                // store pen join style
+                cout << "Pen Join Style" << endl;
             }
             else {
                 // throw
                 cout << "Error During Read Line Function: Unidentified parameter string" << endl;
-                //delete [] dimensions;
                 return;
             }
         } else {
             cout << "Error During Read Line Function: failed to find \":\" in current string" << endl;
-            //delete [] dimensions;
             return;
-            //throw
         }
 
 
