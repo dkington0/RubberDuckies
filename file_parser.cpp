@@ -99,7 +99,7 @@ enum ShapeType {
     Text
 };
 
-void parse_file(fstream&);
+//void parse_file(fstream&);
 // change to return Shape objects
 void readLine(fstream&, int);
 void readPolyLine(fstream&, int);
@@ -291,7 +291,7 @@ void readLine(fstream& inData, int id) {
             else if (paramSubStr == "PenColor") {
                 //cout << "Pen Color line" << endl;
                 string colorSubStr = current.substr(current.find(':')+2);
-                cout << "Pen Color String: " << colorSubStr;
+                cout << "Pen Color String: " << colorSubStr << endl;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
                 else if (colorSubStr == "black")
@@ -443,7 +443,7 @@ void readPolyLine(fstream& inData, int id) {
             else if (paramSubStr == "PenColor") {
                 //cout << "Pen Color line" << endl;
                 string colorSubStr = current.substr(current.find(':')+2);
-                cout << "Pen Color String: " << colorSubStr;
+                cout << "Pen Color String: " << colorSubStr <<endl;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
                 else if (colorSubStr == "black")
@@ -596,7 +596,7 @@ void readPolygon(fstream& inData, int id) {
             else if (paramSubStr == "PenColor") {
                 //cout << "Pen Color line" << endl;
                 string colorSubStr = current.substr(current.find(':')+2);
-                cout << "Pen Color String: " << colorSubStr;
+                cout << "Pen Color String: " << colorSubStr << endl;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
                 else if (colorSubStr == "black")
@@ -789,7 +789,7 @@ void readRectangle(fstream& inData, int id) {
             else if (paramSubStr == "PenColor") {
                 //cout << "Pen Color line" << endl;
                 string colorSubStr = current.substr(current.find(':')+2);
-                cout << "Pen Color String: " << colorSubStr;
+                cout << "Pen Color String: " << colorSubStr << endl;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
                 else if (colorSubStr == "black")
@@ -982,7 +982,7 @@ void readSquare(fstream& inData, int id) {
             else if (paramSubStr == "PenColor") {
                 //cout << "Pen Color line" << endl;
                 string colorSubStr = current.substr(current.find(':')+2);
-                cout << "Pen Color String: " << colorSubStr;
+                cout << "Pen Color String: " << colorSubStr << endl;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
                 else if (colorSubStr == "black")
@@ -1175,7 +1175,7 @@ void readEllipse(fstream& inData, int id) {
             else if (paramSubStr == "PenColor") {
                 //cout << "Pen Color line" << endl;
                 string colorSubStr = current.substr(current.find(':')+2);
-                cout << "Pen Color String: " << colorSubStr;
+                cout << "Pen Color String: " << colorSubStr << endl;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
                 else if (colorSubStr == "black")
@@ -1368,7 +1368,7 @@ void readCircle(fstream& inData, int id) {
             else if (paramSubStr == "PenColor") {
                 //cout << "Pen Color line" << endl;
                 string colorSubStr = current.substr(current.find(':')+2);
-                cout << "Pen Color String: " << colorSubStr;
+                cout << "Pen Color String: " << colorSubStr << endl;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
                 else if (colorSubStr == "black")
@@ -1572,7 +1572,7 @@ void readText(fstream& inData, int id) {
 
             else if (paramSubStr == "TextColor") {
                 string textColorSubStr = current.substr(current.find(':')+2);
-                cout << "Text Color String: " << textColorSubStr;
+                cout << "Text Color String: " << textColorSubStr << endl;
                 if (textColorSubStr == "white")
                     textColor = Qt::white;
                 else if (textColorSubStr == "black")
