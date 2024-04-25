@@ -84,8 +84,8 @@ struct TestText {
     QFont::Weight textFontWeight {};
 
     TestText();
-    TestText(int i, myStd::vector<int> d, Qt::GlobalColor color, Qt::AlignmentFlag align, int ptSize, string fontFamily, QFont::Style fontStyle, QFont::Weight fontWeight)
-        : id{i}, dimensions{d}, textColor{color}, textAlignment{align}, textPointSize{ptSize}, textFontFamily{fontFamily}, textFontStyle{fontStyle}, textFontWeight{fontWeight} {}
+    TestText(int i, myStd::vector<int> d, string textStr, Qt::GlobalColor color, Qt::AlignmentFlag align, int ptSize, string fontFamily, QFont::Style fontStyle, QFont::Weight fontWeight)
+        : id{i}, dimensions{d}, textString{textStr}, textColor{color}, textAlignment{align}, textPointSize{ptSize}, textFontFamily{fontFamily}, textFontStyle{fontStyle}, textFontWeight{fontWeight} {}
 };
 
 enum ShapeType {
@@ -294,7 +294,7 @@ void readLine(fstream& inData, int id) {
                 cout << "Pen Color String: " << colorSubStr;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
-                if (colorSubStr == "black")
+                else if (colorSubStr == "black")
                     penColor = Qt::black;
                 else if (colorSubStr == "red")
                     penColor = Qt::red;
@@ -446,7 +446,7 @@ void readPolyLine(fstream& inData, int id) {
                 cout << "Pen Color String: " << colorSubStr;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
-                if (colorSubStr == "black")
+                else if (colorSubStr == "black")
                     penColor = Qt::black;
                 else if (colorSubStr == "red")
                     penColor = Qt::red;
@@ -599,7 +599,7 @@ void readPolygon(fstream& inData, int id) {
                 cout << "Pen Color String: " << colorSubStr;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
-                if (colorSubStr == "black")
+                else if (colorSubStr == "black")
                     penColor = Qt::black;
                 else if (colorSubStr == "red")
                     penColor = Qt::red;
@@ -678,7 +678,7 @@ void readPolygon(fstream& inData, int id) {
                 cout << "Brush Color String: " << brushColorSubStr << endl;
                 if (brushColorSubStr == "white")
                     brushColor = Qt::white;
-                if (brushColorSubStr == "black")
+                else if (brushColorSubStr == "black")
                     brushColor = Qt::black;
                 else if (brushColorSubStr == "red")
                     brushColor = Qt::red;
@@ -792,7 +792,7 @@ void readRectangle(fstream& inData, int id) {
                 cout << "Pen Color String: " << colorSubStr;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
-                if (colorSubStr == "black")
+                else if (colorSubStr == "black")
                     penColor = Qt::black;
                 else if (colorSubStr == "red")
                     penColor = Qt::red;
@@ -871,7 +871,7 @@ void readRectangle(fstream& inData, int id) {
                 cout << "Brush Color String: " << brushColorSubStr << endl;
                 if (brushColorSubStr == "white")
                     brushColor = Qt::white;
-                if (brushColorSubStr == "black")
+                else if (brushColorSubStr == "black")
                     brushColor = Qt::black;
                 else if (brushColorSubStr == "red")
                     brushColor = Qt::red;
@@ -985,7 +985,7 @@ void readSquare(fstream& inData, int id) {
                 cout << "Pen Color String: " << colorSubStr;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
-                if (colorSubStr == "black")
+                else if (colorSubStr == "black")
                     penColor = Qt::black;
                 else if (colorSubStr == "red")
                     penColor = Qt::red;
@@ -1064,7 +1064,7 @@ void readSquare(fstream& inData, int id) {
                 cout << "Brush Color String: " << brushColorSubStr << endl;
                 if (brushColorSubStr == "white")
                     brushColor = Qt::white;
-                if (brushColorSubStr == "black")
+                else if (brushColorSubStr == "black")
                     brushColor = Qt::black;
                 else if (brushColorSubStr == "red")
                     brushColor = Qt::red;
@@ -1178,7 +1178,7 @@ void readEllipse(fstream& inData, int id) {
                 cout << "Pen Color String: " << colorSubStr;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
-                if (colorSubStr == "black")
+                else if (colorSubStr == "black")
                     penColor = Qt::black;
                 else if (colorSubStr == "red")
                     penColor = Qt::red;
@@ -1257,7 +1257,7 @@ void readEllipse(fstream& inData, int id) {
                 cout << "Brush Color String: " << brushColorSubStr << endl;
                 if (brushColorSubStr == "white")
                     brushColor = Qt::white;
-                if (brushColorSubStr == "black")
+                else if (brushColorSubStr == "black")
                     brushColor = Qt::black;
                 else if (brushColorSubStr == "red")
                     brushColor = Qt::red;
@@ -1371,7 +1371,7 @@ void readCircle(fstream& inData, int id) {
                 cout << "Pen Color String: " << colorSubStr;
                 if (colorSubStr == "white")
                     penColor = Qt::white;
-                if (colorSubStr == "black")
+                else if (colorSubStr == "black")
                     penColor = Qt::black;
                 else if (colorSubStr == "red")
                     penColor = Qt::red;
@@ -1450,7 +1450,7 @@ void readCircle(fstream& inData, int id) {
                 cout << "Brush Color String: " << brushColorSubStr << endl;
                 if (brushColorSubStr == "white")
                     brushColor = Qt::white;
-                if (brushColorSubStr == "black")
+                else if (brushColorSubStr == "black")
                     brushColor = Qt::black;
                 else if (brushColorSubStr == "red")
                     brushColor = Qt::red;
@@ -1503,6 +1503,8 @@ void readCircle(fstream& inData, int id) {
 }
 
 void readText(fstream& inData, int id) {
+
+    myStd::vector<int> dimensions;
     // text string
     string textString {};
     // text color
@@ -1517,5 +1519,164 @@ void readText(fstream& inData, int id) {
     QFont::Style textFontStyle {};
     // text font weight
     QFont::Weight textFontWeight {};
-    return;
+    string current {};
+
+    cout << "Start of Read Text fcn" << endl;
+    while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
+        string paramSubStr {};
+        if (current.find(":") != string::npos) {
+            paramSubStr = current.substr(0, current.find(":")); // splices beginning of string up until the colon
+            cout << "Param SubStr: " << paramSubStr << endl;
+
+            // Reading Shape Dimension
+            if (paramSubStr == "ShapeDimensions") {
+
+                string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
+                cout << "Dimension Sub String:" << dimensionsSubStr << endl;
+                bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
+
+                while (hasMoreDimensions) {
+                    size_t rBoundPosition {};
+                    string newDimensionStr {};
+
+                    //size_t lBoundPosition {};
+                    // check first character
+                    if (dimensionsSubStr.at(0) == ' ') {// if the first character is a space, we know there is a dimension
+                        if (dimensionsSubStr.find(',', 1) != string::npos) {
+                            rBoundPosition = dimensionsSubStr.find(',', 1);
+                        } else {
+                            rBoundPosition = dimensionsSubStr.length()-1;
+                        }
+                        newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
+                        dimensions.push_back(stoi(newDimensionStr));
+
+                        if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
+                            hasMoreDimensions = false;
+                        else
+                            dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
+                    } else {
+                        cout << "Error in Read Text fcn: whitespace for next dimension not found." << endl;
+                    }
+                }
+
+                for (int i {}; i < dimensions.size(); i++)
+                    cout << dimensions[i] << " ";
+                cout << endl;
+            }
+
+            else if (paramSubStr == "TextString") {
+                string textSubStr = current.substr(current.find(':')+2);
+                cout << "Text String:" << textSubStr << endl;
+                textString = textSubStr;
+            }
+
+            else if (paramSubStr == "TextColor") {
+                string textColorSubStr = current.substr(current.find(':')+2);
+                cout << "Text Color String: " << textColorSubStr;
+                if (textColorSubStr == "white")
+                    textColor = Qt::white;
+                else if (textColorSubStr == "black")
+                    textColor = Qt::black;
+                else if (textColorSubStr == "red")
+                    textColor = Qt::red;
+                else if (textColorSubStr == "green")
+                    textColor = Qt::green;
+                else if (textColorSubStr == "blue")
+                    textColor = Qt::blue;
+                else if (textColorSubStr == "cyan")
+                    textColor = Qt::cyan;
+                else if (textColorSubStr == "magenta")
+                    textColor = Qt::magenta;
+                else if (textColorSubStr == "yellow")
+                    textColor = Qt::yellow;
+                else if (textColorSubStr == "gray")
+                    textColor = Qt::gray;
+                else {
+                    cout << "Text color not found" << endl;
+                }
+            }
+
+            else if (paramSubStr == "TextAlignment") {
+                string textAlignSubStr = current.substr(current.find(':')+2);
+                cout << "Text Alignment Style String: " << textAlignSubStr << endl;
+                if (textAlignSubStr == "AlignLeft")
+                    textAlignment = Qt::AlignLeft;
+                else if (textAlignSubStr == "AlignRight")
+                    textAlignment = Qt::AlignRight;
+                else if (textAlignSubStr == "AlignTop")
+                    textAlignment = Qt::AlignTop;
+                else if (textAlignSubStr == "AlignBottom")
+                    textAlignment = Qt::AlignBottom;
+                else if (textAlignSubStr == "AlignCenter")
+                    textAlignment = Qt::AlignCenter;
+                else {
+                    cout << "Error: Text Alignment Style not found" << endl;
+                }
+            }
+
+            else if (paramSubStr == "TextPointSize") {
+                string textPointSubStr = current.substr(current.find(':')+2);
+                cout << "Text Point Size String:" << textPointSubStr << endl;
+                textPointSize = stoi(textPointSubStr);
+            }
+
+            else if (paramSubStr == "TextFontFamily") {
+                string textFontFamilySubStr = current.substr(current.find(':')+2);
+                cout << "Text Font Family String: " << textFontFamilySubStr << endl;
+                if (textFontFamilySubStr == "Comic Sans MS")
+                    textFontFamily = "Comic Sans MS";
+                else if (textFontFamilySubStr == "Courier")
+                    textFontFamily = "Courier";
+                else if (textFontFamilySubStr == "Helvetica")
+                    textFontFamily = "Helvetica";
+                else if (textFontFamilySubStr == "Times")
+                    textFontFamily = "Times";
+                else
+                    cout << "Error: Text Font Family Not Found" << endl;
+
+            }
+
+            else if (paramSubStr == "TextFontStyle") {
+                string textFontStyleSubStr = current.substr(current.find(':')+2);
+                cout << "Text Font Style String: " << textFontStyleSubStr << endl;
+                if (textFontStyleSubStr == "StyleNormal")
+                    textFontStyle = QFont::StyleNormal;
+                else if (textFontStyleSubStr == "StyleItalic")
+                    textFontStyle = QFont::StyleItalic;
+                else if (textFontStyleSubStr == "StyleOblique")
+                    textFontStyle = QFont::StyleOblique;
+                else
+                    cout << "Error: Text Font Style not found" << endl;
+
+            }
+
+            else if (paramSubStr == "TextFontWeight") {
+                string textFontWeightSubStr = current.substr(current.find(':')+2);
+                cout << "Text Font Weight String: " << textFontWeightSubStr << endl;
+                if (textFontWeightSubStr == "Thin")
+                    textFontWeight = QFont::Thin;
+                else if (textFontWeightSubStr == "Light")
+                    textFontWeight = QFont::Light;
+                else if (textFontWeightSubStr == "Normal")
+                    textFontWeight = QFont::Normal;
+                else if (textFontWeightSubStr == "Bold")
+                    textFontWeight = QFont::Bold;
+                else {
+                    cout << "Text Font Weight not found" << endl;
+                }
+
+            }
+            else {
+                // throw
+                cout << "Error During Read Text Function: Unidentified parameter string" << endl;
+                return;
+            }
+        } else {
+            cout << "Error During Read Text Function: failed to find \":\" in current string" << endl;
+            return;
+        }
+    }
+    cout << "End of Read Text fcn" << endl;
+
+    TestText outShape(id, dimensions, textString, textColor, textAlignment, textPointSize, textFontFamily, textFontStyle, textFontWeight);
 }
