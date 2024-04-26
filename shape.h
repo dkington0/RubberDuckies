@@ -1,7 +1,7 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
-#include <QMainWindow>
+#include "MainWindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -9,13 +9,12 @@ class Shape;
 }
 QT_END_NAMESPACE
 
-class Shape : public QMainWindow
+class Shape : public MainWindow
 {
-        Q_OBJECT
+        //Q_OBJECT
 
     private:
         Ui::Shape *ui;
-
 
 
 

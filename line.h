@@ -15,6 +15,11 @@ public:
 
     void DrawShape() override;
     void SetShape() override;
+
+    // QPainter line(Line);
+
+    // QPen pen(Line);
+    // pen.setColor(Qt::green);
 };
 
 #endif // LINE_H
