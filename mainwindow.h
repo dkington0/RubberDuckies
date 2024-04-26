@@ -16,7 +16,10 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+
     ~MainWindow();
+private slots:
+    void on_login_clicked();
 
     virtual void paintEvent(QPaintEvent *event);
 
