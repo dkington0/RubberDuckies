@@ -2,7 +2,7 @@
 #include "./ui_shape.h"
 
 Shape::Shape(QWidget *parent)
-    : QMainWindow(parent)
+    : MainWindow(parent)
     , ui(new Ui::Shape)
 {
     ui->setupUi(this);
