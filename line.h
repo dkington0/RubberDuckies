@@ -7,6 +7,7 @@ class Line : protected Shape
 {
 private:
     QPoint points[2];
+     Shape* shape;
 
 
 public:

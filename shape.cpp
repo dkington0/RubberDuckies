@@ -12,3 +12,4 @@ Shape::~Shape()
 {
     delete ui;
 }
+
