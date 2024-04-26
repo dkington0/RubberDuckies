@@ -13,3 +13,12 @@ Shape::~Shape()
     delete ui;
 }
 
+virtual void setPen()
+{
+
+}
+
+virtual void setBrush()
+{
+
+}

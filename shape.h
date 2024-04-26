@@ -2,6 +2,7 @@
 #define SHAPE_H
 
 #include "MainWindow.h"
+#include <QPainter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -15,14 +16,16 @@ class Shape : public MainWindow
 
     private:
         Ui::Shape *ui;
-
-
+        QPen pen;
+        QPainter brush;
 
     public:
         Shape(QWidget *parent = nullptr);
         ~Shape();
 
         virtual void paintEvent(QPaintEvent* event)=0;
+        virtual void setPen();
+        virtual void setBrush();
         virtual void DrawShape()=0;   // Will draw the shape on the window area
         virtual void SetShape()=0;    // Set the values of the shape
 
