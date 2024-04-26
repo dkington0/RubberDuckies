@@ -12,3 +12,9 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::paintEvent(QPaintEvent *event)
+{
+    QPainter myText(this);
+    myText.drawText(QPoint(20, 30), "Test text sample");
+}
