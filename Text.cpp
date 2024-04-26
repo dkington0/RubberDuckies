@@ -8,3 +8,4 @@ void text::paintEvent(QPaintEvent *event)
     mytext.setFont(QFont("Times", 10, QFont::Bold));
     mytext.drawText(QPoint(20, 30), "Line");
 }
+
