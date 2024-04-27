@@ -6,83 +6,91 @@
 #include <QPainter>
 #include <QPainterPath>
 
-//! [0]
 RenderArea::RenderArea(QWidget *parent)
     : QWidget(parent)
 {
     shape = Polygon;
     antialiased = false;
     transformed = false;
-    pixmap.load(":/images/qt-logo.png");
 
     setBackgroundRole(QPalette::Base);
     setAutoFillBackground(true);
 }
-//! [0]
 
-//! [1]
+RenderArea::RenderArea(QWidget *parent, Shape inShape)
+    : QWidget(parent)
+{
+    shape = inShape;
+    antialiased = false;
+    transformed = false;
+
+    //QBrush inBrush(inShape.brushColor, inShape.brushStyle);
+    //QPen inPen(inBrush, inShape.brushWidth, inShape.penStyle, inShape.penCapStyle, inShape.penJoinStyle);
+
+    setBackgroundRole(QPalette::Base);
+    setAutoFillBackground(true);
+}
+
 QSize RenderArea::minimumSizeHint() const
 {
     return QSize(100, 100);
 }
-//! [1]
 
-//! [2]
 QSize RenderArea::sizeHint() const
 {
     return QSize(400, 200);
 }
-//! [2]
 
-//! [3]
 void RenderArea::setShape(Shape shape)
 {
     this->shape = shape;
     update();
 }
-//! [3]
 
-//! [4]
 void RenderArea::setPen(const QPen &pen)
 {
     this->pen = pen;
     update();
 }
-//! [4]
 
-//! [5]
 void RenderArea::setBrush(const QBrush &brush)
 {
     this->brush = brush;
     update();
 }
-//! [5]
 
-//! [6]
 void RenderArea::setAntialiased(bool antialiased)
 {
     this->antialiased = antialiased;
     update();
 }
-//! [6]
 
-//! [7]
 void RenderArea::setTransformed(bool transformed)
 {
     this->transformed = transformed;
     update();
 }
-//! [7]
 
-//! [8]
 void RenderArea::paintEvent(QPaintEvent * /* event */)
 {
+
+    /*
+        for points, the RenderArea will use the
+        shape's "dimensions"
+
+        i.e. points[n] = shape.dimensions.map
+     */
+
     static const QPoint points[4] = {
         QPoint(10, 80),
         QPoint(20, 10),
         QPoint(80, 30),
         QPoint(90, 70)
     };
+
+    /*
+     * create a QRect based on the shape's dimensions
+     */
 
     QRect rect(10, 20, 80, 60);
 
@@ -122,9 +130,6 @@ void RenderArea::paintEvent(QPaintEvent * /* event */)
             case Line:
                 painter.drawLine(rect.bottomLeft(), rect.topRight());
                 break;
-            case Points:
-                painter.drawPoints(points, 4);
-                break;
             case Polyline:
                 painter.drawPolyline(points, 4);
                 break;
@@ -134,33 +139,22 @@ void RenderArea::paintEvent(QPaintEvent * /* event */)
             case Rect:
                 painter.drawRect(rect);
                 break;
-            case RoundedRect:
-                painter.drawRoundedRect(rect, 25, 25, Qt::RelativeSize);
+            case Square:
+                //painter.drawRoundedRect(rect, 25, 25, Qt::RelativeSize);
                 break;
             case Ellipse:
                 painter.drawEllipse(rect);
                 break;
-            case Arc:
-                painter.drawArc(rect, startAngle, arcLength);
-                break;
-            case Chord:
-                painter.drawChord(rect, startAngle, arcLength);
-                break;
-            case Pie:
-                painter.drawPie(rect, startAngle, arcLength);
-                break;
-            case Path:
-                painter.drawPath(path);
+            case Circle:
+                painter.drawEllipse(rect);
                 break;
             case Text:
                 painter.drawText(rect,
                                  Qt::AlignCenter,
                                  tr("Qt by\nThe Qt Company"));
                 break;
-            case Pixmap:
-                painter.drawPixmap(10, 10, pixmap);
             }
-            //! [12] //! [13]
+
             painter.restore();
         }
     }
@@ -170,4 +164,4 @@ void RenderArea::paintEvent(QPaintEvent * /* event */)
     painter.setBrush(Qt::NoBrush);
     painter.drawRect(QRect(0, 0, width() - 1, height() - 1));
 }
-//! [13]
+
