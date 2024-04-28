@@ -14,8 +14,8 @@ public:
     polygon(int); // Initialize with a number of points
     ~polygon();
 
-    void DrawShape() override;
-    void SetShape() override;
+    // void DrawShape() override;
+    // void SetShape() override;
 };
 
 #endif // POLYGON_H

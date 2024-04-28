@@ -14,8 +14,8 @@ public:
     polyline(int);  // Number of points
     ~polyline();
 
-    void DrawShape() override;
-    void SetShape() override;
+    // void DrawShape() override;
+    // void SetShape() override;
 };
 
 #endif // polyline_H

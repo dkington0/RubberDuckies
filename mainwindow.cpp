@@ -19,14 +19,23 @@ void MainWindow::paintEvent(QPaintEvent *event)
     QPainter myText(this);
     myText.drawText(QPoint(20, 30), "Test text sample");
 }
+
+void MainWindow::loginSet(bool l)
+{
+    login_tracker = l;
+}
+
 void MainWindow::on_login_clicked()
 {
     QString username = ui->lineEdit_user->text();
     QString password = ui->lineEdit_pass->text();
 
     if (username == "admin" && password == "password")
-        QMessageBox::information(this,"Login", "validated successfully");
+        //QMessageBox::information(this,"Login", "validated successfully");
+        loginSet(true);
     else
-        QMessageBox::warning(this, "Login", "Username and password incorrect");
+        loginSet(false);
+        //QMessageBox::warning(this, "Login", "Username and password incorrect");
+        //return false;
 }
 

@@ -14,10 +14,10 @@ public:
     Line();
     ~Line();
 
-    void DrawShape() override;
-    void SetShape() override;
-    void setPen() override;
-    void setBrush() override;
+    //void DrawShape() override;
+    // void SetShape() override;
+    // void setPen() override;
+    // void setBrush() override;
     void paintEvent(QPaintEvent* event) override;
 
     // QPainter line(Line);

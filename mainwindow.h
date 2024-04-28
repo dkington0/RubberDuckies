@@ -16,8 +16,9 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-
     ~MainWindow();
+
+    void loginSet(bool l);
 private slots:
     void on_login_clicked();
 
@@ -25,6 +26,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    bool login_tracker;
 };
 
 

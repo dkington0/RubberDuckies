@@ -9,9 +9,10 @@ private:
 
 public:
     rectangle();
+    ~rectangle();
 
-    void DrawShape() override;
-    void SetShape() override;
+    // void DrawShape() override;
+    // void SetShape() override;
 };
 
 #endif // RECTANGLE_H

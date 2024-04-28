@@ -1,6 +1,7 @@
 #include "text.h"
 
 text::text() {}
+text::~text() {}
 
 void text::paintEvent(QPaintEvent *event)
 {

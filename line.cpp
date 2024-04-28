@@ -2,22 +2,23 @@
 
 Line::Line() {}
 
-void setPen()
-{
-    pen(Qt::green);
+Line::~Line() {}
+// void setPen()
+// {
+//     // pen(Qt::green);
 
-}
-void setBrush()
-{
+// }
+// void setBrush()
+// {
 
-}
+// }
 
 void Line::paintEvent(QPaintEvent* event)
 {
-    pen myline(this);
+    QPainter myline(this);
     QPen linePen(Qt::green);
-    linePen.setWidth(10);
-    myline.setPen(linepen);
-    myline.draw(50, 50, 200, 200);
 
+    linePen.setWidth(10);
+    myline.setPen(linePen);
+    myline.drawLine(50, 50, 200, 200);
 }
