@@ -12,8 +12,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    if(w.on_login_clicked())
-        w.hide();
-
     return a.exec();
 }
