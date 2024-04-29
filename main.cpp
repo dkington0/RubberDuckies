@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "file_parser.h"
 #include <QApplication>
+#include "line.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,6 +12,9 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
+
+    Line line;
+    line.show();
 
     return a.exec();
 }

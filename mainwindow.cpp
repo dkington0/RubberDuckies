@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "QMessageBox"
 #include "QGroupBox"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow), login_tracker {false}
@@ -18,6 +19,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
 {
     QPainter myText(this);
     myText.drawText(QPoint(20, 30), "Test text sample");
+    // myText.set = "";
+
 }
 
 void MainWindow::loginSet(bool l)
@@ -33,7 +36,7 @@ void MainWindow::on_login_clicked()
     if (username == "admin" && password == "password"){
         QMessageBox::information(this,"Login", "validated successfully");
         loginSet(true);
-        QMainWindow::groupBox.hide();
+        ui->groupBox->hide();
     }
     else
         loginSet(false);

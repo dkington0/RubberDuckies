@@ -1,24 +1,23 @@
 #ifndef LINE_H
 #define LINE_H
 #include <QPoint>
-#include "Shape.h"
+#include "shape.h"
 
-class Line : protected Shape
+class Line  : public Shape
 {
 private:
     QPoint points[2];
     Shape* shape;
 
-
 public:
-    Line();
+    Line() : points{}, shape{nullptr} {}
     ~Line();
 
-    //void DrawShape() override;
+    // void DrawShape() override;
     // void SetShape() override;
     // void setPen() override;
     // void setBrush() override;
-    void paintEvent(QPaintEvent* event) override;
+    void paintEvent(QPaintEvent *event) override;
 
     // QPainter line(Line);
 
