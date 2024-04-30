@@ -9,9 +9,11 @@ private:
     QPoint points[2];
     Shape* shape;
 
+
 public:
     Line() : points{}, shape{nullptr} {}
     ~Line();
+
 
     // void DrawShape() override;
     // void SetShape() override;
@@ -23,6 +25,7 @@ public:
 
     // QPen pen(Line);
     // pen.setColor(Qt::green);
+
 };
 
 #endif // LINE_H

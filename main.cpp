@@ -3,6 +3,7 @@
 #include <QApplication>
 #include "line.h"
 
+
 int main(int argc, char *argv[])
 {
 
@@ -12,9 +13,11 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
-
     Line line;
-    line.show();
+    Line fakeLine;
+    QObject::connect(&line, &Line::valueChanged, &fakeLine, &Line::setValue);
+
+   line.show();
 
     return a.exec();
 }
