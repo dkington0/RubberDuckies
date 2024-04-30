@@ -37,12 +37,15 @@ void MainWindow::on_login_clicked()
         QMessageBox::information(this,"Login", "validated successfully");
         loginSet(true);
         ui->groupBox->hide();
-        Shape::setValue(clicked());
+        setValue(true);
     }
     else
+    {
         loginSet(false);
+        setValue(false);
         //QMessageBox::warning(this, "Login", "Username and password incorrect");
         //return false;
+    }
 }
 
 bool MainWindow::loginGet()

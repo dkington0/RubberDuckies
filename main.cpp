@@ -13,11 +13,11 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
-    Line line;
-    Line fakeLine;
-    QObject::connect(&line, &Line::valueChanged, &fakeLine, &Line::setValue);
+    // Line* line = ;
+    // Line fakeLine;
+    // QObject::connect(&line, SIGNAL(w.shapeValue()), SLOT(w.setValue()));
 
-   line.show();
+
 
     return a.exec();
 }
