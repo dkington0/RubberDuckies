@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPainter>
+#include "QPushButton"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,14 +21,22 @@ public:
     bool loginGet();
 
     void loginSet(bool l);
+    int shapeValue() const { return m_value; }
 
 private slots:
     void on_login_clicked();
     virtual void paintEvent(QPaintEvent *event);
 
+public slots:
+    void setValue(int value);
+
+signals:
+    void valueChanged(int newValue);
+
 private:
     Ui::MainWindow *ui;
     bool login_tracker;
+    int m_value;
 };
 
 
