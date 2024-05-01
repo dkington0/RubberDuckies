@@ -29,6 +29,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         vector.cpp
         shape_list.txt
         shape_resources.qrc
+        file_parser.cpp file_parser.h mainwindow.cpp mainwindow.h mainwindow.ui shape_list.txt shape_resources.qrc vector.cpp vector.h
+        shape.cpp shape.h shape.ui
+        line.h line.cpp
+        polyline.h polyline.cpp
+        rectangle.h rectangle.cpp
+        polygon.h polygon.cpp
+        text.h text.cpp
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Project1 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
