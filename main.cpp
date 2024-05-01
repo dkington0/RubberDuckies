@@ -2,14 +2,15 @@
 #include "file_parser.h"
 #include <QApplication>
 #include "line.h"
-
+#include "vector.h"
 
 int main(int argc, char *argv[])
 {
 
     QApplication a(argc, argv);
     QString directory_path = a.applicationDirPath();
-    read_file(directory_path.toStdString());
+    myStd::vector<Shape*> userShapes;
+    read_file(directory_path.toStdString(), userShapes);
 
     MainWindow w;
     w.show();

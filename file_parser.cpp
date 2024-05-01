@@ -110,7 +110,7 @@ void readEllipse(fstream&, int);
 void readCircle(fstream&, int);
 void readText(fstream&, int);
 
-void read_file(const string directory_path) {
+void read_file(const string directory_path, myStd::vector<Shape*>& userShapes) {
     /*
     *   Test code for file parsing
     */
@@ -129,14 +129,14 @@ void read_file(const string directory_path) {
 
     inData.open(test_path, ios::in);
     if (inData.is_open())        // another test to see if it's open again
-        parse_file(inData);
+        parse_file(inData, userShapes);
     else
         cout << "Failed to open file for reading" << endl; // change to a throw later
 
     return;
 }
 
-void parse_file(fstream& inData) {
+void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
     int counter {};
     string strArray[10];
     string current;
