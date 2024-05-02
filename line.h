@@ -6,25 +6,20 @@
 class Line  : public Shape
 {
 private:
-    QPoint points[2];
-    Shape* shape;
-
+    QPoint p1;
+    QPoint p2;
 
 public:
-    Line() : points{}, shape{nullptr} {}
-    ~Line();
+    Line() : p1{}, p2{} {}
+    Line(QPoint& one, QPoint& two) : p1{one}, p2{two} {}
+    ~Line() {}
 
+    void setPoints(QPoint* p, QPoint* p2);
+    void setPen() override;
+    void setBrush() override;
+    // void draw() override;
 
-    // void DrawShape() override;
-    // void SetShape() override;
-    // void setPen() override;
-    // void setBrush() override;
     void paintEvent(QPaintEvent *event) override;
-
-    // QPainter line(Line);
-
-    // QPen pen(Line);
-    // pen.setColor(Qt::green);
 
 };
 
