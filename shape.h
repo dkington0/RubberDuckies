@@ -17,15 +17,16 @@ class Shape : public MainWindow
     private:
         Ui::Shape *ui;
         QPen pen;
-        QPainter brush;
+        QBrush brush;
 
     public:
         Shape(QWidget *parent = nullptr);
-        ~Shape();
+        virtual ~Shape();
 
-        virtual void paintEvent(QPaintEvent* event)=0;
-        virtual void setPen();
-        virtual void setBrush();
+        // virtual void paintEvent(QPaintEvent* event)=0;
+        void setPen(const QColor &color, Qt::PenStyle style, Qt::PenCapStyle cap, Qt::PenJoinStyle join);
+        void setBrush(const QColor &color, Qt::BrushStyle style);
+        QPen& getPen();
         // virtual void draw() = 0;   // Will draw the shape on the window area
 
 };

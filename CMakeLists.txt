@@ -36,6 +36,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         rectangle.h rectangle.cpp
         polygon.h polygon.cpp
         text.h text.cpp
+        circle.h circle.cpp
+        ellipse.h ellipse.cpp
+        square.h square.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
