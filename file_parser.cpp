@@ -243,6 +243,7 @@ void readLine(fstream& inData, int id) {
     Qt::PenStyle penStyle;  // shape pen style
     Qt::PenCapStyle penCapStyle;    // shape pen cap style
     Qt::PenJoinStyle penJoinStyle;  // shape pen join style
+    myStd::vector<QPoint> points;
 
     cout << "Start of Read Line fcn" << endl;
     while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
@@ -257,6 +258,9 @@ void readLine(fstream& inData, int id) {
                 string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
                 cout << "Dimension Sub String:" << dimensionsSubStr << endl;
                 bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
+                bool isXCoord {false}; // determines if the given int is an x coordinate or not.
+                int xCoord {};
+                int yCoord {};
 
                 while (hasMoreDimensions) {
                     size_t rBoundPosition {};
@@ -272,7 +276,15 @@ void readLine(fstream& inData, int id) {
                         }
                         newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
                         dimensions.push_back(stoi(newDimensionStr));
-
+                        if (isXCoord) {  // if isXCoord is true, then the dimension should be stored as the x coordinate of a QPoint
+                            xCoord = stoi(newDimensionStr);
+                            isXCoord = false;   // if this is an x coordinate, the next dimension will be a y coordinate.
+                        } else {    // if XCoord is false, the dimension should be stored as the y coordinate of a QPoint..
+                            yCoord = stoi(newDimensionStr);
+                            isXCoord = true; // if this is a y coordinate, the next dimension will be an x coordinate.
+                            points.push_back(QPoint(xCoord, yCoord)); // if a Y coordinate is being stored, then an X coordinate has already been stored.
+                                                                           // then we are able to make a QPoint, which is added to the points array.
+                        }
                         if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
                             hasMoreDimensions = false;
                         else
@@ -382,6 +394,14 @@ void readLine(fstream& inData, int id) {
     }
     //unique_ptr<int[]> paramShapeDimensions(std::move(dimensions));
     cout << "End of Read Line fcn" << endl;
+
+    QPen pen;
+    pen.setColor(penColor);
+    pen.setWidth(penWidth);
+    pen.setStyle(penStyle);
+    pen.setCapStyle(penCapStyle);
+    pen.setJoinStyle(penJoinStyle);
+
     TestLine outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle);
     return;
 }
@@ -395,6 +415,7 @@ void readPolyLine(fstream& inData, int id) {
     Qt::PenStyle penStyle;  // shape pen style
     Qt::PenCapStyle penCapStyle;    // shape pen cap style
     Qt::PenJoinStyle penJoinStyle;  // shape pen join style
+    myStd::vector<QPoint> points;
 
     cout << "Start of Read Polyline fcn" << endl;
     while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
@@ -409,6 +430,9 @@ void readPolyLine(fstream& inData, int id) {
                 string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
                 cout << "Dimension Sub String:" << dimensionsSubStr << endl;
                 bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
+                bool isXCoord {false}; // determines if the given int is an x coordinate or not.
+                int xCoord {};
+                int yCoord {};
 
                 while (hasMoreDimensions) {
                     size_t rBoundPosition {};
@@ -424,7 +448,15 @@ void readPolyLine(fstream& inData, int id) {
                         }
                         newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
                         dimensions.push_back(stoi(newDimensionStr));
-
+                        if (isXCoord) {  // if isXCoord is true, then the dimension should be stored as the x coordinate of a QPoint
+                            xCoord = stoi(newDimensionStr);
+                            isXCoord = false;   // if this is an x coordinate, the next dimension will be a y coordinate.
+                        } else {    // if XCoord is false, the dimension should be stored as the y coordinate of a QPoint..
+                            yCoord = stoi(newDimensionStr);
+                            isXCoord = true; // if this is a y coordinate, the next dimension will be an x coordinate.
+                            points.push_back(QPoint(xCoord, yCoord)); // if a Y coordinate is being stored, then an X coordinate has already been stored.
+                                                                      // then we are able to make a QPoint, which is added to the points array.
+                        }
                         if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
                             hasMoreDimensions = false;
                         else
@@ -532,6 +564,14 @@ void readPolyLine(fstream& inData, int id) {
 
 
     }
+
+    QPen pen;
+    pen.setColor(penColor);
+    pen.setWidth(penWidth);
+    pen.setStyle(penStyle);
+    pen.setCapStyle(penCapStyle);
+    pen.setJoinStyle(penJoinStyle);
+
     cout << "End of Read Polyline fcn" << endl;
     TestLine outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle);
     return;
@@ -548,6 +588,7 @@ void readPolygon(fstream& inData, int id) {
     Qt::PenJoinStyle penJoinStyle;  // shape pen join style
     Qt::GlobalColor brushColor; // brush color
     Qt::BrushStyle brushStyle;  // brush style
+    myStd::vector<QPoint> points;
 
     cout << "Start of Read Polygon fcn" << endl;
     while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
@@ -562,6 +603,9 @@ void readPolygon(fstream& inData, int id) {
                 string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
                 cout << "Dimension Sub String:" << dimensionsSubStr << endl;
                 bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
+                bool isXCoord {false}; // determines if the given int is an x coordinate or not.
+                int xCoord {};
+                int yCoord {};
 
                 while (hasMoreDimensions) {
                     size_t rBoundPosition {};
@@ -577,6 +621,15 @@ void readPolygon(fstream& inData, int id) {
                         }
                         newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
                         dimensions.push_back(stoi(newDimensionStr));
+                        if (isXCoord) {  // if isXCoord is true, then the dimension should be stored as the x coordinate of a QPoint
+                            xCoord = stoi(newDimensionStr);
+                            isXCoord = false;   // if this is an x coordinate, the next dimension will be a y coordinate.
+                        } else {    // if XCoord is false, the dimension should be stored as the y coordinate of a QPoint..
+                            yCoord = stoi(newDimensionStr);
+                            isXCoord = true; // if this is a y coordinate, the next dimension will be an x coordinate.
+                            points.push_back(QPoint(xCoord, yCoord)); // if a Y coordinate is being stored, then an X coordinate has already been stored.
+                                // then we are able to make a QPoint, which is added to the points array.
+                        }
 
                         if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
                             hasMoreDimensions = false;
@@ -725,6 +778,18 @@ void readPolygon(fstream& inData, int id) {
             return;
         }
     }
+
+    QPen pen;
+    pen.setColor(penColor);
+    pen.setWidth(penWidth);
+    pen.setStyle(penStyle);
+    pen.setCapStyle(penCapStyle);
+    pen.setJoinStyle(penJoinStyle);
+
+    QBrush brush;
+    brush.setColor(brushColor);
+    brush.setStyle(brushStyle);
+
     cout << "End of Read Polygon fcn" << endl;
     TestPolygon outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
@@ -741,6 +806,7 @@ void readRectangle(fstream& inData, int id) {
     Qt::PenJoinStyle penJoinStyle;  // shape pen join style
     Qt::GlobalColor brushColor; // brush color
     Qt::BrushStyle brushStyle;  // brush style
+    myStd::vector<QPoint> points;
 
     cout << "Start of Read Rectangle fcn" << endl;
     while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
@@ -755,6 +821,9 @@ void readRectangle(fstream& inData, int id) {
                 string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
                 cout << "Dimension Sub String:" << dimensionsSubStr << endl;
                 bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
+                bool isXCoord {false}; // determines if the given int is an x coordinate or not.
+                int xCoord {};
+                int yCoord {};
 
                 while (hasMoreDimensions) {
                     size_t rBoundPosition {};
@@ -770,6 +839,15 @@ void readRectangle(fstream& inData, int id) {
                         }
                         newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
                         dimensions.push_back(stoi(newDimensionStr));
+                        if (isXCoord) {  // if isXCoord is true, then the dimension should be stored as the x coordinate of a QPoint
+                            xCoord = stoi(newDimensionStr);
+                            isXCoord = false;   // if this is an x coordinate, the next dimension will be a y coordinate.
+                        } else {    // if XCoord is false, the dimension should be stored as the y coordinate of a QPoint..
+                            yCoord = stoi(newDimensionStr);
+                            isXCoord = true; // if this is a y coordinate, the next dimension will be an x coordinate.
+                            points.push_back(QPoint(xCoord, yCoord)); // if a Y coordinate is being stored, then an X coordinate has already been stored.
+                                // then we are able to make a QPoint, which is added to the points array.
+                        }
 
                         if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
                             hasMoreDimensions = false;
@@ -918,6 +996,20 @@ void readRectangle(fstream& inData, int id) {
             return;
         }
     }
+
+    QPen pen;
+    pen.setColor(penColor);
+    pen.setWidth(penWidth);
+    pen.setStyle(penStyle);
+    pen.setCapStyle(penCapStyle);
+    pen.setJoinStyle(penJoinStyle);
+
+    QBrush brush;
+    brush.setColor(brushColor);
+    brush.setStyle(brushStyle);
+
+    //QRect rectShape(points[0], points[1]);
+
     cout << "End of Read Rectangle fcn" << endl;
     TestRectangle outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
@@ -934,6 +1026,7 @@ void readSquare(fstream& inData, int id) {
     Qt::PenJoinStyle penJoinStyle;  // shape pen join style
     Qt::GlobalColor brushColor; // brush color
     Qt::BrushStyle brushStyle;  // brush style
+    myStd::vector<QPoint> points;
 
     cout << "Start of Read Square fcn" << endl;
     while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
@@ -948,6 +1041,9 @@ void readSquare(fstream& inData, int id) {
                 string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
                 cout << "Dimension Sub String:" << dimensionsSubStr << endl;
                 bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
+                bool isXCoord {false}; // determines if the given int is an x coordinate or not.
+                int xCoord {};
+                int yCoord {};
 
                 while (hasMoreDimensions) {
                     size_t rBoundPosition {};
@@ -963,6 +1059,15 @@ void readSquare(fstream& inData, int id) {
                         }
                         newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
                         dimensions.push_back(stoi(newDimensionStr));
+                        if (isXCoord) {  // if isXCoord is true, then the dimension should be stored as the x coordinate of a QPoint
+                            xCoord = stoi(newDimensionStr);
+                            isXCoord = false;   // if this is an x coordinate, the next dimension will be a y coordinate.
+                        } else {    // if XCoord is false, the dimension should be stored as the y coordinate of a QPoint..
+                            yCoord = stoi(newDimensionStr);
+                            isXCoord = true; // if this is a y coordinate, the next dimension will be an x coordinate.
+                            points.push_back(QPoint(xCoord, yCoord)); // if a Y coordinate is being stored, then an X coordinate has already been stored.
+                                // then we are able to make a QPoint, which is added to the points array.
+                        }
 
                         if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
                             hasMoreDimensions = false;
@@ -1111,6 +1216,18 @@ void readSquare(fstream& inData, int id) {
             return;
         }
     }
+
+    QPen pen;
+    pen.setColor(penColor);
+    pen.setWidth(penWidth);
+    pen.setStyle(penStyle);
+    pen.setCapStyle(penCapStyle);
+    pen.setJoinStyle(penJoinStyle);
+
+    QBrush brush;
+    brush.setColor(brushColor);
+    brush.setStyle(brushStyle);
+
     cout << "End of Read Square fcn" << endl;
     TestRectangle outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
@@ -1127,6 +1244,7 @@ void readEllipse(fstream& inData, int id) {
     Qt::PenJoinStyle penJoinStyle;  // shape pen join style
     Qt::GlobalColor brushColor; // brush color
     Qt::BrushStyle brushStyle;  // brush style
+    myStd::vector<QPoint> points;
 
     cout << "Start of Read Ellipse fcn" << endl;
     while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
@@ -1141,6 +1259,9 @@ void readEllipse(fstream& inData, int id) {
                 string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
                 cout << "Dimension Sub String:" << dimensionsSubStr << endl;
                 bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
+                bool isXCoord {false}; // determines if the given int is an x coordinate or not.
+                int xCoord {};
+                int yCoord {};
 
                 while (hasMoreDimensions) {
                     size_t rBoundPosition {};
@@ -1156,6 +1277,15 @@ void readEllipse(fstream& inData, int id) {
                         }
                         newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
                         dimensions.push_back(stoi(newDimensionStr));
+                        if (isXCoord) {  // if isXCoord is true, then the dimension should be stored as the x coordinate of a QPoint
+                            xCoord = stoi(newDimensionStr);
+                            isXCoord = false;   // if this is an x coordinate, the next dimension will be a y coordinate.
+                        } else {    // if XCoord is false, the dimension should be stored as the y coordinate of a QPoint..
+                            yCoord = stoi(newDimensionStr);
+                            isXCoord = true; // if this is a y coordinate, the next dimension will be an x coordinate.
+                            points.push_back(QPoint(xCoord, yCoord)); // if a Y coordinate is being stored, then an X coordinate has already been stored.
+                                // then we are able to make a QPoint, which is added to the points array.
+                        }
 
                         if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
                             hasMoreDimensions = false;
@@ -1304,6 +1434,18 @@ void readEllipse(fstream& inData, int id) {
             return;
         }
     }
+
+    QPen pen;
+    pen.setColor(penColor);
+    pen.setWidth(penWidth);
+    pen.setStyle(penStyle);
+    pen.setCapStyle(penCapStyle);
+    pen.setJoinStyle(penJoinStyle);
+
+    QBrush brush;
+    brush.setColor(brushColor);
+    brush.setStyle(brushStyle);
+
     cout << "End of Read Ellipse fcn" << endl;
     TestEllipse outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
@@ -1320,6 +1462,7 @@ void readCircle(fstream& inData, int id) {
     Qt::PenJoinStyle penJoinStyle;  // shape pen join style
     Qt::GlobalColor brushColor; // brush color
     Qt::BrushStyle brushStyle;  // brush style
+    myStd::vector<QPoint> points;
 
     cout << "Start of Read Circle fcn" << endl;
     while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
@@ -1334,6 +1477,9 @@ void readCircle(fstream& inData, int id) {
                 string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
                 cout << "Dimension Sub String:" << dimensionsSubStr << endl;
                 bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
+                bool isXCoord {false}; // determines if the given int is an x coordinate or not.
+                int xCoord {};
+                int yCoord {};
 
                 while (hasMoreDimensions) {
                     size_t rBoundPosition {};
@@ -1349,6 +1495,15 @@ void readCircle(fstream& inData, int id) {
                         }
                         newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
                         dimensions.push_back(stoi(newDimensionStr));
+                        if (isXCoord) {  // if isXCoord is true, then the dimension should be stored as the x coordinate of a QPoint
+                            xCoord = stoi(newDimensionStr);
+                            isXCoord = false;   // if this is an x coordinate, the next dimension will be a y coordinate.
+                        } else {    // if XCoord is false, the dimension should be stored as the y coordinate of a QPoint..
+                            yCoord = stoi(newDimensionStr);
+                            isXCoord = true; // if this is a y coordinate, the next dimension will be an x coordinate.
+                            points.push_back(QPoint(xCoord, yCoord)); // if a Y coordinate is being stored, then an X coordinate has already been stored.
+                                // then we are able to make a QPoint, which is added to the points array.
+                        }
 
                         if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
                             hasMoreDimensions = false;
@@ -1497,6 +1652,18 @@ void readCircle(fstream& inData, int id) {
             return;
         }
     }
+
+    QPen pen;
+    pen.setColor(penColor);
+    pen.setWidth(penWidth);
+    pen.setStyle(penStyle);
+    pen.setCapStyle(penCapStyle);
+    pen.setJoinStyle(penJoinStyle);
+
+    QBrush brush;
+    brush.setColor(brushColor);
+    brush.setStyle(brushStyle);
+
     cout << "End of Read Circle fcn" << endl;
     TestEllipse outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
@@ -1520,6 +1687,7 @@ void readText(fstream& inData, int id) {
     // text font weight
     QFont::Weight textFontWeight {};
     string current {};
+    myStd::vector<QPoint> points;
 
     cout << "Start of Read Text fcn" << endl;
     while (getline(inData, current) && (!current.empty())) { // program is still reading from shape if the string is not empty
@@ -1534,6 +1702,9 @@ void readText(fstream& inData, int id) {
                 string dimensionsSubStr = current.substr(current.find(':')+1); // splices the string so only the chracters after ':' remain
                 cout << "Dimension Sub String:" << dimensionsSubStr << endl;
                 bool hasMoreDimensions {dimensionsSubStr.find(' ', 0) != string::npos}; // flag to determine when the while loop needs to stop
+                bool isXCoord {false}; // determines if the given int is an x coordinate or not.
+                int xCoord {};
+                int yCoord {};
 
                 while (hasMoreDimensions) {
                     size_t rBoundPosition {};
@@ -1549,6 +1720,15 @@ void readText(fstream& inData, int id) {
                         }
                         newDimensionStr = dimensionsSubStr.substr(1, rBoundPosition);
                         dimensions.push_back(stoi(newDimensionStr));
+                        if (isXCoord) {  // if isXCoord is true, then the dimension should be stored as the x coordinate of a QPoint
+                            xCoord = stoi(newDimensionStr);
+                            isXCoord = false;   // if this is an x coordinate, the next dimension will be a y coordinate.
+                        } else {    // if XCoord is false, the dimension should be stored as the y coordinate of a QPoint..
+                            yCoord = stoi(newDimensionStr);
+                            isXCoord = true; // if this is a y coordinate, the next dimension will be an x coordinate.
+                            points.push_back(QPoint(xCoord, yCoord)); // if a Y coordinate is being stored, then an X coordinate has already been stored.
+                                // then we are able to make a QPoint, which is added to the points array.
+                        }
 
                         if (dimensionsSubStr.at(rBoundPosition) == dimensionsSubStr.back())
                             hasMoreDimensions = false;
