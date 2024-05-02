@@ -5,11 +5,11 @@
 class ellipse : public Shape
 {
 private:
-    QRectF rect;
+    QRect rect;
 
 public:
     ellipse() : rect{520, 200, 170, 100} {}
-    ellipse(qreal x, qreal y, qreal width, qreal height) { rect.setRect(x, y, width, height); }
+    ellipse(QRect r) : rect{r} {}
     ~ellipse();
 };
 

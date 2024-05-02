@@ -2,15 +2,16 @@
 #define POLYGON_H
 // #include "vector.h"
 #include "shape.h"
+#include "vector.h"
 
 class polygon : public Shape
 {
 private:
-    QPointF points[4];
+    myStd::vector<QPoint> points;
 
 public:
-    polygon(): points{QPointF(900, 90), QPointF(910, 20), QPointF(970, 40), QPointF(980, 80)} {}
-    polygon(QPointF p1, QPointF p2, QPointF p3, QPointF p4) : points{p1, p2, p3, p4} {} // Initialize with a number of points
+    polygon(): points{QPoint(900, 90), QPoint(910, 20), QPoint(970, 40), QPoint(980, 80)} {}
+    polygon(myStd::vector<QPoint>& p) : points{ p } {} // Initialize with a number of points
     ~polygon();
 
     // void DrawShape() override;

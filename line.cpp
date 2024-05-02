@@ -20,9 +20,8 @@ Line::~Line() {}
 void Line::paintEvent(QPaintEvent *event)
 {
     QPainter *myline = new QPainter(this); // in render return this pointer
-    shape->setPen(Qt::green, Qt::DashDotLine, Qt::FlatCap, Qt::MiterJoin);
-    shape->getPen().setWidth(10);
-    myline->setPen(shape->getPen());
+    setPen(Qt::green, 10, Qt::DashDotLine, Qt::FlatCap, Qt::MiterJoin);
+    myline->setPen(getPen());
 
     // QEventLoop loop;
     // QObject::connect(myline, SIGNAL(shapeValue()), &loop, SLOT(quit()));

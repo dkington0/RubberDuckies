@@ -9,7 +9,7 @@ private:
 
 public:
     rectangle() : rect{20, 200, 170, 100} {}
-    rectangle(qreal x, qreal y, qreal width, qreal height) { rect.setRect(x, y, width, height); }
+    rectangle(QRect r) : rect{r} {}
     ~rectangle();
     // void DrawShape() override;
     // void SetShape() override;
