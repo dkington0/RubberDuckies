@@ -1,6 +1,11 @@
 #include "file_parser.h"
 #include "vector.h"
 #include <QFont>
+#include "line.h"
+#include "rectangle.h"
+#include "square.h"
+#include "ellipse.h"
+#include "circle.h"
 
 struct TestLine {
     int id {};
@@ -89,26 +94,26 @@ struct TestText {
 };
 
 enum ShapeType {
-    Line,
-    Polyline,
-    Polygon,
-    Rectangle,
-    Square,
-    Ellipse,
-    Circle,
-    Text
+    enumLine,
+    enumPolyline,
+    enumPolygon,
+    enumRectangle,
+    enumSquare,
+    enumEllipse,
+    enumCircle,
+    enumText
 };
 
 //void parse_file(fstream&);
 // change to return Shape objects
-void readLine(fstream&, int);
-void readPolyLine(fstream&, int);
-void readPolygon(fstream&, int);
-void readRectangle(fstream&, int);
-void readSquare(fstream&, int);
-void readEllipse(fstream&, int);
-void readCircle(fstream&, int);
-void readText(fstream&, int);
+void readLine(fstream&, int, myStd::vector<Shape*>& userShapes);
+void readPolyLine(fstream&, int, myStd::vector<Shape*>& userShapes);
+void readPolygon(fstream&, int, myStd::vector<Shape*>& userShapes);
+void readRectangle(fstream&, int, myStd::vector<Shape*>& userShapes);
+void readSquare(fstream&, int, myStd::vector<Shape*>& userShapes);
+void readEllipse(fstream&, int, myStd::vector<Shape*>& userShapes);
+void readCircle(fstream&, int, myStd::vector<Shape*>& userShapes);
+void readText(fstream&, int, myStd::vector<Shape*>& userShapes);
 
 void read_file(const string directory_path, myStd::vector<Shape*>& userShapes) {
     /*
@@ -163,21 +168,21 @@ void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
                     current = current.substr(11);
                     cout << current << endl;
                     if (current == "Line")
-                        shapeType  = Line;
+                        shapeType  = enumLine;
                     else if (current == "Polyline")
-                        shapeType = Polyline;
+                        shapeType = enumPolyline;
                     else if (current == "Polygon")
-                        shapeType = Polygon;
+                        shapeType = enumPolygon;
                     else if (current == "Rectangle")
-                        shapeType = Rectangle;
+                        shapeType = enumRectangle;
                     else if (current == "Square")
-                        shapeType = Square;
+                        shapeType = enumSquare;
                     else if (current == "Ellipse")
-                        shapeType = Ellipse;
+                        shapeType = enumEllipse;
                     else if (current == "Circle")
-                        shapeType = Circle;
+                        shapeType = enumCircle;
                     else if (current == "Text")
-                        shapeType = Text;
+                        shapeType = enumText;
                     else {
                         // throw
                         cout << "ShapeType failed to be identified" << endl;
@@ -197,29 +202,29 @@ void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
             // 2nd line defines the type of the shape
                 // -> call the corresponding "read shape" function
             switch (shapeType) { // current holds the shape type
-            case Line:
-                readLine(inData, id);
+            case enumLine:
+                readLine(inData, id, userShapes);
                 break;
-            case Polyline:
-                readPolyLine(inData, id);
+            case enumPolyline:
+                readPolyLine(inData, id, userShapes);
                 break;
-            case Polygon:
-                readPolygon(inData, id);
+            case enumPolygon:
+                readPolygon(inData, id, userShapes);
                 break;
-            case Rectangle:
-                readRectangle(inData, id);
+            case enumRectangle:
+                readRectangle(inData, id, userShapes);
                 break;
-            case Square:
-                readSquare(inData, id);
+            case enumSquare:
+                readSquare(inData, id, userShapes);
                 break;
-            case Ellipse:
-                readEllipse(inData, id);
+            case enumEllipse:
+                readEllipse(inData, id, userShapes);
                 break;
-            case Circle:
-                readCircle(inData, id);
+            case enumCircle:
+                readCircle(inData, id, userShapes);
                 break;
-            case Text:
-                readText(inData, id);
+            case enumText:
+                readText(inData, id, userShapes);
                 break;
             default:
                 // throw
@@ -234,7 +239,7 @@ void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
     return;
 }
 
-void readLine(fstream& inData, int id) {
+void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
 
     myStd::vector<int> dimensions; //shape dimensions
@@ -394,19 +399,23 @@ void readLine(fstream& inData, int id) {
     }
     //unique_ptr<int[]> paramShapeDimensions(std::move(dimensions));
     cout << "End of Read Line fcn" << endl;
-
+/*
     QPen pen;
     pen.setColor(penColor);
     pen.setWidth(penWidth);
     pen.setStyle(penStyle);
     pen.setCapStyle(penCapStyle);
     pen.setJoinStyle(penJoinStyle);
+*/
+    Line* newLine = new Line(points[0].x(), points[0].y(), points[1].x(), points[1].y());
+    newLine->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
 
-    TestLine outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle);
+    userShapes.push_back(newLine);
+
     return;
 }
 
-void readPolyLine(fstream& inData, int id) {
+void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
 
     myStd::vector<int> dimensions; //shape dimensions
@@ -577,7 +586,7 @@ void readPolyLine(fstream& inData, int id) {
     return;
 }
 
-void readPolygon(fstream& inData, int id) {
+void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
 
     myStd::vector<int> dimensions; //shape dimensions
@@ -795,7 +804,7 @@ void readPolygon(fstream& inData, int id) {
     return;
 }
 
-void readRectangle(fstream& inData, int id) {
+void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
 
     myStd::vector<int> dimensions; //shape dimensions
@@ -996,7 +1005,7 @@ void readRectangle(fstream& inData, int id) {
             return;
         }
     }
-
+/*
     QPen pen;
     pen.setColor(penColor);
     pen.setWidth(penWidth);
@@ -1007,15 +1016,23 @@ void readRectangle(fstream& inData, int id) {
     QBrush brush;
     brush.setColor(brushColor);
     brush.setStyle(brushStyle);
+*/
 
-    //QRect rectShape(points[0], points[1]);
+    int width = points[1].x();
+    int height = points[1].y();
+
+    rectangle* newRectangle = new rectangle(points[0].x(), points[0].y(), width, height);
+    newRectangle->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
+    newRectangle->setBrush(brushColor, brushStyle);
+
+    userShapes.push_back(newRectangle);
 
     cout << "End of Read Rectangle fcn" << endl;
-    TestRectangle outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
+    //TestRectangle outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
 }
 
-void readSquare(fstream& inData, int id) {
+void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
 
     myStd::vector<int> dimensions; //shape dimensions
@@ -1216,7 +1233,7 @@ void readSquare(fstream& inData, int id) {
             return;
         }
     }
-
+/*
     QPen pen;
     pen.setColor(penColor);
     pen.setWidth(penWidth);
@@ -1227,13 +1244,20 @@ void readSquare(fstream& inData, int id) {
     QBrush brush;
     brush.setColor(brushColor);
     brush.setStyle(brushStyle);
+*/
+    int sides = points[1].x();
+    square* newSquare = new square(points[0].x(), points[0].y(), sides);
+    newSquare->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
+    newSquare->setBrush(brushColor, brushStyle);
+
+    userShapes.push_back(newSquare);
 
     cout << "End of Read Square fcn" << endl;
-    TestRectangle outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
+    //TestRectangle outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
 }
 
-void readEllipse(fstream& inData, int id) {
+void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
 
     myStd::vector<int> dimensions; //shape dimensions
@@ -1434,7 +1458,7 @@ void readEllipse(fstream& inData, int id) {
             return;
         }
     }
-
+/*
     QPen pen;
     pen.setColor(penColor);
     pen.setWidth(penWidth);
@@ -1445,13 +1469,21 @@ void readEllipse(fstream& inData, int id) {
     QBrush brush;
     brush.setColor(brushColor);
     brush.setStyle(brushStyle);
+*/
+    int width = points[1].x();
+    int height = points[1].y();
+    ellipse* newEllipse = new ellipse(points[0].x(), points[0].y(), width, height);
+    newEllipse->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
+    newEllipse->setBrush(brushColor, brushStyle);
+
+    userShapes.push_back(newEllipse);
 
     cout << "End of Read Ellipse fcn" << endl;
-    TestEllipse outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
+    //TestEllipse outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
 }
 
-void readCircle(fstream& inData, int id) {
+void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
 
     myStd::vector<int> dimensions; //shape dimensions
@@ -1664,12 +1696,19 @@ void readCircle(fstream& inData, int id) {
     brush.setColor(brushColor);
     brush.setStyle(brushStyle);
 
+    int width = points[1].x();
+    circle* newCircle = new circle(points[0].x(), points[0].y(), width);
+    newCircle->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
+    newCircle->setBrush(brushColor, brushStyle);
+
+    userShapes.push_back(newCircle);
+
     cout << "End of Read Circle fcn" << endl;
-    TestEllipse outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
+    //TestEllipse outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
 }
 
-void readText(fstream& inData, int id) {
+void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
 
     myStd::vector<int> dimensions;
     // text string

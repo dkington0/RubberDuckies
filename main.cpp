@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     myStd::vector<Shape*> container;
     QApplication a(argc, argv);
     QString directory_path = a.applicationDirPath();
-    read_file(directory_path.toStdString());
+    read_file(directory_path.toStdString(), container);
 
     MainWindow w;
     w.show();
