@@ -4,6 +4,7 @@
 #include "shape.h"
 #include "vector.h"
 
+
 class polygon : public Shape
 {
 private:
@@ -14,7 +15,7 @@ public:
     polygon(myStd::vector<QPoint>& p) : points{ p } {} // Initialize with a number of points
     ~polygon();
 
-    // void DrawShape() override;
+    void paintEvent(QPaintEvent *event) override;
     // void SetShape() override;
 };
 
