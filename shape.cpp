@@ -13,26 +13,12 @@ Shape::~Shape()
     delete ui;
 }
 
-void Shape::setPen(const QColor &color, qreal width, Qt::PenStyle style, Qt::PenCapStyle cap, Qt::PenJoinStyle join)
+void Shape::setPen(QPen p)
 {
-    pen.setColor(color);
-    pen.setWidth(width);
-    pen.setStyle(style);
-    pen.setCapStyle(cap);
-    pen.setJoinStyle(join);
-}
-
-void Shape::setBrush(QBrush b)
-{
-    brush = b;
+    pen = p;
 }
 
 QPen& Shape::getPen()
 {
     return pen;
-}
-
-QBrush& Shape::getBrush()
-{
-    return brush;
 }
