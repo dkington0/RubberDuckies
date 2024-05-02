@@ -3,11 +3,12 @@
 #include <QApplication>
 // #include "line.h"
 #include "vector.h"
+#include "shape.h"
 
-template <class Type>
+//template <class Type>
 int main(int argc, char *argv[])
 {
-    myStd::vector<Type> container;
+    myStd::vector<Shape*> container;
     QApplication a(argc, argv);
     QString directory_path = a.applicationDirPath();
     read_file(directory_path.toStdString());
