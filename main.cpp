@@ -1,16 +1,16 @@
 #include "mainwindow.h"
 #include "file_parser.h"
 #include <QApplication>
-#include "line.h"
+// #include "line.h"
 #include "vector.h"
 
+template <class Type>
 int main(int argc, char *argv[])
 {
-
+    myStd::vector<Type> container;
     QApplication a(argc, argv);
     QString directory_path = a.applicationDirPath();
-    myStd::vector<Shape*> userShapes;
-    read_file(directory_path.toStdString(), userShapes);
+    read_file(directory_path.toStdString());
 
     MainWindow w;
     w.show();

@@ -26,18 +26,18 @@ void Line::paintEvent(QPaintEvent *event)
     linePen.setWidth(10);
     myline->setPen(linePen);
 
-    QEventLoop loop;
-    connect(myline, SIGNAL(shapeValue()), &loop, SLOT(quit()), Qt::QueuedConnection);
+    // QEventLoop loop;
+    // QObject::connect(myline, SIGNAL(shapeValue()), &loop, SLOT(quit()));
 
-    loop.exec();
+    // loop.exec();
 
-    QLineF line(10.0, 80.0, 90.0, 20.0);
+    // QLineF line(10.0, 80.0, 90.0, 20.0);
     myline->drawLine(50, 50, 200, 200);
 
     // QPainter painter(this);
 
     // painter.drawLine(line);
-
+    show();
 
 }
 void MainWindow::setValue(int value)

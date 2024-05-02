@@ -36,7 +36,7 @@ void MainWindow::on_login_clicked()
     if (username == "admin" && password == "password"){
         QMessageBox::information(this,"Login", "validated successfully");
         loginSet(true);
-        ui->groupBox->hide();
+        ui->groupBox->close();
         setValue(true);
     }
     else

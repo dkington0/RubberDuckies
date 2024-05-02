@@ -5,7 +5,7 @@
 class rectangle : public Shape
 {
 private:
-     Shape* shape;
+
 
 public:
     rectangle();

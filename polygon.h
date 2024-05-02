@@ -7,7 +7,6 @@ class polygon : public Shape
 {
 private:
     myStd::vector<QPoint> points;
-     Shape* shape;
 
 public:
     polygon();
