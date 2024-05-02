@@ -6,18 +6,13 @@
 class Line  : public Shape
 {
 private:
-    QPoint p1;
-    QPoint p2;
+    QLineF line;
+    Shape* shape;
 
 public:
-    Line() : p1{}, p2{} {}
-    Line(QPoint& one, QPoint& two) : p1{one}, p2{two} {}
-    ~Line() {}
-
-    void setPoints(QPoint* p, QPoint* p2);
-    void setPen() override;
-    void setBrush() override;
-    // void draw() override;
+    Line() : line{20, 90, 100, 20} {}
+    Line(qreal x1, qreal y1, qreal x2, qreal y2) : line{x1, y1, x1, y2} {}
+    ~Line();
 
     void paintEvent(QPaintEvent *event) override;
 
