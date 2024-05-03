@@ -60,4 +60,3 @@ void MainWindow::setValue(int value)
         emit valueChanged(value);
     }
 }
-

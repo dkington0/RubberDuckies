@@ -39,6 +39,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         circle.h circle.cpp
         ellipse.h ellipse.cpp
         square.h square.cpp
+        contact_us.cpp
+        contact_us.h
 
     )
 # Define target properties for Android with Qt 6 as:
