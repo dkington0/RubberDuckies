@@ -26,6 +26,8 @@ private slots:
     void on_login_clicked();
     virtual void paintEvent(QPaintEvent *event);
 
+    void on_contactUsButton_clicked();
+
 public slots:
     void setValue(int value);
 

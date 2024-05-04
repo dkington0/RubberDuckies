@@ -4,5 +4,18 @@
 
 ContactUs::ContactUs(QWidget *parent)
 {
-    QFile* infile = new Qfile(":/files/duck.png");
+    setMinimumSize(500, 500);
+    if(logo.load(":/files/duck.png"))
+    {
+        int w = this->width();
+        int h = this->height();
+        logo.scaled(w, h, Qt::KeepAspectRatio);
+        setPixmap(logo);
+        //setText("file loaded");
+    } else {
+        setText("file didn't load");
+    }
+   // setPixmap(logo);
+   // adjustSize();
+
 }

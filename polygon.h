@@ -11,7 +11,7 @@ private:
     myStd::vector<QPoint> points;
 
 public:
-    polygon(): points{QPoint(900, 90), QPoint(910, 20), QPoint(970, 40), QPoint(980, 80)} {}
+    polygon(): points{myStd::vector<QPoint>()} {}
     polygon(myStd::vector<QPoint>& p) : points{ p } {} // Initialize with a number of points
     ~polygon();
 

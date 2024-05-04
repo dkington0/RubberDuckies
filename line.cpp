@@ -20,7 +20,7 @@ Line::~Line() {}
 void Line::paintEvent(QPaintEvent *event)
 {
     QPainter *myline = new QPainter(this); // in render return this pointer
-    setPen(Qt::green, 10, Qt::DashDotLine, Qt::FlatCap, Qt::MiterJoin);
+    //setPen(Qt::green, 10, Qt::DashDotLine, Qt::FlatCap, Qt::MiterJoin);
     myline->setPen(getPen());
 
     // QEventLoop loop;

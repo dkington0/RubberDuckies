@@ -3,13 +3,14 @@
 
 #include <QFile>
 #include <QMessageBox>
+#include <QLabel>
 
-class ContactUs:public QMessageBox
+class ContactUs:public QLabel
 {
 public:
     ContactUs(QWidget *parent = 0);
 private:
-    QFile logo;
+    QPixmap logo;
 };
 
 

@@ -7,10 +7,10 @@ void polygon::paintEvent(QPaintEvent *event)
 {
     QPainter *myPolygon = new QPainter(this); //
 
-    setPen();
-    getPen().setWidth(10);
+    //setPen();
+    //getPen().setWidth(10);
 
-    myPolygon->drawPolygon(points, sizeof(points));
+    //myPolygon->drawPolygon(points, sizeof(points));
 
     QPainter painter(this);
 
