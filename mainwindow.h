@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPainter>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -15,12 +16,31 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-
     ~MainWindow();
+    bool loginGet();
+
+    void loginSet(bool l);
+    int shapeValue() const { return m_value; }
+
 private slots:
     void on_login_clicked();
+    virtual void paintEvent(QPaintEvent *event);
+
+    void on_contactUsButton_clicked();
+
+public slots:
+    void setValue(int value);
+
+signals:
+    void valueChanged(int newValue);
 
 private:
     Ui::MainWindow *ui;
+    bool login_tracker;
+    int m_value;
 };
+
+
 #endif // MAINWINDOW_H
+
+

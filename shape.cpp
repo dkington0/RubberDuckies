@@ -2,7 +2,7 @@
 #include "./ui_shape.h"
 
 Shape::Shape(QWidget *parent)
-    : QMainWindow(parent)
+    : MainWindow(parent)
     , ui(new Ui::Shape)
 {
     ui->setupUi(this);
@@ -11,4 +11,14 @@ Shape::Shape(QWidget *parent)
 Shape::~Shape()
 {
     delete ui;
+}
+
+void Shape::setPen(QPen p)
+{
+    pen = p;
+}
+
+QPen& Shape::getPen()
+{
+    return pen;
 }

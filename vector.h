@@ -159,6 +159,6 @@ public:
         return p;
     }
 };
-}
+} // End namespace
 
 #endif /* VECTOR_H_ */
