@@ -22,8 +22,8 @@ class Shape : public MainWindow
         Shape(QWidget *parent = nullptr);
         virtual ~Shape();
 
-        // virtual void paintEvent(QPaintEvent* event)=0;
-        void setPen(QPen p);
+        virtual void paintEvent(QPaintEvent* event)=0;
+        void setPen(QPen p); //Dropdown to select different pen options
         QPen& getPen();
         // virtual void draw() = 0;   // Will draw the shape on the window area
 

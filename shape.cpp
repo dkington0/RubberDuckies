@@ -13,9 +13,17 @@ Shape::~Shape()
     delete ui;
 }
 
-void Shape::setPen(QPen p)
+void Shape::setPen()
 {
-    pen = p;
+    pen.setStyle(Qt::SolidLine);
+    pen.setColor(Qt::green);
+    pen.setWidth(3);
+    pen.setCapStyle(Qt::SquareCap);
+    pen.setJoinStyle(Qt::BevelJoin);
+
+    this->setJoinStyle(Qt::BevelJoin;)
+    update();
+
 }
 
 QPen& Shape::getPen()
