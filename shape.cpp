@@ -13,22 +13,9 @@ Shape::~Shape()
     delete ui;
 }
 
-void Shape::setPen(const QColor &color, Qt::PenStyle style, Qt::PenCapStyle cap, Qt::PenJoinStyle join)
+void Shape::setPen(QPen p)
 {
-    pen.setColor(color);
-    pen.setStyle(style);
-    pen.setCapStyle(cap);
-    pen.setJoinStyle(join);
-}
-// virtual void setPen()
-// {
-
-// }
-
-void Shape::setBrush(const QColor &color, Qt::BrushStyle style)
-{
-    brush.setColor(color);
-    brush.setStyle(style);
+    pen = p;
 }
 
 QPen& Shape::getPen()

@@ -2,15 +2,16 @@
 #define polyline_H
 // #include "vector.h"
 #include "shape.h"
+#include "vector.h"
 
 class polyline : public Shape
 {
 private:
-    QPointF points[4];
+    myStd::vector<QPoint> points;
 
 public:
-    polyline() : points{QPointF(460, 90), QPointF(470, 20), QPointF(530, 40), QPointF(540, 80)} {}
-     polyline(QPointF p1, QPointF p2, QPointF p3, QPointF p4) : points{p1, p2, p3, p4} {} // Number of points
+    polyline() : points{} {}
+    polyline(myStd::vector<QPoint>& p) : points{p} {} // Number of points
      ~polyline();
 
     // void DrawShape() override;

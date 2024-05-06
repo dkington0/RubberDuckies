@@ -6,12 +6,13 @@ class text : public Shape
 {
 private:
     Shape* shape;
-    QRectF rect;
+    QRect rect;
+    QString* strtext;
 
 public:
     text() : rect(250, 425, 500, 50) {}
-    text(int x, int y, int width, int height, int flags, const QString &text, QRect *boundingRect)
-        : rect(x, y, width, height) {}
+    text(QRect r, const QString &t, QRect *boundingRect)
+        : rect{r} {}
     ~text();
 
     void paintEvent(QPaintEvent* event) override;

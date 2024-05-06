@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "QMessageBox"
 #include "QGroupBox"
+#include "contact_us.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -59,5 +60,12 @@ void MainWindow::setValue(int value)
         m_value = value;
         emit valueChanged(value);
     }
+}
+
+
+
+void MainWindow::on_contactUsButton_clicked()
+{
+    (new ContactUs(this))->show();
 }
 
