@@ -2,6 +2,8 @@
 #include "vector.h"
 #include <QFont>
 #include "line.h"
+#include "polyline.h"
+#include "polygon.h"
 #include "rectangle.h"
 #include "square.h"
 #include "ellipse.h"
@@ -133,10 +135,15 @@ void read_file(const string directory_path, myStd::vector<Shape*>& userShapes) {
     }
 
     inData.open(test_path, ios::in);
-    if (inData.is_open())        // another test to see if it's open again
+    if (inData.is_open()) {       // another test to see if it's open again
         parse_file(inData, userShapes);
+        //for (int i {}; i < userShapes.size(); i++)
+        //    cout << userShapes[i]->getPen().color().isValid() << endl;
+        cout << "File parse completed" << endl;
+    }
     else
         cout << "Failed to open file for reading" << endl; // change to a throw later
+
 
     return;
 }
@@ -393,23 +400,21 @@ void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
             cout << "Error During Read Line Function: failed to find \":\" in current string" << endl;
             return;
         }
-
-
-
     }
     //unique_ptr<int[]> paramShapeDimensions(std::move(dimensions));
     cout << "End of Read Line fcn" << endl;
-/*
+
     QPen pen;
     pen.setColor(penColor);
     pen.setWidth(penWidth);
     pen.setStyle(penStyle);
     pen.setCapStyle(penCapStyle);
     pen.setJoinStyle(penJoinStyle);
-*/
-    Line* newLine = new Line(points[0].x(), points[0].y(), points[1].x(), points[1].y());
-    newLine->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
 
+    Line* newLine = new Line(points[0].x(), points[0].y(), points[1].x(), points[1].y());
+    newLine->setPen(pen);
+
+    //cout << "line shape pen issolid: " << newLine->getPen().isSolid() << endl;
     userShapes.push_back(newLine);
 
     return;
@@ -569,9 +574,6 @@ void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
             cout << "Error During Read Polyline Function: failed to find \":\" in current string" << endl;
             return;
         }
-
-
-
     }
 
     QPen pen;
@@ -581,8 +583,13 @@ void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     pen.setCapStyle(penCapStyle);
     pen.setJoinStyle(penJoinStyle);
 
+    polyline* newPolyline = new polyline(points);
+    newPolyline->setPen(pen);
+
+    userShapes.push_back(newPolyline);
+
     cout << "End of Read Polyline fcn" << endl;
-    TestLine outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle);
+
     return;
 }
 
@@ -799,8 +806,14 @@ void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     brush.setColor(brushColor);
     brush.setStyle(brushStyle);
 
+    pen.setBrush(brush);
+
+    polygon* newPolygon = new polygon(points);
+    newPolygon->setPen(pen);
+
+    userShapes.push_back(newPolygon);
+
     cout << "End of Read Polygon fcn" << endl;
-    TestPolygon outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
 }
 
@@ -1005,7 +1018,7 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
             return;
         }
     }
-/*
+
     QPen pen;
     pen.setColor(penColor);
     pen.setWidth(penWidth);
@@ -1016,19 +1029,20 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     QBrush brush;
     brush.setColor(brushColor);
     brush.setStyle(brushStyle);
-*/
 
+    // width and height of the rectangle come from the x and y coordinates of the second QPoint
     int width = points[1].x();
     int height = points[1].y();
 
-    rectangle* newRectangle = new rectangle(points[0].x(), points[0].y(), width, height);
-    newRectangle->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
-    newRectangle->setBrush(brushColor, brushStyle);
+    QRect boundRect(points[0].x(), points[0].y(), width, height);
+    rectangle* newRectangle = new rectangle(boundRect);
+
+    pen.setBrush(brush);
+    newRectangle->setPen(pen);
 
     userShapes.push_back(newRectangle);
 
     cout << "End of Read Rectangle fcn" << endl;
-    //TestRectangle outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
 }
 
@@ -1233,7 +1247,7 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
             return;
         }
     }
-/*
+
     QPen pen;
     pen.setColor(penColor);
     pen.setWidth(penWidth);
@@ -1244,16 +1258,18 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     QBrush brush;
     brush.setColor(brushColor);
     brush.setStyle(brushStyle);
-*/
+
     int sides = points[1].x();
+    //QRect boundingRect(points[0].x(), points[0].y(), sides, sides);
+    //square* newSquare = new square(boundingRect);
     square* newSquare = new square(points[0].x(), points[0].y(), sides);
-    newSquare->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
-    newSquare->setBrush(brushColor, brushStyle);
+
+    pen.setBrush(brush);
+    newSquare->setPen(pen);
 
     userShapes.push_back(newSquare);
 
     cout << "End of Read Square fcn" << endl;
-    //TestRectangle outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
 }
 
@@ -1458,7 +1474,7 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
             return;
         }
     }
-/*
+
     QPen pen;
     pen.setColor(penColor);
     pen.setWidth(penWidth);
@@ -1469,17 +1485,19 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     QBrush brush;
     brush.setColor(brushColor);
     brush.setStyle(brushStyle);
-*/
+
     int width = points[1].x();
     int height = points[1].y();
-    ellipse* newEllipse = new ellipse(points[0].x(), points[0].y(), width, height);
-    newEllipse->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
-    newEllipse->setBrush(brushColor, brushStyle);
+    QRect boundingRect(points[0].x(), points[0].y(), width, height);
+
+    ellipse* newEllipse = new ellipse(boundingRect);
+
+    pen.setBrush(brush);
+    newEllipse->setPen(pen);
 
     userShapes.push_back(newEllipse);
 
     cout << "End of Read Ellipse fcn" << endl;
-    //TestEllipse outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
 }
 
@@ -1696,15 +1714,17 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     brush.setColor(brushColor);
     brush.setStyle(brushStyle);
 
-    int width = points[1].x();
-    circle* newCircle = new circle(points[0].x(), points[0].y(), width);
-    newCircle->setPen(penColor, penStyle, penCapStyle, penJoinStyle);
-    newCircle->setBrush(brushColor, brushStyle);
+    int sides = points[1].x();
+    //QRect boundingRect(points[0].x(), points[0].y(), sides, sides);
+    //circle* newCircle = new circle(boundingRect);
+    circle* newCircle = new circle(points[0].x(), points[0].y(), sides);
+
+    pen.setBrush(brush);
+    newCircle->setPen(pen);
 
     userShapes.push_back(newCircle);
 
     cout << "End of Read Circle fcn" << endl;
-    //TestEllipse outShape(id, dimensions, penColor, penWidth, penStyle, penCapStyle, penJoinStyle, brushColor, brushStyle);
     return;
 }
 
