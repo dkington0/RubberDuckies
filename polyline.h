@@ -12,7 +12,7 @@ private:
 public:
     polyline() : points{} {}
     polyline(myStd::vector<QPoint>& p) : points{p} {} // Number of points
-     ~polyline();
+    ~polyline();
 
     // void DrawShape() override;
     // void SetShape() override;

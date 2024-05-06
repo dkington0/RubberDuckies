@@ -7,7 +7,6 @@ class Line  : public Shape
 {
 private:
     QLineF line;
-    Shape* shape;
 
 public:
     Line() : line{20, 90, 100, 20} {}

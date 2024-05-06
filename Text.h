@@ -5,7 +5,6 @@
 class text : public Shape
 {
 private:
-    Shape* shape;
     QRect rect;
     QString* strtext;
 
