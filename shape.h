@@ -12,8 +12,7 @@ QT_END_NAMESPACE
 
 class Shape : public MainWindow
 {
-        Q_OBJECT
-
+    Q_OBJECT
     private:
         Ui::Shape *ui;
         QPen pen;
@@ -28,5 +27,6 @@ class Shape : public MainWindow
         QPen& getPen();
         // virtual void draw() = 0;   // Will draw the shape on the window area
 
+    virtual void drawShape(QPainter & painter);   // Will draw the shape on the window area
 };
 #endif // SHAPE_H

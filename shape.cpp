@@ -22,3 +22,8 @@ QPen& Shape::getPen()
 {
     return pen;
 }
+void Shape::drawShape(QPainter &painter)
+{
+    painter.setPen(pen);
+    painter.setBrush(brush);
+}

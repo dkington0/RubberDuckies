@@ -13,6 +13,20 @@ public:
     ~rectangle();
     // void DrawShape() override;
     // void SetShape() override;
+
+/**
+@brief calculates area for shape
+*
+@param takes length and width and multiples them
+*/
+    double calculateArea() const;
+
+/**
+@brief calculates perimeter for shape
+*
+@param takes length and width, adds them and multiplies by two
+*/
+    double calculatePerimeter() const;
 };
 
 #endif // RECTANGLE_H
