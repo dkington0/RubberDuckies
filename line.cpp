@@ -19,23 +19,13 @@ Line::~Line() {}
 
 void Line::paintEvent(QPaintEvent *event)
 {
-    QPainter *myline = new QPainter(this); // in render return this pointer
-    //setPen(Qt::green, 10, Qt::DashDotLine, Qt::FlatCap, Qt::MiterJoin);
-    myline->setPen(getPen());
+    QPainter myline(this); // in render return this pointer
+    //setPen(Qt::green, 10, Qt::DashDotLine, Qt::FlatCap, Qt::MiterJoin); // setPen in Canvas
+    myline.setPen(getPen());
 
-    // QEventLoop loop;
-    // QObject::connect(myline, SIGNAL(shapeValue()), &loop, SLOT(quit()));
+    myline.drawLine(line);  // Initialize line in Canvas
 
-    // loop.exec();
-    qreal l;
-    // QLineF line(10.0, 80.0, 90.0, 20.0);
-    myline->drawLine(50, 50, 200, 200);
-
-    // QPainter painter(this);
-
-    // painter.drawLine(line);
     show();
-
 }
 // void MainWindow::setValue(int value)
 // {

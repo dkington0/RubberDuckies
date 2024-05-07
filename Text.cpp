@@ -10,3 +10,7 @@ void text::paintEvent(QPaintEvent *event)
 
 }
 
+void text::setAttribute()
+{
+
+}

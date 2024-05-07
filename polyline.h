@@ -8,10 +8,11 @@ class polyline : public Shape
 {
 private:
     myStd::vector<QPoint> points;
+    int id;
 
 public:
-    polyline() : points{} {}
-    polyline(myStd::vector<QPoint>& p) : points{p} {} // Number of points
+    polyline() : points{} { id = num_shapes++ + 1; }
+    polyline(myStd::vector<QPoint>& p) : points{p} { id = num_shapes++ + 1; } // Number of points
     ~polyline();
 
     // void DrawShape() override;

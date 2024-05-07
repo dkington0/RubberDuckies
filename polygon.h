@@ -9,10 +9,11 @@ class polygon : public Shape
 {
 private:
     myStd::vector<QPoint> points;
+    int id;
 
 public:
-    polygon(): points{myStd::vector<QPoint>()} {}
-    polygon(myStd::vector<QPoint>& p) : points{ p } {} // Initialize with a number of points
+    polygon(): points{myStd::vector<QPoint>()} { id = num_shapes++ + 1; }
+    polygon(myStd::vector<QPoint>& p) : points{ p } { id = num_shapes++ + 1; } // Initialize with a number of points
     ~polygon();
 
     void paintEvent(QPaintEvent *event) override;
