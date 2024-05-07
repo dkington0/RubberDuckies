@@ -8,6 +8,7 @@
 #include "square.h"
 #include "ellipse.h"
 #include "circle.h"
+#include "Text.h"
 
 struct TestLine {
     int id {};
@@ -1916,6 +1917,13 @@ void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
         }
     }
     cout << "End of Read Text fcn" << endl;
+    //QFont(const QString &family, int pointSize = -1, int weight = -1, bool italic = false)
+    QRect boundingRect(points[0].x(), points[0].y(), points[1].x(), points[1].y());
 
-    TestText outShape(id, dimensions, textString, textColor, textAlignment, textPointSize, textFontFamily, textFontStyle, textFontWeight);
+    QFont newFont(textFontFamily.c_str(), textPointSize, textFontWeight);
+    newFont.setStyle(textFontStyle);
+
+    text* newText = new text(boundingRect, textAlignment, QString(textString.c_str()), newFont);
+
+    userShapes.push_back(newText);
 }
