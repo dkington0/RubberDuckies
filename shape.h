@@ -3,6 +3,7 @@
 
 #include "MainWindow.h"
 #include <QPainter>
+#include <QPoint>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,8 +26,12 @@ class Shape : public MainWindow
         virtual ~Shape();
 
         virtual void paintEvent(QPaintEvent* event)=0;
+<<<<<<< Updated upstream
         void setPen(QPen p);
         QFont& getFont();
+=======
+        void setPen(); //Dropdown to select different pen options
+>>>>>>> Stashed changes
         QPen& getPen();
 
         // virtual setShape() = 0; // Needs implementation later
