@@ -5,17 +5,19 @@
 class text : public Shape
 {
 private:
-    Shape* shape;
     QRect rect;
-    QString* strtext;
+    int flags;
+    QString strtext;
+    QFont font;
+    int id;
 
 public:
-    text() : rect(250, 425, 500, 50) {}
-    text(QRect r, const QString &t, QRect *boundingRect)
-        : rect{r} {}
+    text() : rect{250, 425, 500, 50}, flags{Qt::AlignCenter}, strtext{"Nothing Here!"} { id = num_shapes++ + 1; }
+    text(QRect r, int fl, const QString &t, QFont fo) : rect{r}, flags{fl}, strtext{t}, font{fo} { id = num_shapes++ + 1; }
     ~text();
 
     void paintEvent(QPaintEvent* event) override;
+    // void setAttribute() override;
 };
 
 #endif // TEXT_H

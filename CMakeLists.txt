@@ -41,6 +41,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         square.h square.cpp
         contact_us.cpp
         contact_us.h
+        canvas.h canvas.cpp
+        canvas.cpp
+        canvas.h
+
 
     )
 # Define target properties for Android with Qt 6 as:

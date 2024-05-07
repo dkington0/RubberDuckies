@@ -6,10 +6,11 @@ class square : public Shape
 {
 private:
     QRect rect;
+    int id;
 
 public:
-    square() : rect{750, 150, 200, 200} {}
-    square(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); }
+    square() : rect{750, 150, 200, 200} { id = num_shapes++ + 1; }
+    square(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1; }
     ~square();
 
     /**

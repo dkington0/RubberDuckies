@@ -2,15 +2,17 @@
 #define CIRCLE_H
 #include "Shape.h"
 #include <cmath>
+#include "vector.h"
 
 class circle : public Shape
 {
 private:
     QRect rect;
+    int id;
 
 public:
-    circle() : rect{20, 200, 170, 100} {}
-    circle(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); }
+    circle() : rect{20, 200, 170, 100} { id = num_shapes++ + 1; }
+    circle(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1;}
     ~circle();
 
     /**

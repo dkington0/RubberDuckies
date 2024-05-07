@@ -7,11 +7,11 @@ class Line  : public Shape
 {
 private:
     QLineF line;
-    Shape* shape;
+    int id;
 
 public:
-    Line() : line{20, 90, 100, 20} {}
-    Line(qreal x1, qreal y1, qreal x2, qreal y2) : line{x1, y1, x1, y2} {}
+    Line() : line{20, 90, 100, 20} { id = num_shapes++ + 1; }
+    Line(qreal x1, qreal y1, qreal x2, qreal y2) : line{x1, y1, x1, y2} { id = num_shapes++ + 1; }
     ~Line();
 
     void paintEvent(QPaintEvent *event) override;

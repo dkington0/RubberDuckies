@@ -6,10 +6,11 @@ class ellipse : public Shape
 {
 private:
     QRect rect;
+    int id;
 
 public:
-    ellipse() : rect{520, 200, 170, 100} {}
-    ellipse(QRect r) : rect{r} {}
+    ellipse() : rect{520, 200, 170, 100} { id = num_shapes++ + 1; }
+    ellipse(QRect r) : rect{r} { id = num_shapes++ + 1; }
     ~ellipse();
 
     /**
