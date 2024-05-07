@@ -51,12 +51,12 @@ public:
     }
 
     T &operator[](int n) {
-        return elem[n]; // access: return reference
+        return *(elem + n); // access: return reference
     }
 
-    const T &operator[](int n) const {
+    /*const T &operator[](int n) const {
         return elem[n];
-    }
+    }*/
 
     int size() const {
         return size_v;

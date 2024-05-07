@@ -24,10 +24,16 @@ class Shape : public MainWindow
         Shape(QWidget *parent = nullptr);
         virtual ~Shape();
 
-        // virtual void paintEvent(QPaintEvent* event)=0;
+        virtual void paintEvent(QPaintEvent* event)=0;
         void setPen(QPen p);
         QFont& getFont();
         QPen& getPen();
+
         // virtual setShape() = 0; // Needs implementation later
+
+        // virtual void draw() = 0;   // Will draw the shape on the window area
+
+    //virtual void drawShape(QPainter & painter);   // Will draw the shape on the window area
+
 };
 #endif // SHAPE_H
