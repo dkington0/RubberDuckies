@@ -10,8 +10,7 @@
 using namespace myStd;
 
 #include <iostream>
-#include <iomanip>   // std::setprecision
-#include <algorithm> // std::find, std::sort
+//#include <iomanip>   // std::setprecision
 
 using std::cout;
 using std::endl;

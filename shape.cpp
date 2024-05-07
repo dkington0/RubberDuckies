@@ -24,7 +24,6 @@ void Shape::setPen()
     pen.setCapStyle(Qt::SquareCap);
     pen.setJoinStyle(Qt::BevelJoin);
 
-    this->setJoinStyle(Qt::BevelJoin;)
     update();
 
 }

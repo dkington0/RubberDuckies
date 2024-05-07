@@ -6,13 +6,25 @@ polygon::~polygon() {}
 void polygon::paintEvent(QPaintEvent *event)
 {
     QPainter *myPolygon = new QPainter(this); //
+    QPolygon *yayPolygon = new QPolygon;
 
-    //setPen();
-    //getPen().setWidth(10);
+    setPen();
+    myPolygon->setPen(getPen());
 
-    //myPolygon->drawPolygon(points, sizeof(points));
+    //Hardcoded Coordinates for a square
+    points[0] = QPoint(10,10);
+    points[1] = QPoint(10,20);
+    points[2] = QPoint(20,10);
+    points[3] = QPoint(20,20);
+
+
+
+    yayPolygon->setPoints(points.size(), points);
+
+    myPolygon->drawPolygon(points, 4, Qt::OddEvenFill);
 
     QPainter painter(this);
+    show();
 
     delete myPolygon;
 }

@@ -1,7 +1,8 @@
 #ifndef VECTOR_H_
 #define VECTOR_H_
 
-#include <algorithm> // std::copy
+
+#include <algorithm> // std::find, std::sort
 using std::copy;
 
 namespace myStd
