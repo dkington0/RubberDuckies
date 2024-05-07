@@ -11,6 +11,7 @@ private:
 public:
     rectangle() : rect{20, 200, 170, 100} { id = num_shapes++ + 1; }
     rectangle(QRect r) : rect{r} { id = num_shapes++ + 1; }
+    rectangle(QRect r, int i) : rect{r}, id{i} { }
     ~rectangle();
     // void DrawShape() override;
     // void SetShape() override;

@@ -11,6 +11,7 @@ private:
 public:
     ellipse() : rect{520, 200, 170, 100} { id = num_shapes++ + 1; }
     ellipse(QRect r) : rect{r} { id = num_shapes++ + 1; }
+    ellipse(int i, QRect r) : id{i}, rect{r} { }
     ~ellipse();
 
     /**

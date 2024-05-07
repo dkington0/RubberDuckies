@@ -13,6 +13,7 @@ private:
 public:
     polyline() : points{} { id = num_shapes++ + 1; }
     polyline(myStd::vector<QPoint>& p) : points{p} { id = num_shapes++ + 1; } // Number of points
+    polyline(int i, myStd::vector<QPoint>& p) : points{p}, id{i} { }
     ~polyline();
 
     // void DrawShape() override;

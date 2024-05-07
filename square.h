@@ -11,6 +11,7 @@ private:
 public:
     square() : rect{750, 150, 200, 200} { id = num_shapes++ + 1; }
     square(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1; }
+    square(int i, qreal x, qreal y, qreal sides) : id{i} { rect.setRect(x, y, sides, sides); }
     ~square();
 
     /**

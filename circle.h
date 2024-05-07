@@ -13,6 +13,7 @@ private:
 public:
     circle() : rect{20, 200, 170, 100} { id = num_shapes++ + 1; }
     circle(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1;}
+    circle(int i, qreal x, qreal y, qreal sides) : id{i} { rect.setRect(x, y, sides, sides);}
     ~circle();
 
     /**
