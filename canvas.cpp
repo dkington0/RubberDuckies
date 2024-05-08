@@ -35,4 +35,3 @@ Canvas::Canvas() {} // default constructor
 
         }
     }
-
