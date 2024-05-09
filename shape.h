@@ -25,7 +25,7 @@ class Shape : public MainWindow
         Shape(QWidget *parent = nullptr);
         virtual ~Shape();
 
-        virtual void paintEvent(QPaintEvent* event)=0;
+        virtual void paintEvent(QPaintEvent* event);
 
         void setPen(QPen p);
         QFont& getFont();

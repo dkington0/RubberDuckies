@@ -6,9 +6,9 @@ polygon::~polygon() {}
 void polygon::paintEvent(QPaintEvent *event)
 {
     QPainter *myPolygon = new QPainter(this); //
-    QPolygon *yayPolygon = new QPolygon;
+    //QPolygon *yayPolygon = new QPolygon;
 
-    setPen();
+    setPen(QPen());
     myPolygon->setPen(getPen());
 
     //Hardcoded Coordinates for a square
@@ -17,11 +17,9 @@ void polygon::paintEvent(QPaintEvent *event)
     points[2] = QPoint(20,10);
     points[3] = QPoint(20,20);
 
+    //yayPolygon->setPoints(points.size(), points);
 
-
-    yayPolygon->setPoints(points.size(), points);
-
-    myPolygon->drawPolygon(points, 4, Qt::OddEvenFill);
+    //myPolygon->drawPolygon(points, 4, Qt::OddEvenFill);
 
     QPainter painter(this);
     show();

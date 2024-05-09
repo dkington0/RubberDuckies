@@ -16,16 +16,18 @@ Shape::~Shape()
     delete ui;
 }
 
-void Shape::setPen()
+void Shape::setPen(QPen p)
 {
+    /*
     pen.setStyle(Qt::SolidLine);
     pen.setColor(Qt::green);
     pen.setWidth(3);
     pen.setCapStyle(Qt::SquareCap);
     pen.setJoinStyle(Qt::BevelJoin);
+    */
 
+    pen = p;
     update();
-
 }
 
 QPen& Shape::getPen()

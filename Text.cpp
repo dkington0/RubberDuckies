@@ -9,8 +9,9 @@ void text::paintEvent(QPaintEvent *event)
     mytext.drawText(QPoint(20, 30), "Line");
 
 }
-
+/*
 void text::setAttribute()
 {
 
 }
+*/
