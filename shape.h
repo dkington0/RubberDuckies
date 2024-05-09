@@ -86,7 +86,7 @@ class Shape : public MainWindow
          */
         QPen& getPen();
 
-        void drawShapes(myStd::vector<Shape>, QPaintEvent*);
+        void drawShapes(myStd::vector<Shape*>, QPaintEvent*);
 
         // virtual double getArea() const; // Default implementation for getArea()
 
