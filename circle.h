@@ -40,7 +40,7 @@ public:
 
     /**
      * @brief : paintEvent to be called upon a QPaintEvent, such as update()
-     * @param : event
+     * @param : QPaintEvent being called
      */
     void paintEvent(QPaintEvent* event) override;
 
