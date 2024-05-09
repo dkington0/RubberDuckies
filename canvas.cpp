@@ -15,7 +15,7 @@ Canvas::Canvas() {} // default constructor
     {
 
     }
-/*
+
     Canvas::Canvas(myStd::vector<Shape> && passedVector) // move constructor
     {
         //passedShape = std::move(passedVector); // move operation
@@ -23,7 +23,7 @@ Canvas::Canvas() {} // default constructor
 
     Canvas::~Canvas() {} //destructor
 
-    Canvas & Canvas::operator=(Canvas && other) // move assignment
+/*    Canvas & Canvas::operator=(Canvas && other) // move assignment
     {
         if(this != &other) // check if already assigned
         {
@@ -40,5 +40,5 @@ Canvas::Canvas() {} // default constructor
             this->drawShape();
 
         }
-    }
+    }*/
 
