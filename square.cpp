@@ -14,3 +14,11 @@ double square::calculatePerimeter() const
     return 4 * side;
 }
 
+void square::paintEvent(QPaintEvent* event)
+{
+    QPainter mySquare(this);
+
+    setPen(getPen());
+
+    mySquare.drawRect(rect);
+}

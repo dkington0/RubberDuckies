@@ -2,6 +2,15 @@
 
 ellipse::~ellipse() {}
 
+void ellipse::paintEvent(QPaintEvent* event)
+{
+    QPainter myEllipse(this);
+
+    setPen(getPen());
+
+    myEllipse.drawEllipse(rect);
+}
+
 double ellipse::calculateArea() const
 {
     double majorAxis = rect.width() / 2.0;

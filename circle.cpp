@@ -2,6 +2,15 @@
 
 circle::~circle() {}
 
+void circle::paintEvent(QPaintEvent* event)
+{
+    QPainter myCircle(this);
+
+    setPen(getPen());
+
+    myCircle.drawEllipse(rect);
+}
+
 double circle::calculateArea() const
 {
     return M_PI * rect.width() * rect.width() / 4;

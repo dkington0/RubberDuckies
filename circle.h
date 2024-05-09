@@ -16,7 +16,7 @@ public:
     circle(int i, qreal x, qreal y, qreal sides) : id{i} { rect.setRect(x, y, sides, sides);}
     ~circle();
 
-    void paintEvent(QPaintEvent* event) override {};
+    void paintEvent(QPaintEvent* event) override;
 
     /**
 @brief calculates area for circle

@@ -5,8 +5,11 @@ text::~text() {}
 void text::paintEvent(QPaintEvent *event)
 {
     QPainter mytext(this);
-    mytext.setFont(QFont("Times", 10, QFont::Bold));
-    mytext.drawText(QPoint(20, 30), "Line");
+
+    setPen(getPen());
+    mytext.setFont(font);
+
+    mytext.drawText(rect, flags, strtext);
 
 }
 /*
