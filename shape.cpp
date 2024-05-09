@@ -52,3 +52,14 @@ QPen& Shape::getPen()
     painter.setPen(pen);
     painter.setBrush(brush);
 }*/
+
+
+double Shape::getArea() const
+{
+    return 0; // Default implementation: 0 area for all shapes
+}
+
+double Shape::getPerimeter() const
+{
+    return 0; // Default implementation: 0 perimeter for all shapes
+}

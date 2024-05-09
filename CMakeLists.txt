@@ -44,6 +44,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         canvas.h canvas.cpp
         canvas.cpp
         canvas.h
+        sort.h sort.cpp
 
 
     )
