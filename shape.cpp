@@ -16,6 +16,18 @@ Shape::~Shape()
     delete ui;
 }
 
+bool Shape::operator==(const Shape& other) const // overloaded equality operator
+{
+    return (this == &other); // compare values
+}
+
+
+bool Shape::operator<(const Shape& other) const // overloaded less than operator
+{
+    return (this < &other); // compare values
+}
+
+
 void Shape::setPen(QPen p)
 {
     /*

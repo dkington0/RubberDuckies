@@ -27,8 +27,14 @@ class Shape : public MainWindow
         virtual ~Shape();
 
         virtual void paintEvent(QPaintEvent* event)=0;
+
         Shape(const Shape&) = delete; // disable copy constructor
+
         Shape& operator=(const Shape&) = delete; // disable assignment operator
+
+        bool operator==(const Shape& other) const; // overloaded equality operator
+
+        bool operator<(const Shape& other) const; // overloaded less than operator
 
         void setPen(QPen p);
 
