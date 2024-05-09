@@ -8,7 +8,7 @@
 class polygon : public Shape
 {
 private:
-    myStd::vector<QPoint> points{4};
+    myStd::vector<QPoint> points;
     int id;
     //QPoint points [4] {};
 
@@ -24,4 +24,3 @@ public:
 
 #endif // POLYGON_H
 
-//explicit vector(int s) : size_v{s}, elem{new T[s]}, space{s} // alternate constructor

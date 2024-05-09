@@ -16,9 +16,8 @@ public:
     polyline(int i, myStd::vector<QPoint>& p) : points{p}, id{i} { }
     ~polyline();
 
-    void paintEvent(QPaintEvent* event) override {};
+    void paintEvent(QPaintEvent *event) override;
 
-    // void DrawShape() override;
     // void SetShape() override;
 };
 
