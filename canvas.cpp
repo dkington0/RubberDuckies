@@ -11,10 +11,10 @@ Canvas::Canvas() {} // default constructor
       passedShape = passedVector; //error here. other errors inside file parser are from the test case
     }
 
-/*
+
     Canvas::Canvas(myStd::vector<Shape> && passedVector) // move constructor
     {
-        passedShape = std::move(passedVector); // move operation
+      //  passedShape = std::move(passedVector); // move operation
     }
 
     Canvas::~Canvas() {} //destructor
@@ -31,10 +31,10 @@ Canvas::Canvas() {} // default constructor
     void Canvas::drawShape() //draws shape based on passed shape. myStd is a horrible name btw
     {
 
-        for (Shape &tempShape : passedShape )
+        for (Shape &tempShape : *passedShape )
         {
             tempShape;
 
         }
     }
-*/
+

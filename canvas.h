@@ -13,13 +13,13 @@ public:
     Canvas();
 
     Canvas(myStd::vector<Shape>* passedVector); // copy constructor
-/*
+
     Canvas(myStd::vector<Shape> && passedVector); // move constructor
 
     ~Canvas(); // default destructor
 
     Canvas& operator=(Canvas && other); // move assignment operator
-*/
+
 
     void drawShape(); //draws shape based on passed shape. myStd is a horrible name btw&
 };

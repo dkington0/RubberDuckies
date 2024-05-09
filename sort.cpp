@@ -1,4 +1,4 @@
-// #include "sort.h"
+#include "sort.h"
 
 // void sort::sortID(myStd::vector<Shape> & shapes)
 // {

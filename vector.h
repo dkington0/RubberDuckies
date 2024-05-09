@@ -56,20 +56,32 @@ public:
         return *this;
     }
 
-    /*
+    /**
+     * @brief : vector destructor constructor
+     */
     ~vector() {
         delete[] elem; // destructor
     }
 
+    /**
+     * @brief : overloaded [] operation
+     * @param src : index to operate on
+     * @return returns reference to element
+     */
     T &operator[](int n) {
         return *(elem + n); // access: return reference
     }
 
+    /**
+     * @brief : overloaded const [] operation
+     * @param src : const index to operate on
+     * @return returns element
+     */
     const T &operator[](int n) const {
         return elem[n];
     }
 
-    */
+
 
     /**
      * @brief size : determines the size of the vector
