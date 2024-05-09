@@ -42,7 +42,16 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         contact_us.cpp
         contact_us.h
         shape_editor.h shape_editor.cpp shape_editor.ui
-        text_editor.h text_editor.cpp text_editor.ui
+
+
+
+
+        add_polygon.h add_polygon.cpp add_polygon.ui
+        add_linepoly.h add_linepoly.cpp add_linepoly.ui
+        add_circelip.h add_circelip.cpp add_circelip.ui
+        add_squrec.h add_squrec.cpp add_squrec.ui
+        add_text.h add_text.cpp add_text.ui
+
 
 
 

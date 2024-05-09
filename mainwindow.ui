@@ -87,33 +87,20 @@
      </rect>
     </property>
     <property name="text">
-     <string>Shape Editor</string>
+     <string>Add Editor</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_7">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>330</y>
+      <y>280</y>
       <width>121</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Remove Shape</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="text_editor_Button">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>278</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Text Editor</string>
     </property>
    </widget>
   </widget>

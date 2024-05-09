@@ -78,9 +78,3 @@ void MainWindow::on_shape_editor_Button_clicked()
 }
 
 
-void MainWindow::on_text_editor_Button_clicked()
-{
-    text_Editor = new Text_Editor(this);
-    text_Editor->show();
-}
-
