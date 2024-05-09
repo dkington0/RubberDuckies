@@ -77,6 +77,45 @@
      <string>?</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="shape_editor_Button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Shape Editor</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>330</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove Shape</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="text_editor_Button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>278</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Text Editor</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -84,7 +123,7 @@
      <x>0</x>
      <y>0</y>
      <width>1973</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

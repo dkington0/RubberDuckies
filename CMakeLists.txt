@@ -41,6 +41,16 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         square.h square.cpp
         contact_us.cpp
         contact_us.h
+        shape_editor.h shape_editor.cpp shape_editor.ui
+        text_editor.h text_editor.cpp text_editor.ui
+
+
+
+
+
+
+
+
 
     )
 # Define target properties for Android with Qt 6 as:

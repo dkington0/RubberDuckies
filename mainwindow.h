@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QPainter>
+#include "shape_editor.h"
+#include "text_editor.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,6 +30,10 @@ private slots:
 
     void on_contactUsButton_clicked();
 
+    void on_shape_editor_Button_clicked();
+
+    void on_text_editor_Button_clicked();
+
 public slots:
     void setValue(int value);
 
@@ -38,6 +44,8 @@ private:
     Ui::MainWindow *ui;
     bool login_tracker;
     int m_value;
+    shape_Editor *Shape_Editor;
+    Text_Editor *text_Editor;
 };
 
 

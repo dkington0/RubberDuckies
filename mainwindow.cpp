@@ -4,6 +4,7 @@
 #include "QGroupBox"
 #include "contact_us.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow), login_tracker {false}
@@ -67,5 +68,19 @@ void MainWindow::setValue(int value)
 void MainWindow::on_contactUsButton_clicked()
 {
     (new ContactUs(this))->show();
+}
+
+
+void MainWindow::on_shape_editor_Button_clicked()
+{
+    Shape_Editor = new shape_Editor(this);
+    Shape_Editor->show();
+}
+
+
+void MainWindow::on_text_editor_Button_clicked()
+{
+    text_Editor = new Text_Editor(this);
+    text_Editor->show();
 }
 
