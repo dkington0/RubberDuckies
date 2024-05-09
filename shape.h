@@ -43,9 +43,9 @@ class Shape : public MainWindow
 
         QPen& getPen();
 
-        virtual double getArea() const; // Default implementation for getArea()
+        // virtual double getArea() const; // Default implementation for getArea()
 
-        virtual double getPerimeter() const; // Default implementation for getPerimeter()
+        // virtual double getPerimeter() const; // Default implementation for getPerimeter()
 
 
         // virtual setShape() = 0; // Needs implementation later
