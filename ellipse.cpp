@@ -7,6 +7,8 @@ void ellipse::paintEvent(QPaintEvent* event)
 {
     QPainter *myEllipse = new QPainter(this);
 
+    setPen(getPen());
+
     // Draws the circle withing the defined dimensions
     myEllipse->drawEllipse(rect);
 

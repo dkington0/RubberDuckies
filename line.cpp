@@ -20,8 +20,8 @@ Line::~Line() {}
 void Line::paintEvent(QPaintEvent *event)
 {
     QPainter myline(this); // in render return this pointer
-    //setPen(Qt::green, 10, Qt::DashDotLine, Qt::FlatCap, Qt::MiterJoin); // setPen in Canvas
-    myline.setPen(getPen());
+
+    setPen(getPen());    // Will be set in Canvas
 
     myline.drawLine(line);  // Initialize line in Canvas
 

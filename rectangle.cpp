@@ -8,6 +8,8 @@ void rectangle::paintEvent(QPaintEvent* event)
 {
     QPainter *myRect = new QPainter(this);
 
+    setPen(getPen());
+
     // Draws the circle withing the defined dimensions
     myRect->drawRect(rect);
 
@@ -23,4 +25,13 @@ double rectangle::calculateArea() const
 double rectangle::calculatePerimeter() const
 {
     return 2 * (rect.width() + rect.height());
+}
+
+void rectangle::paintEvent(QPaintEvent* event)
+{
+    QPainter myRect(this);
+
+    setPen(getPen());
+
+    myRect.drawRect(rect);
 }

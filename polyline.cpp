@@ -4,16 +4,12 @@ polyline::~polyline() {}
 
 void polyline::paintEvent(QPaintEvent *event)
 {
-    QPainter *myPolyline = new QPainter(this); //
+    QPainter myPolyline(this); //
 
     // Set the pen parameters
-    setPen(QPen());
-    myPolyline->setPen(getPen());
+    setPen(getPen());
 
     //Hardcoded Coordinates for a polyline
-    points[0] = QPoint(40,10);
-    points[1] = QPoint(50,20);
-    points[2] = QPoint(60,10);
 
     // Converts the points vector into a static array so
     // drawPolygon accepts it as an argument.
@@ -25,11 +21,8 @@ void polyline::paintEvent(QPaintEvent *event)
     }
 
     // Draw the polygon in the window
-    myPolyline->drawPolyline(pointsStatic, points.size());
-
-    //QPainter painter(this);
-    show();
+    myPolyline.drawPolyline(pointsStatic, points.size());
 
     // Free up memory used to create instance of the shape
-    delete myPolyline;
+    // delete myPolyline;
 }
