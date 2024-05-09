@@ -8,12 +8,13 @@
      * @brief : Enum to provide shape type
      * @param src : Types of shapes
      */
-enum ShapeType { Line, PolyLine, Polygon, Rectangle, Square, Ellipse, Circle, Text };
+// enum ShapeType { line, PolyLine, Polygon, Rectangle, Square, Ellipse, Circle, Text };
 
 class Canvas: public QWidget
 {
 private:
     myStd::vector<Shape>* passedShape; //vector initialized by pass from main
+
 public:
     /**
      * @brief : Default constructor
@@ -48,11 +49,12 @@ public:
      */
     Canvas& operator=(Canvas && other); // move assignment operator
 
-
     /**
      * @brief : Function to draw shapes on canvas
      */
     void drawShape(); //draws shape based on passed shape. myStd is a horrible name btw&
+
+    void configureShape();
 };
 
 #endif //CANVAS_H

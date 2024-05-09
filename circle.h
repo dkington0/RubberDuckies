@@ -11,10 +11,10 @@ private:
     int id;
 
 public:
+    circle() : rect{250, 150, 200, 200} { id = num_shapes++ + 1; }
     /**
      * @brief : circle default constructor using predetermined values
      */
-    circle() : rect{20, 200, 170, 100} { id = num_shapes++ + 1; }
 
     /**
      * @brief : circle alternate constructor, for use when creating Circle objects

@@ -11,7 +11,11 @@ Canvas::Canvas() {} // default constructor
       passedShape = passedVector; //error here. other errors inside file parser are from the test case
     }
 
+    void Canvas::configureShape()
+    {
 
+    }
+/*
     Canvas::Canvas(myStd::vector<Shape> && passedVector) // move constructor
     {
         //passedShape = std::move(passedVector); // move operation

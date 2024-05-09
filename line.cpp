@@ -1,5 +1,4 @@
 #include "line.h"
-#include "QEventLoop"
 
 // Line::Line()
 // {
