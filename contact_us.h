@@ -7,8 +7,14 @@
 
 class ContactUs:public QLabel
 {
+
 public:
+    /**
+     * @brief ContactUs widget constructor
+     * @param parent : QWidget parent calling the constructor
+     */
     ContactUs(QWidget *parent = 0);
+
 private:
     QPixmap logo;
 };
