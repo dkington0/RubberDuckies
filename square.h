@@ -9,23 +9,51 @@ private:
     int id;
 
 public:
-    square() : rect{750, 150, 200, 200} { id = num_shapes++ + 1; }
-    square(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1; }
-    square(int i, qreal x, qreal y, qreal sides) : id{i} { rect.setRect(x, y, sides, sides); }
-    ~square();
-    void paintEvent(QPaintEvent* event) override;
     /**
-@brief calculates area for shape
-*
-@param takes length and width and multiples them
-*/
+     * @brief : Default constructor, creates a square at 750,150 with sides of 200 length
+     */
+    square() : rect{750, 150, 200, 200} { id = num_shapes++ + 1; }
+
+    /**
+     * @brief : square constructor, creates a square with the incoming parameters
+     *          to be used when creating new shapes
+     * @param x : x coordinate of top-left corner
+     * @param y : y coordinate of top-left corner
+     * @param sides : length of height & width
+     */
+    square(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1; }
+
+    /**
+     * @brief : square constructor, creates a square with the incoming parameters
+     *          to be used by the file parser
+     * @param i : ID for the new shape
+     * @param x : x coordinate of top-left corner
+     * @param y : y coordinate of top-left corner
+     * @param sides : length of height & width
+     */
+    square(int i, qreal x, qreal y, qreal sides) : id{i} { rect.setRect(x, y, sides, sides); }
+
+    /**
+     * @brief : square destructor
+     */
+    ~square();
+
+    /**
+     * @brief : paintEvent to be called upon a QPaintEvent, such as update()
+     * @param : event
+     */
+    void paintEvent(QPaintEvent* event) override;
+
+    /**
+    * @brief calculates area for shape
+    * @param takes length and width and multiples them
+    */
     double calculateArea() const;
 
     /**
-@brief calculates perimeter for shape
-*
-@param takes length and width, adds them and multiplies by two
-*/
+    * @brief calculates perimeter for shape
+    * @param takes length and width, adds them and multiplies by two
+    */
     double calculatePerimeter() const;
 };
 
