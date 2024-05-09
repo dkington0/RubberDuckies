@@ -2,6 +2,7 @@
 #define SHAPE_H
 
 #include "MainWindow.h"
+#include "vector.h"
 #include <QPainter>
 #include <QPoint>
 
@@ -42,6 +43,8 @@ class Shape : public MainWindow
         //void setPen(); //Dropdown to select different pen options
 
         QPen& getPen();
+
+        void drawShapes(myStd::vector<Shape>, QPaintEvent*);
 
         // virtual double getArea() const; // Default implementation for getArea()
 

@@ -14,7 +14,7 @@ void polyline::paintEvent(QPaintEvent *event)
     // Converts the points vector into a static array so
     // drawPolygon accepts it as an argument.
     QPoint pointsStatic[points.size()];
-    for (int i = 0; i <= points.size(); i++)
+    for (int i = 0; i < points.size(); i++)
     {
         pointsStatic[i].setX(points[i].x());
         pointsStatic[i].setY(points[i].y());
