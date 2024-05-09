@@ -62,8 +62,6 @@ void MainWindow::setValue(int value)
     }
 }
 
-
-
 void MainWindow::on_contactUsButton_clicked()
 {
     (new ContactUs(this))->show();

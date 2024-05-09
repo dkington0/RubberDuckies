@@ -412,7 +412,7 @@ void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     pen.setCapStyle(penCapStyle);
     pen.setJoinStyle(penJoinStyle);
 
-    Line* newLine = new Line(points[0].x(), points[0].y(), points[1].x(), points[1].y());
+    Line* newLine = new Line(QLine(points[0].x(), points[0].y(), points[1].x(), points[1].y()));
     newLine->setPen(pen);
 
     //cout << "line shape pen issolid: " << newLine->getPen().isSolid() << endl;
