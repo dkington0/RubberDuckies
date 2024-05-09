@@ -23,11 +23,15 @@ class Shape : public MainWindow
         static int num_shapes;
 
         Shape(QWidget *parent = nullptr);
+
         virtual ~Shape();
 
         virtual void paintEvent(QPaintEvent* event)=0;
-        Shape& operator=(const Shape&) = delete;
+        Shape(const Shape&) = delete; // disable copy constructor
+        Shape& operator=(const Shape&) = delete; // disable assignment operator
+
         void setPen(QPen p);
+
         QFont& getFont();
         //void setPen(); //Dropdown to select different pen options
 
