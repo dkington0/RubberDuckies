@@ -13,7 +13,7 @@ public:
     square(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1; }
     square(int i, qreal x, qreal y, qreal sides) : id{i} { rect.setRect(x, y, sides, sides); }
     ~square();
-
+    void paintEvent(QPaintEvent* event) override {};
     /**
 @brief calculates area for shape
 *

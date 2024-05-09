@@ -14,6 +14,8 @@ public:
     ellipse(int i, QRect r) : id{i}, rect{r} { }
     ~ellipse();
 
+    void paintEvent(QPaintEvent* event) override {};
+
     /**
 @brief calculates area for ellipse
 *

@@ -6,23 +6,22 @@
 
 
 
-class Canvas:public Shape {
+class Canvas:public QWidget {
 private:
-    myStd::vector<Shape> passedShape; //vector initialized by pass from main
+    myStd::vector<Shape>* passedShape; //vector initialized by pass from main
 public:
     Canvas();
 
-    Canvas(const myStd::vector<Shape> & passedVector); // copy constructor
-
+    Canvas(myStd::vector<Shape>* passedVector); // copy constructor
+/*
     Canvas(myStd::vector<Shape> && passedVector); // move constructor
 
     ~Canvas(); // default destructor
 
     Canvas& operator=(Canvas && other); // move assignment operator
+*/
 
-    void drawShape(); //draws shape based on passed shape. myStd is a horrible name btw
-
-
+    void drawShape(); //draws shape based on passed shape. myStd is a horrible name btw&
 };
 
 #endif //CANVAS_H

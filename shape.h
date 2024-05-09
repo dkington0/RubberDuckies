@@ -25,8 +25,8 @@ class Shape : public MainWindow
         Shape(QWidget *parent = nullptr);
         virtual ~Shape();
 
-        virtual void paintEvent(QPaintEvent* event);
-
+        virtual void paintEvent(QPaintEvent* event)=0;
+        Shape& operator=(const Shape&) = delete;
         void setPen(QPen p);
         QFont& getFont();
         //void setPen(); //Dropdown to select different pen options

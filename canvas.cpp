@@ -5,15 +5,16 @@ Canvas::Canvas() {} // default constructor
 
 
  //vector initialized by pass from main
-/*
-    Canvas::Canvas(const myStd::vector<Shape> &passedVector ) //initializing
+
+    Canvas::Canvas(myStd::vector<Shape>* passedVector ) //initializing
     {
       passedShape = passedVector; //error here. other errors inside file parser are from the test case
     }
-*/
+
+/*
     Canvas::Canvas(myStd::vector<Shape> && passedVector) // move constructor
     {
-        //passedShape = std::move(passedVector); // move operation
+        passedShape = std::move(passedVector); // move operation
     }
 
     Canvas::~Canvas() {} //destructor
@@ -36,3 +37,4 @@ Canvas::Canvas() {} // default constructor
 
         }
     }
+*/
