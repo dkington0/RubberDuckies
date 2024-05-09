@@ -2,6 +2,18 @@
 
 square::~square() {}
 
+// paintevent()
+void square::paintEvent(QPaintEvent* event)
+{
+    QPainter *mySquare = new QPainter(this);
+
+    // Draws the circle withing the defined dimensions
+    mySquare->drawRect(rect);
+
+    show();
+    delete mySquare; // Clean up memory to prevent leaks
+}
+
 double square::calculateArea() const
 {
     double side = rect.width();

@@ -2,6 +2,18 @@
 
 ellipse::~ellipse() {}
 
+// paintEvent
+void ellipse::paintEvent(QPaintEvent* event)
+{
+    QPainter *myEllipse = new QPainter(this);
+
+    // Draws the circle withing the defined dimensions
+    myEllipse->drawEllipse(rect);
+
+    show();
+    delete myEllipse; // Clean up memory to prevent leaks
+}
+
 double ellipse::calculateArea() const
 {
     double majorAxis = rect.width() / 2.0;

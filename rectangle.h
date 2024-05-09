@@ -16,7 +16,7 @@ public:
     // void DrawShape() override;
     // void SetShape() override;
 
-    void paintEvent(QPaintEvent* event) override {};
+    void paintEvent(QPaintEvent* event) override;
 
 /**
 @brief calculates area for shape

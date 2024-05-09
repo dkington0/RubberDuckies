@@ -3,6 +3,18 @@
 //rectangle::rectangle() {}
 rectangle::~rectangle() {}
 
+// paintevent()
+void rectangle::paintEvent(QPaintEvent* event)
+{
+    QPainter *myRect = new QPainter(this);
+
+    // Draws the circle withing the defined dimensions
+    myRect->drawRect(rect);
+
+    show();
+    delete myRect; // Clean up memory to prevent leaks
+}
+
 double rectangle::calculateArea() const
 {
     return rect.width() * rect.height();
