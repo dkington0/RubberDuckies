@@ -27,7 +27,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         file_parser.cpp
         vector.h
         vector.cpp
-        shape_list.txt
+
         shape_resources.qrc
         file_parser.cpp file_parser.h mainwindow.cpp mainwindow.h mainwindow.ui shape_list.txt shape_resources.qrc vector.cpp vector.h
         shape.cpp shape.h shape.ui

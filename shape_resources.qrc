@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/files">
-        <file>shape_list.txt</file>
         <file>duck.png</file>
     </qresource>
     <qresource prefix="/"/>
