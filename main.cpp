@@ -71,15 +71,15 @@ int main(int argc, char *argv[])
     circle* Circle = new circle(7, 250, 150, 200);
     text* Text = new text(8, QRect(250, 425, 500, 50), Qt::AlignCenter, str, QFont(str, -1, -1, false));
 
-    container[0] = line;
-    container[1] = Polyline;
-    container[2] = Polygon;
-    container[3] = Rectangle;
-    container[4] = Square;
-    container[5] = Ellipse;
-    container[6] = Circle;
-    container[7] = Text;
-
+    container.push_back(line);
+    container.push_back(Polyline);
+    container.push_back(Polygon);
+    container.push_back(Rectangle);
+    container.push_back(Square);
+    container.push_back(Ellipse);
+    container.push_back(Circle);
+    container.push_back(Text);
+*/
     // Canvas canvas(container);
 
     // MainWindow w;
