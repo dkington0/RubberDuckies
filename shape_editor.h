@@ -5,7 +5,7 @@
 #include <QButtonGroup>
 #include <QPushButton>
 #include <QHBoxLayout>
-#include "canvas.h"
+//#include "canvas.h"
 
 
 #include "add_Text.h"
