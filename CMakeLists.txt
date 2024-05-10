@@ -57,6 +57,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         add_squrec.h add_squrec.cpp add_squrec.ui
         add_text.h add_text.cpp add_text.ui
 
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Project1 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

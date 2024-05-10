@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPainter>
+#include <QLabel>
 #include "shape_editor.h"
 
 

@@ -10,6 +10,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow), login_tracker {false}
 {
     ui->setupUi(this);
+
+    QLabel *testimonial1 = new QLabel(this);
+    testimonial1->setText("Rubber Duckies is the best company ever! ~User230725");
+    testimonial1->setGeometry(1300,100,400,200);
+    QLabel *testimonial2 = new QLabel(this);
+    testimonial2->setText("Great customization options! Good job Rubber Duckies! ~User493683");
+    testimonial2->setGeometry(1300,125,450,200);
 }
 
 MainWindow::~MainWindow()
