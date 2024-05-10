@@ -45,7 +45,6 @@ public:
     int shapeValue() const { return m_value; }
 
 private slots:
-
     /**
      * @brief on_login_clicked will check the username and password, and if valid will close the login window. otherwise, the user will need to re-enter their credentials
      */
@@ -71,13 +70,17 @@ public slots:
 
 signals:
     /**
-     * @brief valueChanged
-     * @param newValue
+     * @brief valueChanged tracks whether the signal changes
+     * @param newValue integer of the signal change
      */
     void valueChanged(int newValue);
 
 private:
+    /**
+     * @brief ui is the main application UI window
+     */
     Ui::MainWindow *ui;
+
     /**
      * @brief login_tracker : boolean of whether or not the user has entered valid login credentials
      */
