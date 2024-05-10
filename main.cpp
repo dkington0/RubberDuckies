@@ -32,12 +32,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    // // Trying to draw shapes
-    // QRect widgetRegion {0, 0, 1000, 1000};
-    // QPaintEvent *paintTest = new QPaintEvent{widgetRegion};
 
-    // //QPaintEvent paint;
-    // container[0]->drawShapes(container, paintTest);
+
     QPoint point(460, 90);
     QPoint point1(470, 20);
     QPoint point2(530, 40);
@@ -79,6 +75,11 @@ int main(int argc, char *argv[])
     container.push_back(Ellipse);
     container.push_back(Circle);
     container.push_back(Text);
+
+    // // Trying to draw shapes (draws in individual windows currently)
+    // QRect widgetRegion {0, 0, 1200, 1200};
+    // QPaintEvent *paintTest = new QPaintEvent{widgetRegion};
+    // container[0]->drawShapes(container, paintTest);
 
     // Canvas canvas(container);
 
