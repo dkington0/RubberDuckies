@@ -12,20 +12,16 @@
 using namespace std;
 
 /**
- * @brief   Read File
- *          Creates a filestream object for parsing
- *
- * @param filename  a string which consists of the filepath for the save file
- * @param shapes    the vector of Shape pointers to be used by the main application
+ * @brief Read File : Checks if a file exists for reading, if so creates a filestream object for parsing
+ * @param filename : a string which consists of the filepath for the save file
+ * @param shapes : the vector of Shape pointers to be used by the main application
  */
 void read_file(const string filename, myStd::vector<Shape*>& shapes);
 
 /**
- * @brief   Parse File
- *          Reads the shape save data line by line into the widget's shape objects
- *
- * @param inData    a filestream object which contains the saved shape data
- * @param shapes    the vector of Shape pointers to be used by the main application
+ * @brief Parse File : Reads the shape save data line by line into objects to be appended to the main vector of shape pointers
+ * @param inData : a filestream object which contains the saved shape data
+ * @param shapes : the vector of Shape pointers to be used by the main application
  */
 void parse_file(fstream& inData, myStd::vector<Shape*>& shapes);
 

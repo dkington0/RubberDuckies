@@ -1,19 +1,52 @@
 #ifndef LINE_H
 #define LINE_H
-#include <QPoint>
 #include "shape.h"
 
+/**
+ * @brief Line class
+ * @details derived from the Shape class, a Line object is defined by the two QPoints on either end connected by a straight line.
+ */
 class Line  : public Shape
 {
 private:
-    QLineF line;
-    Shape* shape;
+    /**
+     * @brief line : QLine which holds the points and parameters for the Line object
+     */
+    QLine line;
+    /**
+     * @brief id : ID is the unique integer assigned to each instance of a derived Shape object.
+     */
+    int id;
 
 public:
-    Line() : line{20, 90, 100, 20} {}
-    Line(qreal x1, qreal y1, qreal x2, qreal y2) : line{x1, y1, x1, y2} {}
+
+    /**
+     * @brief Line default constructor
+     */
+    Line() : line{20, 90, 100, 20} { id = num_shapes++ + 1; }
+
+    /**
+     * @brief Line alternate constructor, for use when creating new shapes
+     * @param l : QLine object to be stored in the line member
+     */
+    Line(QLine l) : line{l} { id = num_shapes++ + 1; }
+
+    /**
+     * @brief Line alternate constructor, to be used during file parsing
+     * @param i : ID of incoming shape
+     * @param l : QLine object to be stored in the line member
+     */
+    Line(int i, QLine l) : id{i}, line{l} {}
+
+    /**
+     * @brief default deconstructor
+     */
     ~Line();
 
+    /**
+     * @brief : paintEvent to be called upon a QPaintEvent, such as update()
+     * @param : QPaintEvent being called
+     */
     void paintEvent(QPaintEvent *event) override;
 
 };

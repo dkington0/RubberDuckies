@@ -27,7 +27,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         file_parser.cpp
         vector.h
         vector.cpp
-        shape_list.txt
+
         shape_resources.qrc
         file_parser.cpp file_parser.h mainwindow.cpp mainwindow.h mainwindow.ui shape_list.txt shape_resources.qrc vector.cpp vector.h
         shape.cpp shape.h shape.ui
@@ -41,6 +41,23 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         square.h square.cpp
         contact_us.cpp
         contact_us.h
+        canvas.h canvas.cpp
+        canvas.cpp
+        canvas.h
+        sort.h sort.cpp
+
+        shape_editor.h shape_editor.cpp shape_editor.ui
+
+
+
+
+        add_polygon.h add_polygon.cpp add_polygon.ui
+        add_linepoly.h add_linepoly.cpp add_linepoly.ui
+        add_circelip.h add_circelip.cpp add_circelip.ui
+        add_squrec.h add_squrec.cpp add_squrec.ui
+        add_text.h add_text.cpp add_text.ui
+
+
 
     )
 # Define target properties for Android with Qt 6 as:

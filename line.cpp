@@ -1,5 +1,4 @@
 #include "line.h"
-#include "QEventLoop"
 
 // Line::Line()
 // {
@@ -19,23 +18,13 @@ Line::~Line() {}
 
 void Line::paintEvent(QPaintEvent *event)
 {
-    QPainter *myline = new QPainter(this); // in render return this pointer
-    //setPen(Qt::green, 10, Qt::DashDotLine, Qt::FlatCap, Qt::MiterJoin);
-    myline->setPen(getPen());
+    QPainter myline(this); // in render return this pointer
 
-    // QEventLoop loop;
-    // QObject::connect(myline, SIGNAL(shapeValue()), &loop, SLOT(quit()));
+    setPen(getPen());    // Will be set in Canvas
 
-    // loop.exec();
-    qreal l;
-    // QLineF line(10.0, 80.0, 90.0, 20.0);
-    myline->drawLine(50, 50, 200, 200);
+    myline.drawLine(line);  // Initialize line in Canvas
 
-    // QPainter painter(this);
-
-    // painter.drawLine(line);
     show();
-
 }
 // void MainWindow::setValue(int value)
 // {

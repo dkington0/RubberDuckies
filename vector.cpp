@@ -1,17 +1,7 @@
-//============================================================================
-// Name        : CS1C_Vector_Double_v3.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
 #include "vector.h"
 using namespace myStd;
 
 #include <iostream>
-#include <iomanip>   // std::setprecision
-#include <algorithm> // std::find, std::sort
 
 using std::cout;
 using std::endl;
@@ -27,39 +17,7 @@ void selection_sort(Iterator first, Iterator last);
 
 template <typename T> // Updated to accept a template vector class
 void print_vector(const vector<T>& v);
-/*
-int main()
-{
-    const int initSize = 5;
-    vector<double> myDoubleVector(initSize); // Use the template vector class with the correct type parameter
 
-    // Modify elements 2, 3, 4
-    myDoubleVector[1] = -1.0;
-    myDoubleVector[2] = -2.0;
-    myDoubleVector[3] = -3.0;
-
-    // Print vector
-    print_vector(myDoubleVector);
-
-    myDoubleVector.erase(myDoubleVector.begin());
-
-    // Print vector
-    print_vector(myDoubleVector);
-
-    // Use fixed notation with precision 1
-    cout << std::setprecision(1) << std::fixed;
-
-    // Find lowest value
-    auto it = low(myDoubleVector.begin(), myDoubleVector.end());
-    cout << "Found vector lowest value: " << *it << endl;
-
-    // Sort vector
-    selection_sort(myDoubleVector.begin(), myDoubleVector.end());
-    print_vector(myDoubleVector);
-
-    return 0;
-}
-*/
 template <typename Iterator>
 Iterator low(Iterator first, Iterator last)
 // Return an iterator to the element in [first:last) that has the lowest value

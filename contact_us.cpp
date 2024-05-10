@@ -8,8 +8,6 @@ ContactUs::ContactUs(QWidget *parent)
     if(logo.load(":/files/duck.png")) {
 
         logo.scaled(50,50, Qt::KeepAspectRatio);
-
-        setText("this is where the names would be");
         setPixmap(logo);
 
     } else {
