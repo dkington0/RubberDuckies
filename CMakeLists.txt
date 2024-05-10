@@ -46,9 +46,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         canvas.h
         sort.h sort.cpp
         vector_test.cpp
-        makefile
-
-
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Project1 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
