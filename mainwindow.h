@@ -13,8 +13,8 @@ class MainWindow;
 QT_END_NAMESPACE
 
 /**
- * @brief The MainWindow class
- * @details
+ * @brief MainWindow class
+ * @details functions as a login screen. after login credentials are verified, MainWindow closes and Canvas is opened.
  */
 class MainWindow : public QMainWindow
 {
