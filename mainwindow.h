@@ -83,6 +83,9 @@ private:
      */
     bool login_tracker;
 
+    /**
+     * @brief m_value : an emitter to login, m_value tracks whether the the login is pressed
+     */
     int m_value;
 };
 
