@@ -4,12 +4,12 @@
 #include <QPainter>
 #include "vector.h"
 
-/**
-     * @brief : Enum to provide shape type
-     * @param src : Types of shapes
-     */
 // enum ShapeType { line, PolyLine, Polygon, Rectangle, Square, Ellipse, Circle, Text };
 
+/**
+ * @brief The Canvas class
+ * @details
+ */
 class Canvas: public QWidget
 {
 private:
