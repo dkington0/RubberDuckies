@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     container.push_back(Ellipse);
     container.push_back(Circle);
     container.push_back(Text);
-*/
+
     // Canvas canvas(container);
 
     // MainWindow w;
