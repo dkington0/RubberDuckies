@@ -14,7 +14,7 @@
 #include "square.h"
 #include "Text.h"
 #include "circle.h"
-#include "canvas.h"
+// #include "canvas.h"
 
 //template <class Type>
 int main(int argc, char *argv[])
