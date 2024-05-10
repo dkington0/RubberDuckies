@@ -2,6 +2,10 @@
 #define ELLIPSE_H
 #include "Shape.h"
 
+/**
+ * @brief Ellipse class
+ * @details derived from the Shape class, an ellipse object is confined by its bounding rectangle, which has differing lengths for width and height
+ */
 class ellipse : public Shape
 {
 private:

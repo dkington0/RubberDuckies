@@ -2,6 +2,10 @@
 #define SQUARE_H
 #include "shape.h"
 
+/**
+ * @brief Square class
+ * @details derived from the Shape class, a square object is confined by its bounding rectangle, which has equal lengths of width and height
+ */
 class square : public Shape
 {
 private:

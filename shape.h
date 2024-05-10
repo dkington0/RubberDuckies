@@ -12,6 +12,11 @@ class Shape;
 }
 QT_END_NAMESPACE
 
+/**
+ * @brief Shape class
+ * @details the base class for the main Shape objects, this abstract class holds the information all shapes should be able to implement, such as its UI, a QPen, and a QBrush.
+ *          Provides overloaded comparison operators as well as some virtual functions for the derived classes.
+ */
 class Shape : public MainWindow
 {
     Q_OBJECT

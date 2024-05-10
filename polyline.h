@@ -4,6 +4,10 @@
 #include "shape.h"
 #include "vector.h"
 
+/**
+ * @brief Polyline class
+ * @details derived from the Shape class, a polyline object is defined by any number of lines connected by QPoints.
+ */
 class polyline : public Shape
 {
 private:

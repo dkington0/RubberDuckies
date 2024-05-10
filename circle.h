@@ -4,6 +4,10 @@
 #include <cmath>
 #include "vector.h"
 
+/**
+ * @brief Circle class
+ * @details derived from the Shape class, a circle object is confined by its bounding rectangle, which has equal lengths of width and height
+ */
 class circle : public Shape
 {
 private:

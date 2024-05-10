@@ -2,6 +2,10 @@
 #define RECTANGLE_H
 #include "shape.h"
 
+/**
+ * @brief rectangle class
+ * @details derived from the Shape class, a rectangle object is confined by its bounding rectangle, which has differing lengths for width and height
+ */
 class rectangle : public Shape
 {
 private:

@@ -4,7 +4,10 @@
 #include "shape.h"
 #include "vector.h"
 
-
+/**
+ * @brief Polygon class
+ * @details derived from the Shape class, a polygon object is defined by any number of sides connected by QPoints which fully enclose a space.
+ */
 class polygon : public Shape
 {
 private:

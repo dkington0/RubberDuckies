@@ -2,6 +2,11 @@
 #define TEXT_H
 #include "shape.h"
 
+/**
+ * @brief Text class
+ * @details derived from the Shape class, an text object is confined by its bounding rectangle, which has differing lengths for width and height. The text can be further customized by adding
+ *          alignment flags to determine position within the bounding rectangle, as well as font styles and the text it contains.
+ */
 class text : public Shape
 {
 private:

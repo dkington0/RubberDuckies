@@ -7,6 +7,10 @@ using std::copy;
 namespace myStd
 {
 
+/**
+ * @brief vector class template
+ * @details dynamic container which can hold any valid data type. Includes operations for appending and removal, as well as iterators for algroithm implementation.
+ */
 template<typename T>
 class vector
 {

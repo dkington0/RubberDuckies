@@ -6,6 +6,10 @@
 #include <iostream>
 #include <fstream>
 
+/**
+ * @brief sort class
+ * @details contains sorting algortihms to be used with a vector of shape pointers, allowing the program to sort based on shape ID, area, and perimeter.
+ */
 class sort
 {
 public:

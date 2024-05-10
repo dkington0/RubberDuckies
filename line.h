@@ -2,6 +2,10 @@
 #define LINE_H
 #include "shape.h"
 
+/**
+ * @brief Line class
+ * @details derived from the Shape class, a Line object is defined by the two QPoints on either end connected by a straight line.
+ */
 class Line  : public Shape
 {
 private:

@@ -5,6 +5,10 @@
 #include <QMessageBox>
 #include <QLabel>
 
+/**
+ * @brief ContactUs class
+ * @details to be implemented as a way to display a single image within a window by instantiating this class within a parent
+ */
 class ContactUs:public QLabel
 {
 
@@ -21,7 +25,5 @@ private:
      */
     QPixmap logo;
 };
-
-
 
 #endif // CONTACT_US_H
