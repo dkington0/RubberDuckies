@@ -46,7 +46,7 @@ class Shape : public MainWindow
 
         /**
          * @brief : paintEvent to be called upon a QPaintEvent, such as update()
-         * @param : event
+         * @param : QPaintEvent being called
          */
         virtual void paintEvent(QPaintEvent* event)=0;
 

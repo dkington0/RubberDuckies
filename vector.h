@@ -10,9 +10,18 @@ namespace myStd
 template<typename T>
 class vector
 {
-
+    /**
+     * @brief size_v the size of the vector represented as the number of elements stored in the container
+     */
     int size_v;
+    /**
+     * @brief elem a pointer to a dynamic array of T elements
+     */
     T *elem;
+
+    /**
+     * @brief space integer of the amount of space available to be allocated within the vector, which is always at least v_size large
+     */
     int space;
 public:
 
