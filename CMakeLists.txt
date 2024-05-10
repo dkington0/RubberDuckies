@@ -46,6 +46,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         canvas.h
         sort.h sort.cpp
         vector_test.cpp
+        makefile
 
 
     )
