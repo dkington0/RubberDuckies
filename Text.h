@@ -5,11 +5,21 @@
 class text : public Shape
 {
 private:
+    /**
+     * @brief rect : QRect is the bounding rectangle of the Text
+     */
     QRect rect;
+    /**
+     * @brief id : ID is the unique integer assigned to each instance of a derived Shape object.
+     */
+    int id;
+    /**
+     * @brief flags
+     */
     int flags;
     QString strtext;
     QFont font;
-    int id;
+
 
 public:
     text() : rect{250, 425, 500, 50}, flags{Qt::AlignCenter}, strtext{"Nothing Here!"} { id = num_shapes++ + 1; }

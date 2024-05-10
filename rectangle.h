@@ -5,7 +5,13 @@
 class rectangle : public Shape
 {
 private:
+    /**
+     * @brief rect : QRect is the bounding rectangle of the circle
+     */
     QRect rect;
+    /**
+     * @brief id : ID is the unique integer assigned to each instance of a derived Shape object.
+     */
     int id;
 
 public:

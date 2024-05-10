@@ -17,7 +17,14 @@ class Shape : public MainWindow
     Q_OBJECT
     private:
         Ui::Shape *ui;
+        /**
+         * @brief pen : QPen object which holds the data for parameters such as color, pen style, etc.
+         */
         QPen pen;
+
+        /**
+         * @brief brush : QBrush object which holds the data for parameters such as brush style.
+         */
         QBrush brush;
 
     public:

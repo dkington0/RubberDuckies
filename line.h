@@ -5,7 +5,13 @@
 class Line  : public Shape
 {
 private:
+    /**
+     * @brief line : QLine which holds the points and parameters for the Line object
+     */
     QLine line;
+    /**
+     * @brief id : ID is the unique integer assigned to each instance of a derived Shape object.
+     */
     int id;
 
 public:

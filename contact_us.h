@@ -16,6 +16,9 @@ public:
     ContactUs(QWidget *parent = 0);
 
 private:
+    /**
+     * @brief logo : QPixmap to hold the image which appears on the label
+     */
     QPixmap logo;
 };
 
