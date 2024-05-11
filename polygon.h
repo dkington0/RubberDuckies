@@ -56,7 +56,13 @@ public:
      * @brief getId will return the derived shape's unique ID
      * @return : returns the derived shape's unique ID
      */
-    int getId() { return id; };
+    int getId() const { return id; };
+
+    /**
+     * @brief getPoints will return a vector of the derived shape's points
+     * @return : returns a vector of the derived shape's points
+     */
+    myStd::vector<QPoint> getPoints() const { return points; }
 };
 
 #endif // POLYGON_H
