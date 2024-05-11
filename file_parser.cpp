@@ -140,12 +140,11 @@ void read_file(const string directory_path, myStd::vector<Shape*>& userShapes) {
         parse_file(inData, userShapes);
         //for (int i {}; i < userShapes.size(); i++)
         //    cout << userShapes[i]->getPen().color().isValid() << endl;
+        inData.close();
         cout << "File parse completed" << endl;
     }
     else
         cout << "Failed to open file for reading" << endl; // change to a throw later
-
-
     return;
 }
 

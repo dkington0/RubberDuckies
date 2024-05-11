@@ -2,8 +2,5 @@
 
 void serialize(QString filepath, myStd::vector<Shape*> userShapes) {
 
-
-
-
     return;
 }
