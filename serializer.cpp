@@ -9,6 +9,8 @@ void serialize(QString filepath, myStd::vector<Shape*> userShapes) {
     QFile outFile(filepath);
 
     // open file
+    if (outFile.exists()) // if the file exists, remove it to be overwritten.
+        outFile.remove();
 
     if (!outFile.open(QIODevice::WriteOnly | QIODevice::Text))
     {
@@ -423,7 +425,7 @@ void writeRectangle(QTextStream& outStream, rectangle* outRectangle) {
         brushStyleStr = "SolidPattern"; //defaults to a solid pattern if brush style is invalid
 
     outStream << "ShapeId: " << outRectangle->getId() << '\n'
-              << "ShapeType: " << "Circle" << '\n'
+              << "ShapeType: " << "Rectangle" << '\n'
               << "ShapeDimensions: " << outRectangle->getRect().topLeft().x() << ", " << outRectangle->getRect().topLeft().y() << ", " << outRectangle->getRect().height() << ", " << outRectangle->getRect().width() << '\n'
               << "PenColor: " << colorStr << '\n'
               << "PenWidth: " << outRectangle->getPen().width() << '\n'
@@ -530,7 +532,7 @@ void writeSquare(QTextStream& outStream, square* outSquare) {
         brushStyleStr = "SolidPattern"; //defaults to a solid pattern if brush style is invalid
 
     outStream << "ShapeId: " << outSquare->getId() << '\n'
-              << "ShapeType: " << "Circle" << '\n'
+              << "ShapeType: " << "Square" << '\n'
               << "ShapeDimensions: " << outSquare->getRect().topLeft().x() << ", " << outSquare->getRect().topLeft().y() << ", " << outSquare->getRect().width() << '\n'
               << "PenColor: " << colorStr << '\n'
               << "PenWidth: " << outSquare->getPen().width() << '\n'
@@ -637,7 +639,7 @@ void writeEllipse(QTextStream& outStream, ellipse* outEllipse) {
         brushStyleStr = "SolidPattern"; //defaults to a solid pattern if brush style is invalid
 
     outStream << "ShapeId: " << outEllipse->getId() << '\n'
-              << "ShapeType: " << "Circle" << '\n'
+              << "ShapeType: " << "Ellipse" << '\n'
               << "ShapeDimensions: " << outEllipse->getRect().topLeft().x() << ", " << outEllipse->getRect().topLeft().y() << ", " << outEllipse->getRect().height() << ", " << outEllipse->getRect().width() << '\n'
               << "PenColor: " << colorStr << '\n'
               << "PenWidth: " << outEllipse->getPen().width() << '\n'
@@ -806,6 +808,17 @@ void writeText(QTextStream& outStream, text* outText) {
     else
         textWeightStr = "Normal"; // defaults to normal if text weight is invalid
 
+    QString textFontStyleStr;
+    if (outText->getFont().style() == QFont::StyleNormal)
+        textFontStyleStr = "StyleNormal";
+    else if (outText->getFont().style() == QFont::StyleItalic)
+        textFontStyleStr = "StyleItalic";
+    else if (outText->getFont().style() == QFont::StyleOblique)
+        textFontStyleStr = "StyleOblique";
+    else
+        textFontStyleStr = "StyleNormal"; // defaults to normal style if style is invalid
+
+
     outStream << "ShapeId: " << outText->getId() << '\n'
               << "ShapeType: " << "Text" << '\n'
               << "ShapeDimensions: " << outText->getRect().topLeft().x() << ", " << outText->getRect().topLeft().y() << ", " << outText->getRect().height() << ", " << outText->getRect().width() << '\n'
@@ -814,7 +827,7 @@ void writeText(QTextStream& outStream, text* outText) {
               << "TextAlignment: " << textAlignmentStr << '\n'
               << "TextPointSize: " << outText->getFont().pointSize() << '\n'
               << "TextFontFamily: " << outText->getFont().family() << '\n'
-              << "TextFontStyle: " << outText->getFont().styleName() << '\n'
+              << "TextFontStyle: " << textFontStyleStr << '\n'
               << "TextFontWeight: " << textWeightStr << '\n';
     return;
 }

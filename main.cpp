@@ -31,8 +31,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-
-
     QPoint point(460, 90);
     QPoint point1(470, 20);
     QPoint point2(530, 40);
@@ -64,7 +62,7 @@ int main(int argc, char *argv[])
     square* Square = new square(5, 750, 150, 200);
     ellipse* Ellipse = new ellipse(6, QRect(520, 200, 170, 100));
     circle* Circle = new circle(7, 250, 150, 200);
-    text* Text = new text(8, QRect(250, 425, 500, 50), Qt::AlignCenter, str, QFont(str, -1, -1, false));
+    text* Text = new text(8, QRect(250, 425, 500, 50), Qt::AlignCenter, str, QFont("Helvetica", -1, -1, false));
 
     container.push_back(line);
     container.push_back(Polyline);
