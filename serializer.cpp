@@ -82,8 +82,10 @@ void writeLine(QTextStream& outStream, Line* outLine) {
         colorStr = "yellow";
     else if (outLine->getPen().color() == Qt::gray)
         colorStr = "gray";
-    else
+    else {
         colorStr = "black"; // defaults to a black color if the given pen color is invalid
+        std::cout << "Error during writeLine: invalid pen color" << std::endl;
+    }
 
     QString penStyleStr;
     if (outLine->getPen().style() == Qt::NoPen)
@@ -98,8 +100,10 @@ void writeLine(QTextStream& outStream, Line* outLine) {
         penStyleStr = "DashDotLine";
     else if (outLine->getPen().style() == Qt::DashDotDotLine)
         penStyleStr = "DashDotDotLine";
-    else
+    else {
         penStyleStr = "SolidLine"; // defaults to a solid line pen style if pen style is invalid
+        std::cout << "Error during writeLine: invalid pen style" << std::endl;
+    }
 
     QString penCapStyleStr;
     if (outLine->getPen().capStyle() == Qt::FlatCap)
@@ -108,8 +112,10 @@ void writeLine(QTextStream& outStream, Line* outLine) {
         penCapStyleStr = "SquareCap";
     else if (outLine->getPen().capStyle() == Qt::RoundCap)
         penCapStyleStr = "RoundCap";
-    else
+    else {
         penCapStyleStr = "FlatCap"; // defaults to a flat cap pen cap style if cap style is invalid
+        std::cout << "Error during writeLine: invalid pen cap style" << std::endl;
+    }
 
     QString penJoinStyleStr;
     if (outLine->getPen().joinStyle() == Qt::MiterJoin)
@@ -118,8 +124,10 @@ void writeLine(QTextStream& outStream, Line* outLine) {
         penJoinStyleStr = "BevelJoin";
     else if (outLine->getPen().joinStyle() == Qt::RoundJoin)
         penJoinStyleStr = "RoundJoin";
-    else
+    else {
         penJoinStyleStr = "MiterJoin"; // defaults to miter join style if join style is invalid
+        std::cout << "Error during writeLine: invalid pen join style" << std::endl;
+    }
 
     outStream << "ShapeId: " << outLine->getId() << '\n'
               << "ShapeType: " << "Line" << '\n'
@@ -153,8 +161,10 @@ void writePolyline(QTextStream& outStream, polyline* outPolyline) {
         colorStr = "yellow";
     else if (outPolyline->getPen().color() == Qt::gray)
         colorStr = "gray";
-    else
+    else {
         colorStr = "black"; // defaults to a black color if the given pen color is invalid
+        std::cout << "Error during writePolyline: invalid pen color" << std::endl;
+    }
 
     QString penStyleStr;
     if (outPolyline->getPen().style() == Qt::NoPen)
@@ -169,8 +179,10 @@ void writePolyline(QTextStream& outStream, polyline* outPolyline) {
         penStyleStr = "DashDotLine";
     else if (outPolyline->getPen().style() == Qt::DashDotDotLine)
         penStyleStr = "DashDotDotLine";
-    else
+    else {
         penStyleStr = "SolidLine"; // defaults to a solid line pen style if pen style is invalid
+        std::cout << "Error during writePolyline: invalid pen style" << std::endl;
+    }
 
     QString penCapStyleStr;
     if (outPolyline->getPen().capStyle() == Qt::FlatCap)
@@ -179,8 +191,10 @@ void writePolyline(QTextStream& outStream, polyline* outPolyline) {
         penCapStyleStr = "SquareCap";
     else if (outPolyline->getPen().capStyle() == Qt::RoundCap)
         penCapStyleStr = "RoundCap";
-    else
+    else {
         penCapStyleStr = "FlatCap"; // defaults to a flat cap pen cap style if cap style is invalid
+        std::cout << "Error during writePolyline: invalid pen cap style" << std::endl;
+    }
 
     QString penJoinStyleStr;
     if (outPolyline->getPen().joinStyle() == Qt::MiterJoin)
@@ -189,8 +203,10 @@ void writePolyline(QTextStream& outStream, polyline* outPolyline) {
         penJoinStyleStr = "BevelJoin";
     else if (outPolyline->getPen().joinStyle() == Qt::RoundJoin)
         penJoinStyleStr = "RoundJoin";
-    else
+    else {
         penJoinStyleStr = "MiterJoin"; // defaults to miter join style if join style is invalid
+        std::cout << "Error during writePolyline: invalid pen join style" << std::endl;
+    }
 
     outStream << "ShapeId: " << outPolyline->getId() << '\n'
               << "ShapeType: " << "Polyline" << '\n'
@@ -233,8 +249,10 @@ void writePolygon(QTextStream& outStream, polygon* outPolygon) {
         colorStr = "yellow";
     else if (outPolygon->getPen().color() == Qt::gray)
         colorStr = "gray";
-    else
+    else {
         colorStr = "black"; // defaults to a black color if the given pen color is invalid
+        std::cout << "Error during writePolygon: invalid pen color" << std::endl;
+    }
 
     QString penStyleStr;
     if (outPolygon->getPen().style() == Qt::NoPen)
@@ -249,8 +267,10 @@ void writePolygon(QTextStream& outStream, polygon* outPolygon) {
         penStyleStr = "DashDotLine";
     else if (outPolygon->getPen().style() == Qt::DashDotDotLine)
         penStyleStr = "DashDotDotLine";
-    else
+    else {
         penStyleStr = "SolidLine"; // defaults to a solid line pen style if pen style is invalid
+        std::cout << "Error during writePolygon: invalid pen style" << std::endl;
+    }
 
     QString penCapStyleStr;
     if (outPolygon->getPen().capStyle() == Qt::FlatCap)
@@ -259,8 +279,10 @@ void writePolygon(QTextStream& outStream, polygon* outPolygon) {
         penCapStyleStr = "SquareCap";
     else if (outPolygon->getPen().capStyle() == Qt::RoundCap)
         penCapStyleStr = "RoundCap";
-    else
+    else {
         penCapStyleStr = "FlatCap"; // defaults to a flat cap pen cap style if cap style is invalid
+        std::cout << "Error during writePolygon: invalid pen cap style" << std::endl;
+    }
 
     QString penJoinStyleStr;
     if (outPolygon->getPen().joinStyle() == Qt::MiterJoin)
@@ -269,8 +291,10 @@ void writePolygon(QTextStream& outStream, polygon* outPolygon) {
         penJoinStyleStr = "BevelJoin";
     else if (outPolygon->getPen().joinStyle() == Qt::RoundJoin)
         penJoinStyleStr = "RoundJoin";
-    else
+    else {
         penJoinStyleStr = "MiterJoin"; // defaults to miter join style if join style is invalid
+        std::cout << "Error during writePolygon: invalid pen join style" << std::endl;
+    }
 
     QString brushColorStr;
     if (outPolygon->getPen().brush().color() == Qt::white)
@@ -293,6 +317,7 @@ void writePolygon(QTextStream& outStream, polygon* outPolygon) {
         brushColorStr = "gray";
     else {
         brushColorStr = "black"; // defaults to black if brush color is invalid
+        std::cout << "Error during writePolygon: invalid brush color" << std::endl;
     }
 
     QString brushStyleStr;
@@ -304,8 +329,10 @@ void writePolygon(QTextStream& outStream, polygon* outPolygon) {
         brushStyleStr = "VerPattern";
     else if (outPolygon->getPen().brush().style() == Qt::NoBrush)
         brushStyleStr = "NoBrush";
-    else
+    else {
         brushStyleStr = "SolidPattern"; //defaults to a solid pattern if brush style is invalid
+        std::cout << "Error during writePolygon: invalid brush style" << std::endl;
+    }
 
     outStream << "ShapeId: " << outPolygon->getId() << '\n'
               << "ShapeType: " << "Polygon" << '\n'
@@ -350,8 +377,10 @@ void writeRectangle(QTextStream& outStream, rectangle* outRectangle) {
         colorStr = "yellow";
     else if (outRectangle->getPen().color() == Qt::gray)
         colorStr = "gray";
-    else
+    else {
         colorStr = "black"; // defaults to a black color if the given pen color is invalid
+        std::cout << "Error during writeRectangle: invalid pen color" << std::endl;
+    }
 
     QString penStyleStr;
     if (outRectangle->getPen().style() == Qt::NoPen)
@@ -366,8 +395,10 @@ void writeRectangle(QTextStream& outStream, rectangle* outRectangle) {
         penStyleStr = "DashDotLine";
     else if (outRectangle->getPen().style() == Qt::DashDotDotLine)
         penStyleStr = "DashDotDotLine";
-    else
+    else {
         penStyleStr = "SolidLine"; // defaults to a solid line pen style if pen style is invalid
+        std::cout << "Error during writeRectangle: invalid pen style" << std::endl;
+    }
 
     QString penCapStyleStr;
     if (outRectangle->getPen().capStyle() == Qt::FlatCap)
@@ -376,8 +407,10 @@ void writeRectangle(QTextStream& outStream, rectangle* outRectangle) {
         penCapStyleStr = "SquareCap";
     else if (outRectangle->getPen().capStyle() == Qt::RoundCap)
         penCapStyleStr = "RoundCap";
-    else
+    else {
         penCapStyleStr = "FlatCap"; // defaults to a flat cap pen cap style if cap style is invalid
+        std::cout << "Error during writeRectangle: invalid pen cap style" << std::endl;
+    }
 
     QString penJoinStyleStr;
     if (outRectangle->getPen().joinStyle() == Qt::MiterJoin)
@@ -386,8 +419,10 @@ void writeRectangle(QTextStream& outStream, rectangle* outRectangle) {
         penJoinStyleStr = "BevelJoin";
     else if (outRectangle->getPen().joinStyle() == Qt::RoundJoin)
         penJoinStyleStr = "RoundJoin";
-    else
+    else {
         penJoinStyleStr = "MiterJoin"; // defaults to miter join style if join style is invalid
+        std::cout << "Error during writeRectangle: invalid pen join style" << std::endl;
+    }
 
     QString brushColorStr;
     if (outRectangle->getPen().brush().color() == Qt::white)
@@ -410,6 +445,7 @@ void writeRectangle(QTextStream& outStream, rectangle* outRectangle) {
         brushColorStr = "gray";
     else {
         brushColorStr = "black"; // defaults to black if brush color is invalid
+        std::cout << "Error during writeRectangle: invalid brush color" << std::endl;
     }
 
     QString brushStyleStr;
@@ -421,8 +457,10 @@ void writeRectangle(QTextStream& outStream, rectangle* outRectangle) {
         brushStyleStr = "VerPattern";
     else if (outRectangle->getPen().brush().style() == Qt::NoBrush)
         brushStyleStr = "NoBrush";
-    else
+    else {
         brushStyleStr = "SolidPattern"; //defaults to a solid pattern if brush style is invalid
+        std::cout << "Error during writeRectangle: invalid brush style" << std::endl;
+    }
 
     outStream << "ShapeId: " << outRectangle->getId() << '\n'
               << "ShapeType: " << "Rectangle" << '\n'
@@ -457,8 +495,10 @@ void writeSquare(QTextStream& outStream, square* outSquare) {
         colorStr = "yellow";
     else if (outSquare->getPen().color() == Qt::gray)
         colorStr = "gray";
-    else
+    else {
         colorStr = "black"; // defaults to a black color if the given pen color is invalid
+        std::cout << "Error during writeSquare: invalid pen color" << std::endl;
+    }
 
     QString penStyleStr;
     if (outSquare->getPen().style() == Qt::NoPen)
@@ -473,8 +513,10 @@ void writeSquare(QTextStream& outStream, square* outSquare) {
         penStyleStr = "DashDotLine";
     else if (outSquare->getPen().style() == Qt::DashDotDotLine)
         penStyleStr = "DashDotDotLine";
-    else
+    else {
         penStyleStr = "SolidLine"; // defaults to a solid line pen style if pen style is invalid
+        std::cout << "Error during writeSquare: invalid pen style" << std::endl;
+    }
 
     QString penCapStyleStr;
     if (outSquare->getPen().capStyle() == Qt::FlatCap)
@@ -483,8 +525,10 @@ void writeSquare(QTextStream& outStream, square* outSquare) {
         penCapStyleStr = "SquareCap";
     else if (outSquare->getPen().capStyle() == Qt::RoundCap)
         penCapStyleStr = "RoundCap";
-    else
+    else {
         penCapStyleStr = "FlatCap"; // defaults to a flat cap pen cap style if cap style is invalid
+        std::cout << "Error during writeSquare: invalid pen cap style" << std::endl;
+    }
 
     QString penJoinStyleStr;
     if (outSquare->getPen().joinStyle() == Qt::MiterJoin)
@@ -493,8 +537,10 @@ void writeSquare(QTextStream& outStream, square* outSquare) {
         penJoinStyleStr = "BevelJoin";
     else if (outSquare->getPen().joinStyle() == Qt::RoundJoin)
         penJoinStyleStr = "RoundJoin";
-    else
+    else {
         penJoinStyleStr = "MiterJoin"; // defaults to miter join style if join style is invalid
+        std::cout << "Error during writeSquare: invalid pen join style" << std::endl;
+    }
 
     QString brushColorStr;
     if (outSquare->getPen().brush().color() == Qt::white)
@@ -517,6 +563,7 @@ void writeSquare(QTextStream& outStream, square* outSquare) {
         brushColorStr = "gray";
     else {
         brushColorStr = "black"; // defaults to black if brush color is invalid
+        std::cout << "Error during writeSquare: invalid brush color" << std::endl;
     }
 
     QString brushStyleStr;
@@ -528,8 +575,10 @@ void writeSquare(QTextStream& outStream, square* outSquare) {
         brushStyleStr = "VerPattern";
     else if (outSquare->getPen().brush().style() == Qt::NoBrush)
         brushStyleStr = "NoBrush";
-    else
+    else {
         brushStyleStr = "SolidPattern"; //defaults to a solid pattern if brush style is invalid
+        std::cout << "Error during writeSquare: invalid brush style" << std::endl;
+    }
 
     outStream << "ShapeId: " << outSquare->getId() << '\n'
               << "ShapeType: " << "Square" << '\n'
@@ -564,8 +613,10 @@ void writeEllipse(QTextStream& outStream, ellipse* outEllipse) {
         colorStr = "yellow";
     else if (outEllipse->getPen().color() == Qt::gray)
         colorStr = "gray";
-    else
+    else {
         colorStr = "black"; // defaults to a black color if the given pen color is invalid
+        std::cout << "Error during writeEllipse: invalid pen color" << std::endl;
+    }
 
     QString penStyleStr;
     if (outEllipse->getPen().style() == Qt::NoPen)
@@ -580,8 +631,10 @@ void writeEllipse(QTextStream& outStream, ellipse* outEllipse) {
         penStyleStr = "DashDotLine";
     else if (outEllipse->getPen().style() == Qt::DashDotDotLine)
         penStyleStr = "DashDotDotLine";
-    else
+    else {
         penStyleStr = "SolidLine"; // defaults to a solid line pen style if pen style is invalid
+        std::cout << "Error during writeEllipse: invalid pen style" << std::endl;
+    }
 
     QString penCapStyleStr;
     if (outEllipse->getPen().capStyle() == Qt::FlatCap)
@@ -590,8 +643,10 @@ void writeEllipse(QTextStream& outStream, ellipse* outEllipse) {
         penCapStyleStr = "SquareCap";
     else if (outEllipse->getPen().capStyle() == Qt::RoundCap)
         penCapStyleStr = "RoundCap";
-    else
+    else {
         penCapStyleStr = "FlatCap"; // defaults to a flat cap pen cap style if cap style is invalid
+        std::cout << "Error during writeEllipse: invalid pen cap style" << std::endl;
+    }
 
     QString penJoinStyleStr;
     if (outEllipse->getPen().joinStyle() == Qt::MiterJoin)
@@ -600,8 +655,10 @@ void writeEllipse(QTextStream& outStream, ellipse* outEllipse) {
         penJoinStyleStr = "BevelJoin";
     else if (outEllipse->getPen().joinStyle() == Qt::RoundJoin)
         penJoinStyleStr = "RoundJoin";
-    else
+    else {
         penJoinStyleStr = "MiterJoin"; // defaults to miter join style if join style is invalid
+        std::cout << "Error during writeEllipse: invalid pen join style" << std::endl;
+    }
 
     QString brushColorStr;
     if (outEllipse->getPen().brush().color() == Qt::white)
@@ -624,6 +681,7 @@ void writeEllipse(QTextStream& outStream, ellipse* outEllipse) {
         brushColorStr = "gray";
     else {
         brushColorStr = "black"; // defaults to black if brush color is invalid
+        std::cout << "Error during writeEllipse: invalid brush color" << std::endl;
     }
 
     QString brushStyleStr;
@@ -635,8 +693,10 @@ void writeEllipse(QTextStream& outStream, ellipse* outEllipse) {
         brushStyleStr = "VerPattern";
     else if (outEllipse->getPen().brush().style() == Qt::NoBrush)
         brushStyleStr = "NoBrush";
-    else
+    else {
         brushStyleStr = "SolidPattern"; //defaults to a solid pattern if brush style is invalid
+        std::cout << "Error during writeEllipse: invalid brush style" << std::endl;
+    }
 
     outStream << "ShapeId: " << outEllipse->getId() << '\n'
               << "ShapeType: " << "Ellipse" << '\n'
@@ -672,8 +732,10 @@ void writeCircle(QTextStream& outStream, circle* outCircle) {
         colorStr = "yellow";
     else if (outCircle->getPen().color() == Qt::gray)
         colorStr = "gray";
-    else
+    else {
         colorStr = "black"; // defaults to a black color if the given pen color is invalid
+        std::cout << "Error during writeCircle: invalid pen color" << std::endl;
+    }
 
     QString penStyleStr;
     if (outCircle->getPen().style() == Qt::NoPen)
@@ -688,8 +750,10 @@ void writeCircle(QTextStream& outStream, circle* outCircle) {
         penStyleStr = "DashDotLine";
     else if (outCircle->getPen().style() == Qt::DashDotDotLine)
         penStyleStr = "DashDotDotLine";
-    else
+    else {
         penStyleStr = "SolidLine"; // defaults to a solid line pen style if pen style is invalid
+        std::cout << "Error during writeCircle: invalid pen style" << std::endl;
+    }
 
     QString penCapStyleStr;
     if (outCircle->getPen().capStyle() == Qt::FlatCap)
@@ -698,8 +762,10 @@ void writeCircle(QTextStream& outStream, circle* outCircle) {
         penCapStyleStr = "SquareCap";
     else if (outCircle->getPen().capStyle() == Qt::RoundCap)
         penCapStyleStr = "RoundCap";
-    else
+    else {
         penCapStyleStr = "FlatCap"; // defaults to a flat cap pen cap style if cap style is invalid
+        std::cout << "Error during writeCircle: invalid pen cap style" << std::endl;
+    }
 
     QString penJoinStyleStr;
     if (outCircle->getPen().joinStyle() == Qt::MiterJoin)
@@ -708,8 +774,10 @@ void writeCircle(QTextStream& outStream, circle* outCircle) {
         penJoinStyleStr = "BevelJoin";
     else if (outCircle->getPen().joinStyle() == Qt::RoundJoin)
         penJoinStyleStr = "RoundJoin";
-    else
+    else {
         penJoinStyleStr = "MiterJoin"; // defaults to miter join style if join style is invalid
+        std::cout << "Error during writeCircle: invalid pen join style" << std::endl;
+    }
 
     QString brushColorStr;
     if (outCircle->getPen().brush().color() == Qt::white)
@@ -732,6 +800,7 @@ void writeCircle(QTextStream& outStream, circle* outCircle) {
         brushColorStr = "gray";
     else {
         brushColorStr = "black"; // defaults to black if brush color is invalid
+        std::cout << "Error during writeCircle: invalid brush color" << std::endl;
     }
 
     QString brushStyleStr;
@@ -743,8 +812,10 @@ void writeCircle(QTextStream& outStream, circle* outCircle) {
         brushStyleStr = "VerPattern";
     else if (outCircle->getPen().brush().style() == Qt::NoBrush)
         brushStyleStr = "NoBrush";
-    else
+    else {
         brushStyleStr = "SolidPattern"; //defaults to a solid pattern if brush style is invalid
+        std::cout << "Error during writeCircle: invalid brush style" << std::endl;
+    }
 
     outStream << "ShapeId: " << outCircle->getId() << '\n'
               << "ShapeType: " << "Circle" << '\n'
@@ -779,8 +850,10 @@ void writeText(QTextStream& outStream, text* outText) {
         colorStr = "yellow";
     else if (outText->getPen().color() == Qt::gray)
         colorStr = "gray";
-    else
+    else {
         colorStr = "black"; // defaults to a black color if the given pen color is invalid
+        std::cout << "Error during writeText: invalid text color" << std::endl;
+    }
 
     QString textAlignmentStr;
     if (outText->getFlags() == Qt::AlignLeft)
@@ -793,8 +866,10 @@ void writeText(QTextStream& outStream, text* outText) {
         textAlignmentStr= "AlignBottom";
     else if (outText->getFlags() == Qt::AlignCenter)
         textAlignmentStr = "AlignCenter";
-    else
+    else {
         textAlignmentStr = "AlignLeft"; // default to align left if alignment flag is invalid
+        std::cout << "Error during writeText: invalid text alignment flag" << std::endl;
+    }
 
     QString textWeightStr;
     if (outText->getFont().weight() == QFont::Thin)
@@ -805,8 +880,10 @@ void writeText(QTextStream& outStream, text* outText) {
         textWeightStr = "Normal";
     else if (outText->getFont().weight() == QFont::Bold)
         textWeightStr = "Bold";
-    else
+    else {
         textWeightStr = "Normal"; // defaults to normal if text weight is invalid
+        std::cout << "Error during writeText: invalid text weight" << std::endl;
+    }
 
     QString textFontStyleStr;
     if (outText->getFont().style() == QFont::StyleNormal)
@@ -815,9 +892,10 @@ void writeText(QTextStream& outStream, text* outText) {
         textFontStyleStr = "StyleItalic";
     else if (outText->getFont().style() == QFont::StyleOblique)
         textFontStyleStr = "StyleOblique";
-    else
+    else {
         textFontStyleStr = "StyleNormal"; // defaults to normal style if style is invalid
-
+        std::cout << "Error during writeText: invalid text font style" << std::endl;
+    }
 
     outStream << "ShapeId: " << outText->getId() << '\n'
               << "ShapeType: " << "Text" << '\n'
