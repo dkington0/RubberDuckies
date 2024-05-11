@@ -59,6 +59,12 @@ public:
      * @param Perimeter of Ellipse Ramanujan's second approximation for the perimeter of an ellipse is P7(h) = π(a + b)(1 + 3h/10 + 4 - 3h)
      */
     double calculatePerimeter() const;
+
+    /**
+     * @brief getId will return the derived shape's unique ID
+     * @return : returns the derived shape's unique ID
+     */
+    int getId() { return id; };
 };
 
 #endif // ELLIPSE_H

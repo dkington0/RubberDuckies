@@ -59,6 +59,12 @@ public:
      * @brief calculates perimeter for shape, adds length+width and multiplies by two
      */
     double calculatePerimeter() const;
+
+    /**
+     * @brief getId will return the derived shape's unique ID
+     * @return : returns the derived shape's unique ID
+     */
+    int getId() { return id; };
 };
 
 #endif // RECTANGLE_H

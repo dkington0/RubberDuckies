@@ -62,14 +62,18 @@ void serialize(QString filepath, myStd::vector<Shape*> userShapes) {
 }
 
 void writeLine(QTextStream& outStream, Line* outLine) {
+    outStream << "ShapeId: ";
+    outStream << "ShapeType: Line" << '\n';
     return;
 }
 
-void writePolyline(QTextStream& outStream, polyline* outPolygon) {
+void writePolyline(QTextStream& outStream, polyline* outPolyline) {
+    outStream << "ShapeType: Polyline" << '\n';
     return;
 }
 
 void writePolygon(QTextStream& outStream, polygon* outPolygon) {
+    outStream << "ShapeType: Polygon" << '\n';
     return;
 }
 

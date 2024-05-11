@@ -51,6 +51,12 @@ public:
      */
     void paintEvent(QPaintEvent *event) override;
     // void SetShape() override;
+
+    /**
+     * @brief getId will return the derived shape's unique ID
+     * @return : returns the derived shape's unique ID
+     */
+    int getId() { return id; };
 };
 
 #endif // POLYGON_H

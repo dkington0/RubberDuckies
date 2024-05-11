@@ -65,6 +65,12 @@ public:
     * @param takes length and width, adds them and multiplies by two
     */
     double calculatePerimeter() const;
+
+    /**
+     * @brief getId will return the derived shape's unique ID
+     * @return : returns the derived shape's unique ID
+     */
+    int getId() { return id; };
 };
 
 #endif // SQUARE_H
