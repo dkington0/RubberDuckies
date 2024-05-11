@@ -19,6 +19,21 @@ QT_END_NAMESPACE
  */
 class Shape : public MainWindow
 {
+    public:
+        /**
+         * @brief ShapeType enum holds the shape's type, used when determining the shape from the main vector of Shape pointers
+         */
+        enum ShapeType {
+            LineType,
+            PolylineType,
+            PolygonType,
+            RectangleType,
+            SquareType,
+            EllipseType,
+            CircleType,
+            TextType
+        };
+
     Q_OBJECT
     private:
         Ui::Shape *ui;
@@ -31,6 +46,11 @@ class Shape : public MainWindow
          * @brief brush : QBrush object which holds the data for parameters such as brush style.
          */
         QBrush brush;
+
+        /**
+         * @brief shapeTypeFlag holds one of the values from the ShapeType enum, to be used when determing which shape type the object is.
+         */
+        ShapeType shapeTypeFlag;
 
     public:
         /**
@@ -97,6 +117,18 @@ class Shape : public MainWindow
          * @return : QPen object stored in pen member
          */
         QPen& getPen();
+
+        /**
+         * @brief setShapeTypeFlag sets the type of the shape object with a value from the ShapeType enum
+         * @param flag : a value from the Shape class' ShapeType enum
+         */
+        void setShapeTypeFlag(ShapeType flag);
+
+        /**
+         * @brief getShapeTypeFlag gets the type of Shape from the ShapeType member
+         * @return : returns the ShapeType for the object
+         */
+        ShapeType getShapeTypeFlag();
 
         void drawShapes(myStd::vector<Shape*>, QPaintEvent*);
 

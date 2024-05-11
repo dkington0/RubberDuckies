@@ -22,20 +22,20 @@ public:
     /**
      * @brief : default ellipse constructor, using predefined values for the bounding rectangle
      */
-    ellipse() : rect{520, 200, 170, 100} { id = num_shapes++ + 1; }
+    ellipse() : rect{520, 200, 170, 100} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::EllipseType);}
 
     /**
      * @brief : alternate ellipse constructor, for use when creating new ellipse shapes
      * @param r : QRect for the bounding rectangle
      */
-    ellipse(QRect r) : rect{r} { id = num_shapes++ + 1; }
+    ellipse(QRect r) : rect{r} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::EllipseType);}
 
     /**
      * @brief ellipse
      * @param i : ID of the incoming shape
      * @param r : QRect object for the bounding rectangle
      */
-    ellipse(int i, QRect r) : id{i}, rect{r} { }
+    ellipse(int i, QRect r) : id{i}, rect{r} { setShapeTypeFlag(Shape::EllipseType); }
 
     /**
      * @brief default destructor

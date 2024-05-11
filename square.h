@@ -22,7 +22,7 @@ public:
     /**
      * @brief : Default constructor, creates a square at 750,150 with sides of 200 length
      */
-    square() : rect{750, 150, 200, 200} { id = num_shapes++ + 1; }
+    square() : rect{750, 150, 200, 200} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::SquareType); }
 
     /**
      * @brief : square constructor, creates a square with the incoming parameters
@@ -31,7 +31,7 @@ public:
      * @param y : y coordinate of top-left corner
      * @param sides : length of height & width
      */
-    square(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1; }
+    square(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1; setShapeTypeFlag(Shape::SquareType); }
 
     /**
      * @brief : square constructor, creates a square with the incoming parameters
@@ -41,7 +41,7 @@ public:
      * @param y : y coordinate of top-left corner
      * @param sides : length of height & width
      */
-    square(int i, qreal x, qreal y, qreal sides) : id{i} { rect.setRect(x, y, sides, sides); }
+    square(int i, qreal x, qreal y, qreal sides) : id{i} { rect.setRect(x, y, sides, sides); setShapeTypeFlag(Shape::SquareType); }
 
     /**
      * @brief : square destructor
