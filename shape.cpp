@@ -58,6 +58,14 @@ void Shape::drawShapes(myStd::vector<Shape*> container, QPaintEvent *event)
     }
 }
 
+void Shape::setShapeTypeFlag(ShapeType flag) {
+    shapeTypeFlag = flag;
+}
+
+Shape::ShapeType Shape::getShapeTypeFlag() {
+    return shapeTypeFlag;
+}
+
 
 /*void Shape::drawShape(QPainter &painter)
 {

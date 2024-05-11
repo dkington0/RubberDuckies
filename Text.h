@@ -36,7 +36,7 @@ public:
     /**
      * @brief text default constructor, sets default parameters for a text shape
      */
-    text() : rect{250, 425, 500, 50}, flags{Qt::AlignCenter}, strtext{"Nothing Here!"} { id = num_shapes++ + 1; }
+    text() : rect{250, 425, 500, 50}, flags{Qt::AlignCenter}, strtext{"Nothing Here!"} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::TextType); }
 
     /**
      * @brief text alternate constructor, to be used when creating new text shapes
@@ -45,7 +45,7 @@ public:
      * @param t : QString object holding the text to be displayed within the bounding rectangle
      * @param fo : QFont properties for the object's QString text
      */
-    text(QRect r, int fl, const QString &t, QFont fo) : rect{r}, flags{fl}, strtext{t}, font{fo} { id = num_shapes++ + 1; }
+    text(QRect r, int fl, const QString &t, QFont fo) : rect{r}, flags{fl}, strtext{t}, font{fo} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::TextType); }
 
     /**
      * @brief text alternate constructor, to be used by the file parser
@@ -55,7 +55,7 @@ public:
      * @param t : QString object holding the text to be displayed within the bounding rectangle
      * @param fo : QFont properties for the object's QString text
      */
-    text(int i, QRect r, int fl, const QString &t, QFont fo) : rect{r}, flags{fl}, strtext{t}, font{fo}, id{i} { }
+    text(int i, QRect r, int fl, const QString &t, QFont fo) : rect{r}, flags{fl}, strtext{t}, font{fo}, id{i} { setShapeTypeFlag(Shape::TextType); }
 
     /**
      * @brief default text deconstructor

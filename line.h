@@ -23,20 +23,20 @@ public:
     /**
      * @brief Line default constructor
      */
-    Line() : line{20, 90, 100, 20} { id = num_shapes++ + 1; }
+    Line() : line{20, 90, 100, 20} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::LineType); }
 
     /**
      * @brief Line alternate constructor, for use when creating new shapes
      * @param l : QLine object to be stored in the line member
      */
-    Line(QLine l) : line{l} { id = num_shapes++ + 1; }
+    Line(QLine l) : line{l} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::LineType); }
 
     /**
      * @brief Line alternate constructor, to be used during file parsing
      * @param i : ID of incoming shape
      * @param l : QLine object to be stored in the line member
      */
-    Line(int i, QLine l) : id{i}, line{l} {}
+    Line(int i, QLine l) : id{i}, line{l} { setShapeTypeFlag(Shape::LineType); }
 
     /**
      * @brief default deconstructor

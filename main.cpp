@@ -14,6 +14,7 @@
 #include "square.h"
 #include "Text.h"
 #include "circle.h"
+#include "serializer.h"
 // #include "canvas.h"
 
 //template <class Type>
@@ -26,8 +27,6 @@ int main(int argc, char *argv[])
     QString directory_path = a.applicationDirPath();
     read_file(directory_path.toStdString(), container);
     //container[0] = new circle;
-
-
 
     MainWindow w;
     w.show();
@@ -91,7 +90,6 @@ int main(int argc, char *argv[])
     // Line fakeLine;
     // QObject::connect(&line, SIGNAL(w.shapeValue()), SLOT(w.setValue()));
 
-
-
+    serialize(directory_path, container);
     return a.exec();
 }

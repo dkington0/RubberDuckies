@@ -140,12 +140,11 @@ void read_file(const string directory_path, myStd::vector<Shape*>& userShapes) {
         parse_file(inData, userShapes);
         //for (int i {}; i < userShapes.size(); i++)
         //    cout << userShapes[i]->getPen().color().isValid() << endl;
+        inData.close();
         cout << "File parse completed" << endl;
     }
     else
         cout << "Failed to open file for reading" << endl; // change to a throw later
-
-
     return;
 }
 
@@ -1919,11 +1918,13 @@ void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     cout << "End of Read Text fcn" << endl;
     //QFont(const QString &family, int pointSize = -1, int weight = -1, bool italic = false)
     QRect boundingRect(points[0].x(), points[0].y(), points[1].x(), points[1].y());
+    QPen newPen(textColor);
 
     QFont newFont(textFontFamily.c_str(), textPointSize, textFontWeight);
     newFont.setStyle(textFontStyle);
 
     text* newText = new text(boundingRect, textAlignment, QString(textString.c_str()), newFont);
+    newText->setPen(newPen);
 
     userShapes.push_back(newText);
 }

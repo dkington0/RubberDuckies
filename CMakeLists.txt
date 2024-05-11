@@ -56,6 +56,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         add_circelip.h add_circelip.cpp add_circelip.ui
         add_squrec.h add_squrec.cpp add_squrec.ui
         add_text.h add_text.cpp add_text.ui
+        serializer.h
+        serializer.cpp
 
 
 

@@ -24,20 +24,20 @@ public:
     /**
      * @brief polyline default constructor
      */
-    polyline() : points{} { id = num_shapes++ + 1; }
+    polyline() : points{} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::PolylineType); }
 
     /**
      * @brief polyline alternate constructor, to be used when creating shapes
      * @param p : vector of all QPoints which connect the polyline
      */
-    polyline(myStd::vector<QPoint>& p) : points{p} { id = num_shapes++ + 1; } // Number of points
+    polyline(myStd::vector<QPoint>& p) : points{p} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::PolylineType); } // Number of points
 
     /**
      * @brief polyline alternate constructor, to be used by the file parser
      * @param i : ID of the incoming shape
      * @param p : vector of all QPoints which connect the polyline
      */
-    polyline(int i, myStd::vector<QPoint>& p) : points{p}, id{i} { }
+    polyline(int i, myStd::vector<QPoint>& p) : points{p}, id{i} { setShapeTypeFlag(Shape::PolylineType); }
 
     /**
      * @brief polyline default deconstructor
