@@ -62,7 +62,7 @@ void Shape::setShapeTypeFlag(ShapeType flag) {
     shapeTypeFlag = flag;
 }
 
-Shape::ShapeType Shape::getShapeTypeFlag() {
+Shape::ShapeType Shape::getShapeTypeFlag() const {
     return shapeTypeFlag;
 }
 

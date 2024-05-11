@@ -128,7 +128,7 @@ class Shape : public MainWindow
          * @brief getShapeTypeFlag gets the type of Shape from the ShapeType member
          * @return : returns the ShapeType for the object
          */
-        ShapeType getShapeTypeFlag();
+        ShapeType getShapeTypeFlag() const;
 
         void drawShapes(myStd::vector<Shape*>, QPaintEvent*);
 

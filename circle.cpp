@@ -25,3 +25,4 @@ double circle::calculatePerimeter() const
 {
     return 2 * M_PI * rect.width() / 2;
 }
+

@@ -55,6 +55,11 @@ public:
      */
     int getId() { return id; };
 
+    /**
+     * @brief getLine will return the derived shape's line object
+     * @return : returns the derived shape's QLine object
+     */
+    QLine getLine() const { return line; };
 };
 
 #endif // LINE_H

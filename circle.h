@@ -10,6 +10,7 @@
  */
 class circle : public Shape
 {
+
 private:
     /**
      * @brief rect : QRect is the bounding rectangle of the circle
@@ -70,7 +71,15 @@ public:
      * @brief getId will return the derived shape's unique ID
      * @return : returns the derived shape's unique ID
      */
-    int getId() { return id; };
+    int getId() const { return id; }
+
+    /**
+     * @brief getRect will return the derived shape's bounding rectangle
+     * @return : returns the derived shape's QRect bounding rectangle
+     */
+    QRect getRect() const { return rect; }
+
+
 };
 
 #endif // CIRCLE_H
