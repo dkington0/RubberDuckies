@@ -74,6 +74,31 @@ public:
      * @return : returns the derived shape's unique ID
      */
     int getId() { return id; };
+
+
+    /**
+     * @brief getRect will return the derived shape's bounding rectangle
+     * @return : returns the derived shape's QRect bounding rectangle
+     */
+    QRect getRect() const { return rect; }
+
+    /**
+     * @brief getFlags will return the text's alignment flags
+     * @return : returns the text's alignment flag
+     */
+    int getFlags() const { return flags; }
+
+    /**
+     * @brief getStrText will return the text's string
+     * @return : returns the text's string
+     */
+    QString getStrText() const { return strtext; }
+
+    /**
+     * @brief getFont will return the font data for the text
+     * @return : returns the text's QFont object
+     */
+    QFont getFont() const { return font; }
 };
 
 #endif // TEXT_H

@@ -71,6 +71,12 @@ public:
      * @return : returns the derived shape's unique ID
      */
     int getId() { return id; };
+
+    /**
+     * @brief getRect will return the derived shape's bounding rectangle
+     * @return : returns the derived shape's QRect bounding rectangle
+     */
+    QRect getRect() const { return rect; }
 };
 
 #endif // SQUARE_H

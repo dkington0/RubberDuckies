@@ -436,6 +436,109 @@ void writeRectangle(QTextStream& outStream, rectangle* outRectangle) {
 }
 
 void writeSquare(QTextStream& outStream, square* outSquare) {
+    QString colorStr;
+    if (outSquare->getPen().color() == Qt::white)
+        colorStr = "white";
+    else if (outSquare->getPen().color() == Qt::black)
+        colorStr = "black";
+    else if (outSquare->getPen().color() == Qt::red)
+        colorStr = "red";
+    else if (outSquare->getPen().color() == Qt::green)
+        colorStr = "green";
+    else if (outSquare->getPen().color() == Qt::blue)
+        colorStr = "blue";
+    else if (outSquare->getPen().color() == Qt::cyan)
+        colorStr = "cyan";
+    else if (outSquare->getPen().color() == Qt::magenta)
+        colorStr = "magenta";
+    else if (outSquare->getPen().color() == Qt::yellow)
+        colorStr = "yellow";
+    else if (outSquare->getPen().color() == Qt::gray)
+        colorStr = "gray";
+    else
+        colorStr = "black"; // defaults to a black color if the given pen color is invalid
+
+    QString penStyleStr;
+    if (outSquare->getPen().style() == Qt::NoPen)
+        penStyleStr = "NoPen";
+    else if (outSquare->getPen().style() == Qt::SolidLine)
+        penStyleStr = "SolidLine";
+    else if (outSquare->getPen().style() == Qt::DashLine)
+        penStyleStr = "DashLine";
+    else if (outSquare->getPen().style() == Qt::DotLine)
+        penStyleStr = "DotLine";
+    else if (outSquare->getPen().style() == Qt::DashDotLine)
+        penStyleStr = "DashDotLine";
+    else if (outSquare->getPen().style() == Qt::DashDotDotLine)
+        penStyleStr = "DashDotDotLine";
+    else
+        penStyleStr = "SolidLine"; // defaults to a solid line pen style if pen style is invalid
+
+    QString penCapStyleStr;
+    if (outSquare->getPen().capStyle() == Qt::FlatCap)
+        penCapStyleStr = "FlatCap";
+    else if (outSquare->getPen().capStyle() == Qt::SquareCap)
+        penCapStyleStr = "SquareCap";
+    else if (outSquare->getPen().capStyle() == Qt::RoundCap)
+        penCapStyleStr = "RoundCap";
+    else
+        penCapStyleStr = "FlatCap"; // defaults to a flat cap pen cap style if cap style is invalid
+
+    QString penJoinStyleStr;
+    if (outSquare->getPen().joinStyle() == Qt::MiterJoin)
+        penJoinStyleStr = "MiterJoin";
+    else if (outSquare->getPen().joinStyle() == Qt::BevelJoin)
+        penJoinStyleStr = "BevelJoin";
+    else if (outSquare->getPen().joinStyle() == Qt::RoundJoin)
+        penJoinStyleStr = "RoundJoin";
+    else
+        penJoinStyleStr = "MiterJoin"; // defaults to miter join style if join style is invalid
+
+    QString brushColorStr;
+    if (outSquare->getPen().brush().color() == Qt::white)
+        brushColorStr = "white";
+    else if (outSquare->getPen().brush().color() == Qt::black)
+        brushColorStr = "black";
+    else if (outSquare->getPen().brush().color() == Qt::red)
+        brushColorStr = "red";
+    else if (outSquare->getPen().brush().color() == Qt::green)
+        brushColorStr = "green";
+    else if (outSquare->getPen().brush().color() == Qt::blue)
+        brushColorStr = "blue";
+    else if (outSquare->getPen().brush().color() == Qt::cyan)
+        brushColorStr = "cyan";
+    else if (outSquare->getPen().brush().color() == Qt::magenta)
+        brushColorStr = "magenta";
+    else if (outSquare->getPen().brush().color() == Qt::yellow)
+        brushColorStr = "yellow";
+    else if (outSquare->getPen().brush().color() == Qt::gray)
+        brushColorStr = "gray";
+    else {
+        brushColorStr = "black"; // defaults to black if brush color is invalid
+    }
+
+    QString brushStyleStr;
+    if (outSquare->getPen().brush().style() == Qt::SolidPattern)
+        brushStyleStr = "SolidPattern";
+    else if (outSquare->getPen().brush().style() == Qt::HorPattern)
+        brushStyleStr = "HorPattern";
+    else if (outSquare->getPen().brush().style() == Qt::VerPattern)
+        brushStyleStr = "VerPattern";
+    else if (outSquare->getPen().brush().style() == Qt::NoBrush)
+        brushStyleStr = "NoBrush";
+    else
+        brushStyleStr = "SolidPattern"; //defaults to a solid pattern if brush style is invalid
+
+    outStream << "ShapeId: " << outSquare->getId() << '\n'
+              << "ShapeType: " << "Circle" << '\n'
+              << "ShapeDimensions: " << outSquare->getRect().topLeft().x() << ", " << outSquare->getRect().topLeft().y() << ", " << outSquare->getRect().width() << '\n'
+              << "PenColor: " << colorStr << '\n'
+              << "PenWidth: " << outSquare->getPen().width() << '\n'
+              << "PenStyle: " << penStyleStr << '\n'
+              << "PenCapStyle: " << penCapStyleStr << '\n'
+              << "PenJoinStyle: " << penJoinStyleStr << '\n'
+              << "BrushColor: " << brushColorStr << '\n'
+              << "BrushStyle: " << brushStyleStr << '\n';
     return;
 }
 
@@ -535,7 +638,7 @@ void writeEllipse(QTextStream& outStream, ellipse* outEllipse) {
 
     outStream << "ShapeId: " << outEllipse->getId() << '\n'
               << "ShapeType: " << "Circle" << '\n'
-              //<< "ShapeDimensions: " << outEllipse->getRect().topLeft().x() << ", " << outEllipse->getRect().topLeft().y() << ", " << outEllipse->getRect().height() << ", " << outEllipse->getRect().width() << '\n'
+              << "ShapeDimensions: " << outEllipse->getRect().topLeft().x() << ", " << outEllipse->getRect().topLeft().y() << ", " << outEllipse->getRect().height() << ", " << outEllipse->getRect().width() << '\n'
               << "PenColor: " << colorStr << '\n'
               << "PenWidth: " << outEllipse->getPen().width() << '\n'
               << "PenStyle: " << penStyleStr << '\n'
@@ -655,5 +758,63 @@ void writeCircle(QTextStream& outStream, circle* outCircle) {
 }
 
 void writeText(QTextStream& outStream, text* outText) {
+    QString colorStr;
+    if (outText->getPen().color() == Qt::white)
+        colorStr = "white";
+    else if (outText->getPen().color() == Qt::black)
+        colorStr = "black";
+    else if (outText->getPen().color() == Qt::red)
+        colorStr = "red";
+    else if (outText->getPen().color() == Qt::green)
+        colorStr = "green";
+    else if (outText->getPen().color() == Qt::blue)
+        colorStr = "blue";
+    else if (outText->getPen().color() == Qt::cyan)
+        colorStr = "cyan";
+    else if (outText->getPen().color() == Qt::magenta)
+        colorStr = "magenta";
+    else if (outText->getPen().color() == Qt::yellow)
+        colorStr = "yellow";
+    else if (outText->getPen().color() == Qt::gray)
+        colorStr = "gray";
+    else
+        colorStr = "black"; // defaults to a black color if the given pen color is invalid
+
+    QString textAlignmentStr;
+    if (outText->getFlags() == Qt::AlignLeft)
+        textAlignmentStr = "AlignLeft";
+    else if (outText->getFlags() == Qt::AlignRight)
+        textAlignmentStr = "AlignRight";
+    else if (outText->getFlags() == Qt::AlignTop)
+        textAlignmentStr = "AlignTop";
+    else if (outText->getFlags() == Qt::AlignBottom)
+        textAlignmentStr= "AlignBottom";
+    else if (outText->getFlags() == Qt::AlignCenter)
+        textAlignmentStr = "AlignCenter";
+    else
+        textAlignmentStr = "AlignLeft"; // default to align left if alignment flag is invalid
+
+    QString textWeightStr;
+    if (outText->getFont().weight() == QFont::Thin)
+        textWeightStr = "Thin";
+    else if (outText->getFont().weight() == QFont::Light)
+        textWeightStr = "Light";
+    else if (outText->getFont().weight() == QFont::Normal)
+        textWeightStr = "Normal";
+    else if (outText->getFont().weight() == QFont::Bold)
+        textWeightStr = "Bold";
+    else
+        textWeightStr = "Normal"; // defaults to normal if text weight is invalid
+
+    outStream << "ShapeId: " << outText->getId() << '\n'
+              << "ShapeType: " << "Text" << '\n'
+              << "ShapeDimensions: " << outText->getRect().topLeft().x() << ", " << outText->getRect().topLeft().y() << ", " << outText->getRect().height() << ", " << outText->getRect().width() << '\n'
+              << "TextString: " << outText->getStrText() << '\n'
+              << "TextColor: " << colorStr << '\n'
+              << "TextAlignment: " << textAlignmentStr << '\n'
+              << "TextPointSize: " << outText->getFont().pointSize() << '\n'
+              << "TextFontFamily: " << outText->getFont().family() << '\n'
+              << "TextFontStyle: " << outText->getFont().styleName() << '\n'
+              << "TextFontWeight: " << textWeightStr << '\n';
     return;
 }
