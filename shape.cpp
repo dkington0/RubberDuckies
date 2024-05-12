@@ -74,12 +74,17 @@ Shape::ShapeType Shape::getShapeTypeFlag() const {
 }*/
 
 
-// double Shape::getArea() const
-// {
-//     return 0; // Default implementation: 0 area for all shapes
-// }
+double Shape::getArea() const
+{
+    return 0; // Default implementation: 0 area for all shapes
+}
 
-// double Shape::getPerimeter() const
-// {
-//     return 0; // Default implementation: 0 perimeter for all shapes
-// }
+double Shape::getPerimeter() const
+{
+    return 0; // Default implementation: 0 perimeter for all shapes
+}
+
+int Shape::getId() const
+{
+    return 0;
+}

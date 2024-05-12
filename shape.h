@@ -132,9 +132,11 @@ class Shape : public MainWindow
 
         void drawShapes(myStd::vector<Shape*>, QPaintEvent*);
 
-        // virtual double getArea() const; // Default implementation for getArea()
+        virtual double getArea() const; // Default implementation for getArea()
 
-        // virtual double getPerimeter() const; // Default implementation for getPerimeter()
+        virtual double getPerimeter() const; // Default implementation for getPerimeter()
+
+        virtual int getId() const; // get id
 
 
         // virtual setShape() = 0; // Needs implementation later

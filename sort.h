@@ -17,19 +17,19 @@ public:
      * @brief sortID sorts the given vector of Shapes based on their ID's
      * @param shapes : the vector of Shape objects to sort
      */
-    static void sortID(myStd::vector<Shape> & shapes); // sort ID
+    static void sortID(myStd::vector<Shape*> & shapes); // sort ID
 
     /**
      * @brief sortArea sorts the given vector of Shapes by area, excluding Shapes which do not have an area
      * @param shapes : the vector of Shape objects to sort
      */
-    static void sortArea(myStd::vector<Shape>& shapes); // sort Area
+    static void sortArea(myStd::vector<Shape*>& shapes); // sort Area
 
     /**
      * @brief sortPerimeter sorts the given vector of Shapes by perimeter, excluding Shapes which do not have a perimeter
      * @param shapes
      */
-    static void sortPerimeter(myStd::vector<Shape> & shapes); // sort Perimeter
+    static void sortPerimeter(myStd::vector<Shape*> & shapes); // sort Perimeter
 
     /**
      * @brief write writes the Shapes to a report which will be output into an external file
@@ -37,6 +37,36 @@ public:
      * @param filename : the filepath of the external file to be output
      */
     static void write(const myStd::vector<Shape> & shapes, const std::string & filename); // write to file
+
+    // void customSwap(Shape *& shape, Shape *& other);
+
 };
+
+struct sortPerimeter
+{
+    bool operator()(const Shape * shape, const Shape * other)
+    {
+        return shape->getPerimeter() < other->getPerimeter();
+    }
+};
+
+struct sortArea
+{
+    bool operator()(const Shape * shape, const Shape * other)
+    {
+        return shape->getArea() < other->getArea();
+    }
+};
+
+struct sortId
+{
+    bool operator()(const Shape * shape, const Shape * other)
+    {
+        return shape->getId() < other->getId();
+    }
+};
+
+
+
 
 #endif // SORT_H
