@@ -52,6 +52,11 @@ class Shape : public MainWindow
          */
         ShapeType shapeTypeFlag;
 
+        /**
+         * @brief ID is the unique integer assigned to each instance of a Shape object.
+         */
+        int id;
+
     public:
         /**
          * @brief num_shapes : counter for the number of shapes created, used for setting ID upon shape creation
@@ -136,7 +141,9 @@ class Shape : public MainWindow
 
         virtual double getPerimeter() const; // Default implementation for getPerimeter()
 
-        virtual int getId() const; // get id
+        int getId() const; // get id
+
+        void setId(int i);
 
 
         // virtual setShape() = 0; // Needs implementation later

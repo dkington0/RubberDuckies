@@ -14,28 +14,25 @@ private:
      */
     QRect rect;
     /**
-     * @brief id : ID is the unique integer assigned to each instance of a derived Shape object.
-     */
-    int id;
 
 public:
     /**
      * @brief rectangle default contstructor, creates a predefined QRect object
      */
-    rectangle() : rect{20, 200, 170, 100} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::RectangleType); }
+    rectangle() : rect{20, 200, 170, 100} { setId(1 + num_shapes++);  setShapeTypeFlag(Shape::RectangleType); }
 
     /**
      * @brief rectangle alternate constructor, to be used when creating new shapes
      * @param r : QRect bounding rectangle of the shape
      */
-    rectangle(QRect r) : rect{r} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::RectangleType); }
+    rectangle(QRect r) : rect{r} { setId(1 + num_shapes++);  setShapeTypeFlag(Shape::RectangleType); }
 
     /**
      * @brief rectangle alternate constructor, to be used by the file parser
      * @param i : ID of the incoming shape
      * @param r : QRect bounding rectangle of the shape
      */
-    rectangle(int i, QRect r) : id{i}, rect{r}  { setShapeTypeFlag(Shape::RectangleType); }
+    rectangle(int i, QRect r) : rect{r}  { setId(i); setShapeTypeFlag(Shape::RectangleType); }
 
     /**
      * @brief rectangle default destructor

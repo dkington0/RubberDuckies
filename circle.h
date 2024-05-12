@@ -16,13 +16,9 @@ private:
      * @brief rect : QRect is the bounding rectangle of the circle
      */
     QRect rect;
-    /**
-     * @brief id : ID is the unique integer assigned to each instance of a derived Shape object.
-     */
-    int id;
 
 public:
-    circle() : rect{250, 150, 200, 200} { id = num_shapes++ + 1; setShapeTypeFlag(Shape::CircleType);}
+    circle() : rect{250, 150, 200, 200} { setId(1 + num_shapes++); setShapeTypeFlag(Shape::CircleType);}
     /**
      * @brief : circle default constructor using predetermined values
      */
@@ -33,7 +29,7 @@ public:
      * @param y : y coordinate of the top left corner for bounding rectangle
      * @param sides : length/width of bounding rectangle
      */
-    circle(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); id = num_shapes++ + 1; setShapeTypeFlag(Shape::CircleType);}
+    circle(qreal x, qreal y, qreal sides) { rect.setRect(x, y, sides, sides); setId(1 + num_shapes++); setShapeTypeFlag(Shape::CircleType);}
 
     /**
      * @brief : circle alternate constructor, for use with file parser
@@ -42,7 +38,7 @@ public:
      * @param y : y coordinate for top left corner of bounding rectangle
      * @param sides : length/width of bounding rectangle
      */
-    circle(int i, qreal x, qreal y, qreal sides) : id{i} { rect.setRect(x, y, sides, sides); setShapeTypeFlag(Shape::CircleType);}
+    circle(int i, qreal x, qreal y, qreal sides) { setId(i), rect.setRect(x, y, sides, sides); setShapeTypeFlag(Shape::CircleType);}
 
     /**
      * @brief : default decontructor
@@ -67,11 +63,6 @@ public:
      */
     double calculatePerimeter() const;
 
-    /**
-     * @brief getId will return the derived shape's unique ID
-     * @return : returns the derived shape's unique ID
-     */
-    int getId() const { return id; }
 
     /**
      * @brief getRect will return the derived shape's bounding rectangle

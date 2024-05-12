@@ -86,5 +86,11 @@ double Shape::getPerimeter() const
 
 int Shape::getId() const
 {
-    return 0;
+    return id;
+}
+
+
+void Shape::setId(int i)
+{
+    id = i;
 }
