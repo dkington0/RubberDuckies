@@ -18,13 +18,13 @@ Shape::~Shape()
 
 bool Shape::operator==(const Shape& other) const // overloaded equality operator
 {
-    return (this == &other); // compare values
+    return (this->getId() == other.getId()); // compare values
 }
 
 
 bool Shape::operator<(const Shape& other) const // overloaded less than operator
 {
-    return (this < &other); // compare values
+    return (this->getId() < other.getId()); // compare values
 }
 
 

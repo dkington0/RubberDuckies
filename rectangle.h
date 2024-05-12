@@ -13,7 +13,7 @@ private:
      * @brief rect : QRect is the bounding rectangle of the circle
      */
     QRect rect;
-    /**
+
 
 public:
     /**

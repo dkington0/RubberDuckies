@@ -13,9 +13,9 @@ private:
      * @brief line : QLine which holds the points and parameters for the Line object
      */
     QLine line;
-    /**
 
-public:
+
+    public:
 
     /**
      * @brief Line default constructor

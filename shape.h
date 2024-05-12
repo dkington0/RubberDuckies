@@ -52,6 +52,7 @@ class Shape : public MainWindow
          */
         ShapeType shapeTypeFlag;
 
+    protected:
         /**
          * @brief ID is the unique integer assigned to each instance of a Shape object.
          */

@@ -15,7 +15,7 @@ private:
      * @brief points : vector of QPoints which stores the coordinates of all of the different points where the lines of the polyline intersect
      */
     myStd::vector<QPoint> points;
-    /**
+
 
 public:
     /**

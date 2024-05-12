@@ -14,7 +14,7 @@ private:
      * @brief rect : QRect is the bounding rectangle of the Text
      */
     QRect rect;
-    /**
+
     /**
      * @brief flags : the Qt:: enum flags for text alignment within the bounding rectangle
      */
