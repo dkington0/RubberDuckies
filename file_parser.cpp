@@ -10,92 +10,6 @@
 #include "circle.h"
 #include "Text.h"
 
-struct TestLine {
-    int id {};
-    myStd::vector<int> dimensions;
-    Qt::GlobalColor penColor {};
-    int penWidth {};
-    Qt::PenStyle penStyle {};
-    Qt::PenCapStyle penCapStyle {};
-    Qt::PenJoinStyle penJoinStyle {};
-
-    TestLine();
-    TestLine(int i, myStd::vector<int> d, Qt::GlobalColor color, int penW, Qt::PenStyle penSty, Qt::PenCapStyle penCapSty, Qt::PenJoinStyle penJoinSty)
-        : id{i}, dimensions{d}, penColor{color}, penWidth{penW}, penStyle{penSty}, penCapStyle{penCapSty}, penJoinStyle{penJoinSty} {}
-};
-
-struct TestPolygon {
-    int id {};
-    myStd::vector<int> dimensions;
-    Qt::GlobalColor penColor {};
-    int penWidth {};
-    Qt::PenStyle penStyle {};
-    Qt::PenCapStyle penCapStyle {};
-    Qt::PenJoinStyle penJoinStyle {};
-    Qt::GlobalColor brushColor {};
-    Qt::BrushStyle brushStyle {};
-
-    TestPolygon();
-    TestPolygon(int i, myStd::vector<int> d, Qt::GlobalColor color, int penW, Qt::PenStyle penSty, Qt::PenCapStyle penCapSty, Qt::PenJoinStyle penJoinSty, Qt::GlobalColor brushCol, Qt::BrushStyle brushSty)
-        : id{i}, dimensions{d}, penColor{color}, penWidth{penW}, penStyle{penSty}, penCapStyle{penCapSty}, penJoinStyle{penJoinSty}, brushColor{brushCol}, brushStyle{brushSty} {}
-};
-
-struct TestRectangle {
-    int id {};
-    myStd::vector<int> dimensions;
-    Qt::GlobalColor penColor {};
-    int penWidth {};
-    Qt::PenStyle penStyle {};
-    Qt::PenCapStyle penCapStyle {};
-    Qt::PenJoinStyle penJoinStyle {};
-    Qt::GlobalColor brushColor {};
-    Qt::BrushStyle brushStyle {};
-
-    TestRectangle();
-    TestRectangle(int i, myStd::vector<int> d, Qt::GlobalColor color, int penW, Qt::PenStyle penSty, Qt::PenCapStyle penCapSty, Qt::PenJoinStyle penJoinSty, Qt::GlobalColor brushCol, Qt::BrushStyle brushSty)
-        : id{i}, dimensions{d}, penColor{color}, penWidth{penW}, penStyle{penSty}, penCapStyle{penCapSty}, penJoinStyle{penJoinSty}, brushColor{brushCol}, brushStyle{brushSty} {}
-};
-
-struct TestEllipse {
-    int id {};
-    myStd::vector<int> dimensions;
-    Qt::GlobalColor penColor {};
-    int penWidth {};
-    Qt::PenStyle penStyle {};
-    Qt::PenCapStyle penCapStyle {};
-    Qt::PenJoinStyle penJoinStyle {};
-    Qt::GlobalColor brushColor {};
-    Qt::BrushStyle brushStyle {};
-
-    TestEllipse();
-    TestEllipse(int i, myStd::vector<int> d, Qt::GlobalColor color, int penW, Qt::PenStyle penSty, Qt::PenCapStyle penCapSty, Qt::PenJoinStyle penJoinSty, Qt::GlobalColor brushCol, Qt::BrushStyle brushSty)
-        : id{i}, dimensions{d}, penColor{color}, penWidth{penW}, penStyle{penSty}, penCapStyle{penCapSty}, penJoinStyle{penJoinSty}, brushColor{brushCol}, brushStyle{brushSty} {}
-};
-
-struct TestText {
-    int id {};
-    myStd::vector<int> dimensions;
-
-    // text string
-    string textString {};
-    // text color
-    Qt::GlobalColor textColor {};
-    // text alignment
-    Qt::AlignmentFlag textAlignment {};
-    // text point size
-    int textPointSize {};
-    // text font family
-    string textFontFamily {};
-    // text font style
-    QFont::Style textFontStyle {};
-    // text font weight
-    QFont::Weight textFontWeight {};
-
-    TestText();
-    TestText(int i, myStd::vector<int> d, string textStr, Qt::GlobalColor color, Qt::AlignmentFlag align, int ptSize, string fontFamily, QFont::Style fontStyle, QFont::Weight fontWeight)
-        : id{i}, dimensions{d}, textString{textStr}, textColor{color}, textAlignment{align}, textPointSize{ptSize}, textFontFamily{fontFamily}, textFontStyle{fontStyle}, textFontWeight{fontWeight} {}
-};
-
 enum ShapeType {
     enumLine,
     enumPolyline,
@@ -126,25 +40,32 @@ void read_file(const string directory_path, myStd::vector<Shape*>& userShapes) {
     fstream inData;
     string test_path = directory_path + "/shape_list.txt";
     cout << test_path << endl;
-    if (filesystem::exists(test_path)) // tests if the file exists at the designated path
-        cout << "file exists" <<endl;
-    else {
-        inData = fstream(test_path, ios::out);
-        if (!inData.is_open())
-            return; // TODO: change to throw instead of return
-        inData.close();
+    try {
+        if (filesystem::exists(test_path)) // tests if the file exists at the designated path
+            cout << "file exists" <<endl;
+        else {
+            inData = fstream(test_path, ios::out);
+            if (!inData.is_open())
+                throw QString("Failed to open file for reading"); // TODO: change to throw instead of return
+            inData.close();
+        }
+
+        inData.open(test_path, ios::in);
+        if (inData.is_open()) {       // another test to see if it's open again
+            parse_file(inData, userShapes);
+            inData.close();
+            //cout << "File parse completed" << endl;
+        }
+        else
+            throw QString("Failed to open file for reading"); // change to a throw later
+    }
+    catch (QString err) {
+        cout << "Error in file parser: " << err.toStdString() << endl;
+    }
+    catch (...){
+        cout << "Unknown error in read_file" << endl;
     }
 
-    inData.open(test_path, ios::in);
-    if (inData.is_open()) {       // another test to see if it's open again
-        parse_file(inData, userShapes);
-        //for (int i {}; i < userShapes.size(); i++)
-        //    cout << userShapes[i]->getPen().color().isValid() << endl;
-        inData.close();
-        cout << "File parse completed" << endl;
-    }
-    else
-        cout << "Failed to open file for reading" << endl; // change to a throw later
     return;
 }
 
@@ -166,7 +87,7 @@ void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
                 cout << id << endl;
             } else {
                 // throw
-                cout << "Error: failed to find substring ShapeId" << endl;
+                throw QString("Error: failed to find substring ShapeId");
             }
 
             ShapeType shapeType;
@@ -192,11 +113,11 @@ void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
                         shapeType = enumText;
                     else {
                         // throw
-                        cout << "ShapeType failed to be identified" << endl;
+                        throw QString("ShapeType failed to be identified");
                     }
                 } else {
                     // throw
-                    cout << "Error: failed to find substring ShapeType" << endl;
+                    throw QString("Failed to find substring ShapeType");
                 }
             }
 
@@ -235,13 +156,13 @@ void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
                 break;
             default:
                 // throw
-                cout << "Error: switch on unidentified shape type enum" << endl;
+                throw QString("Switch on unidentified shape type enum");
             }
         }
     }
 
     if (inData.peek()!=EOF) // once getlines are done, check if there is still data in the file to be read
-        cout << "Error: leftover data in file" << endl; // changed to a throw later
+        throw QString("Leftover data in file");
 
     return;
 }
