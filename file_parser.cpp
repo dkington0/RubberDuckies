@@ -87,7 +87,7 @@ void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
                 cout << id << endl;
             } else {
                 // throw
-                throw QString("Error: failed to find substring ShapeId");
+                throw QString("parse_file: failed to find substring ShapeId");
             }
 
             ShapeType shapeType;
@@ -113,11 +113,11 @@ void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
                         shapeType = enumText;
                     else {
                         // throw
-                        throw QString("ShapeType failed to be identified");
+                        throw QString("parse_file: ShapeType failed to be identified");
                     }
                 } else {
                     // throw
-                    throw QString("Failed to find substring ShapeType");
+                    throw QString("parse_file: Failed to find substring ShapeType");
                 }
             }
 
@@ -156,19 +156,20 @@ void parse_file(fstream& inData, myStd::vector<Shape*>& userShapes) {
                 break;
             default:
                 // throw
-                throw QString("Switch on unidentified shape type enum");
+                throw QString("parse_file: Switch on unidentified shape type enum");
             }
         }
     }
 
     if (inData.peek()!=EOF) // once getlines are done, check if there is still data in the file to be read
-        throw QString("Leftover data in file");
+        throw QString("parse_file: Leftover data in file");
 
     return;
 }
 
 void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
+    QString err("readLine: ");
 
     myStd::vector<int> dimensions; //shape dimensions
     Qt::GlobalColor penColor; // shape pen color
@@ -223,7 +224,8 @@ void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                         else
                             dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
                     } else {
-                        cout << "Error in Read Line fcn: whitespace for next dimension not found." << endl;
+                        err.append("whitespace for next dimension not found.");
+                        throw err;
                     }
                 }
 
@@ -256,7 +258,8 @@ void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (colorSubStr == "gray")
                     penColor = Qt::gray;
                 else {
-                    cout << "Pen color not found" << endl;
+                    err.append("Pen color not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenWidth") {
@@ -281,7 +284,8 @@ void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (penSubStr == "DashDotDotLine")
                     penStyle = Qt::DashDotDotLine;
                 else {
-                    cout << "Error: Pen Style not found" << endl;
+                    err.append("Pen Style not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenCapStyle") {
@@ -294,9 +298,10 @@ void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penCapStyle = Qt::SquareCap;
                 else if (penCapSubStr == "RoundCap")
                     penCapStyle = Qt::RoundCap;
-                else
-                    cout << "Error: Pen Cap Style Not Found" << endl;
-
+                else {
+                    err.append("Pen Cap Style Not Found");
+                    throw err;
+                }
             }
             else if (paramSubStr == "PenJoinStyle") {
 
@@ -308,22 +313,21 @@ void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penJoinStyle = Qt::BevelJoin;
                 else if (penJoinSubStr == "RoundJoin")
                     penJoinStyle = Qt::RoundJoin;
-                else
-                    cout << "Error: Pen Join Style not found" << endl;
+                else {
+                    err.append("Pen Join Style Not Found");
+                    throw err;
+                }
 
             }
             else {
-                // throw
-                cout << "Error During Read Line Function: Unidentified parameter string" << endl;
-                return;
+                err.append("Unidentified parameter string");
+                throw err;
             }
         } else {
-            cout << "Error During Read Line Function: failed to find \":\" in current string" << endl;
-            return;
+            err.append("failed to find \":\" in current string");
+            throw err;
         }
     }
-    //unique_ptr<int[]> paramShapeDimensions(std::move(dimensions));
-    cout << "End of Read Line fcn" << endl;
 
     QPen pen;
     pen.setColor(penColor);
@@ -335,7 +339,6 @@ void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     Line* newLine = new Line(QLine(points[0].x(), points[0].y(), points[1].x(), points[1].y()));
     newLine->setPen(pen);
 
-    //cout << "line shape pen issolid: " << newLine->getPen().isSolid() << endl;
     userShapes.push_back(newLine);
 
     return;
@@ -343,6 +346,7 @@ void readLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
 
 void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
+    QString err("readPolyline: ");
 
     myStd::vector<int> dimensions; //shape dimensions
     Qt::GlobalColor penColor; // shape pen color
@@ -397,7 +401,8 @@ void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                         else
                             dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
                     } else {
-                        cout << "Error in Read Polyline fcn: whitespace for next dimension not found." << endl;
+                        err.append("whitespace for next dimension not found.");
+                        throw err;
                     }
                 }
 
@@ -430,7 +435,8 @@ void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (colorSubStr == "gray")
                     penColor = Qt::gray;
                 else {
-                    cout << "Pen color not found" << endl;
+                    err.append("Pen color not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenWidth") {
@@ -455,7 +461,8 @@ void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (penSubStr == "DashDotDotLine")
                     penStyle = Qt::DashDotDotLine;
                 else {
-                    cout << "Error: Pen Style not found" << endl;
+                    err.append("Pen Style not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenCapStyle") {
@@ -468,9 +475,10 @@ void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penCapStyle = Qt::SquareCap;
                 else if (penCapSubStr == "RoundCap")
                     penCapStyle = Qt::RoundCap;
-                else
-                    cout << "Error: Pen Cap Style Not Found" << endl;
-
+                else {
+                    err.append("Pen Cap Style not found");
+                    throw err;
+                }
             }
             else if (paramSubStr == "PenJoinStyle") {
 
@@ -482,18 +490,19 @@ void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penJoinStyle = Qt::BevelJoin;
                 else if (penJoinSubStr == "RoundJoin")
                     penJoinStyle = Qt::RoundJoin;
-                else
-                    cout << "Error: Pen Join Style not found" << endl;
+                else {
+                    err.append("Pen Join Style not found");
+                    throw err;
+                }
 
             }
             else {
-                // throw
-                cout << "Error During Read Polyline Function: Unidentified parameter string" << endl;
-                return;
+                err.append("Unidentified parameter string");
+                throw err;
             }
         } else {
-            cout << "Error During Read Polyline Function: failed to find \":\" in current string" << endl;
-            return;
+            err.append("Failed to find \":\" in current string");
+            throw err;
         }
     }
 
@@ -509,13 +518,12 @@ void readPolyLine(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
 
     userShapes.push_back(newPolyline);
 
-    cout << "End of Read Polyline fcn" << endl;
-
     return;
 }
 
 void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
+    QString err("readPolygon: ");
 
     myStd::vector<int> dimensions; //shape dimensions
     Qt::GlobalColor penColor; // shape pen color
@@ -573,7 +581,8 @@ void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                         else
                             dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
                     } else {
-                        cout << "Error in Read Polygon fcn: whitespace for next dimension not found." << endl;
+                        err.append("whitespace for next dimension not found.");
+                        throw err;
                     }
                 }
 
@@ -606,7 +615,8 @@ void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (colorSubStr == "gray")
                     penColor = Qt::gray;
                 else {
-                    cout << "Pen color not found" << endl;
+                    err.append("Pen color not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenWidth") {
@@ -631,7 +641,8 @@ void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (penSubStr == "DashDotDotLine")
                     penStyle = Qt::DashDotDotLine;
                 else {
-                    cout << "Error: Pen Style not found" << endl;
+                    err.append("Pen style not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenCapStyle") {
@@ -644,8 +655,10 @@ void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penCapStyle = Qt::SquareCap;
                 else if (penCapSubStr == "RoundCap")
                     penCapStyle = Qt::RoundCap;
-                else
-                    cout << "Error: Pen Cap Style Not Found" << endl;
+                else {
+                    err.append("Pen cap style not found");
+                    throw err;
+                }
 
             }
             else if (paramSubStr == "PenJoinStyle") {
@@ -658,8 +671,10 @@ void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penJoinStyle = Qt::BevelJoin;
                 else if (penJoinSubStr == "RoundJoin")
                     penJoinStyle = Qt::RoundJoin;
-                else
-                    cout << "Error: Pen Join Style not found" << endl;
+                else {
+                    err.append("Pen join style not found");
+                    throw err;
+                }
 
             }
             else if (paramSubStr == "BrushColor") {
@@ -685,9 +700,9 @@ void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (brushColorSubStr == "gray")
                     brushColor = Qt::gray;
                 else {
-                    cout << "Brush color not found" << endl;
+                    err.append("Brush color not found");
+                    throw err;
                 }
-
             }
             else if (paramSubStr == "BrushStyle") {
 
@@ -701,18 +716,18 @@ void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     brushStyle = Qt::VerPattern;
                 else if (brushStyleSubStr == "NoBrush")
                     brushStyle = Qt::NoBrush;
-                else
-                    cout << "Error: Brush Style not found" << endl;
-
+                else {
+                    err.append("Brush color not found");
+                    throw err;
+                }
             }
             else {
-                // throw
-                cout << "Error During Read Polygon Function: Unidentified parameter string" << endl;
-                return;
+                err.append("Unidentified parameter string");
+                throw err;
             }
         } else {
-            cout << "Error During Read Polygon Function: failed to find \":\" in current string" << endl;
-            return;
+            err.append("Failed to find \":\" in current string");
+            throw err;
         }
     }
 
@@ -734,12 +749,12 @@ void readPolygon(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
 
     userShapes.push_back(newPolygon);
 
-    cout << "End of Read Polygon fcn" << endl;
     return;
 }
 
 void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
+    QString err("readRectangle: ");
 
     myStd::vector<int> dimensions; //shape dimensions
     Qt::GlobalColor penColor; // shape pen color
@@ -797,7 +812,8 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                         else
                             dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
                     } else {
-                        cout << "Error in Read Rectangle fcn: whitespace for next dimension not found." << endl;
+                        err.append("whitespace for next dimension not found.");
+                        throw err;
                     }
                 }
 
@@ -830,7 +846,8 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (colorSubStr == "gray")
                     penColor = Qt::gray;
                 else {
-                    cout << "Pen color not found" << endl;
+                    err.append("Pen color not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenWidth") {
@@ -855,7 +872,8 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (penSubStr == "DashDotDotLine")
                     penStyle = Qt::DashDotDotLine;
                 else {
-                    cout << "Error: Pen Style not found" << endl;
+                    err.append("Pen style not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenCapStyle") {
@@ -868,8 +886,10 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penCapStyle = Qt::SquareCap;
                 else if (penCapSubStr == "RoundCap")
                     penCapStyle = Qt::RoundCap;
-                else
-                    cout << "Error: Pen Cap Style Not Found" << endl;
+                else {
+                    err.append("Pen cap style not found");
+                    throw err;
+                }
 
             }
             else if (paramSubStr == "PenJoinStyle") {
@@ -882,8 +902,10 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penJoinStyle = Qt::BevelJoin;
                 else if (penJoinSubStr == "RoundJoin")
                     penJoinStyle = Qt::RoundJoin;
-                else
-                    cout << "Error: Pen Join Style not found" << endl;
+                else {
+                    err.append("Pen join style not found");
+                    throw err;
+                }
 
             }
             else if (paramSubStr == "BrushColor") {
@@ -909,7 +931,8 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (brushColorSubStr == "gray")
                     brushColor = Qt::gray;
                 else {
-                    cout << "Brush color not found" << endl;
+                    err.append("Brush color not found");
+                    throw err;
                 }
 
             }
@@ -925,18 +948,18 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     brushStyle = Qt::VerPattern;
                 else if (brushStyleSubStr == "NoBrush")
                     brushStyle = Qt::NoBrush;
-                else
-                    cout << "Error: Brush Style not found" << endl;
-
+                else {
+                    err.append("Brush style not found");
+                    throw err;
+                }
             }
             else {
-                // throw
-                cout << "Error During Read Rectangle Function: Unidentified parameter string" << endl;
-                return;
+                    err.append("Unidentified parameter string");
+                    throw err;
             }
         } else {
-            cout << "Error During Read Rectangle Function: failed to find \":\" in current string" << endl;
-            return;
+            err.append("Failed to find \":\" in current string");
+            throw err;
         }
     }
 
@@ -963,12 +986,12 @@ void readRectangle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
 
     userShapes.push_back(newRectangle);
 
-    cout << "End of Read Rectangle fcn" << endl;
     return;
 }
 
 void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
+    QString err("readSquare: ");
 
     myStd::vector<int> dimensions; //shape dimensions
     Qt::GlobalColor penColor; // shape pen color
@@ -1026,7 +1049,8 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                         else
                             dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
                     } else {
-                        cout << "Error in Read Polygon fcn: whitespace for next dimension not found." << endl;
+                        err.append("whitespace for next dimension not found.");
+                        throw err;
                     }
                 }
 
@@ -1059,7 +1083,8 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (colorSubStr == "gray")
                     penColor = Qt::gray;
                 else {
-                    cout << "Pen color not found" << endl;
+                    err.append("Pen color not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenWidth") {
@@ -1084,7 +1109,8 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (penSubStr == "DashDotDotLine")
                     penStyle = Qt::DashDotDotLine;
                 else {
-                    cout << "Error: Pen Style not found" << endl;
+                    err.append("Pen style not found");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenCapStyle") {
@@ -1097,12 +1123,12 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penCapStyle = Qt::SquareCap;
                 else if (penCapSubStr == "RoundCap")
                     penCapStyle = Qt::RoundCap;
-                else
-                    cout << "Error: Pen Cap Style Not Found" << endl;
-
+                else {
+                    err.append("Pen cap style not found");
+                    throw err;
+                }
             }
             else if (paramSubStr == "PenJoinStyle") {
-
                 string penJoinSubStr = current.substr(current.find(':')+2);
                 cout << "Pen Join String: " << penJoinSubStr << endl;
                 if (penJoinSubStr == "MiterJoin")
@@ -1111,8 +1137,10 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penJoinStyle = Qt::BevelJoin;
                 else if (penJoinSubStr == "RoundJoin")
                     penJoinStyle = Qt::RoundJoin;
-                else
-                    cout << "Error: Pen Join Style not found" << endl;
+                else {
+                    err.append("Pen join style not found");
+                    throw err;
+                }
 
             }
             else if (paramSubStr == "BrushColor") {
@@ -1138,7 +1166,8 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (brushColorSubStr == "gray")
                     brushColor = Qt::gray;
                 else {
-                    cout << "Brush color not found" << endl;
+                    err.append("Brush color not found");
+                    throw err;
                 }
 
             }
@@ -1154,18 +1183,18 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     brushStyle = Qt::VerPattern;
                 else if (brushStyleSubStr == "NoBrush")
                     brushStyle = Qt::NoBrush;
-                else
-                    cout << "Error: Brush Style not found" << endl;
-
+                else {
+                    err.append("Brush style not found");
+                    throw err;
+                }
             }
             else {
-                // throw
-                cout << "Error During Read Square Function: Unidentified parameter string" << endl;
-                return;
+                err.append("Unidentified parameter string");
+                throw err;
             }
         } else {
-            cout << "Error During Read Square Function: failed to find \":\" in current string" << endl;
-            return;
+            err.append("Failed to find \":\" in current string");
+            throw err;
         }
     }
 
@@ -1181,8 +1210,6 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     brush.setStyle(brushStyle);
 
     int sides = points[1].x();
-    //QRect boundingRect(points[0].x(), points[0].y(), sides, sides);
-    //square* newSquare = new square(boundingRect);
     square* newSquare = new square(points[0].x(), points[0].y(), sides);
 
     pen.setBrush(brush);
@@ -1196,6 +1223,7 @@ void readSquare(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
 
 void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
+    QString err("readEllipse: ");
 
     myStd::vector<int> dimensions; //shape dimensions
     Qt::GlobalColor penColor; // shape pen color
@@ -1253,7 +1281,8 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                         else
                             dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
                     } else {
-                        cout << "Error in Read Ellipse fcn: whitespace for next dimension not found." << endl;
+                        err.append("whitespace for next dimension not found.");
+                        throw err;
                     }
                 }
 
@@ -1286,7 +1315,8 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (colorSubStr == "gray")
                     penColor = Qt::gray;
                 else {
-                    cout << "Pen color not found" << endl;
+                    err.append("Pen color not found.");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenWidth") {
@@ -1311,7 +1341,8 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (penSubStr == "DashDotDotLine")
                     penStyle = Qt::DashDotDotLine;
                 else {
-                    cout << "Error: Pen Style not found" << endl;
+                    err.append("Pen style not found.");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenCapStyle") {
@@ -1324,8 +1355,10 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penCapStyle = Qt::SquareCap;
                 else if (penCapSubStr == "RoundCap")
                     penCapStyle = Qt::RoundCap;
-                else
-                    cout << "Error: Pen Cap Style Not Found" << endl;
+                else {
+                    err.append("Pen cap style not found.");
+                    throw err;
+                }
 
             }
             else if (paramSubStr == "PenJoinStyle") {
@@ -1338,9 +1371,10 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penJoinStyle = Qt::BevelJoin;
                 else if (penJoinSubStr == "RoundJoin")
                     penJoinStyle = Qt::RoundJoin;
-                else
-                    cout << "Error: Pen Join Style not found" << endl;
-
+                else {
+                    err.append("Pen join style not found.");
+                    throw err;
+                }
             }
             else if (paramSubStr == "BrushColor") {
 
@@ -1365,9 +1399,9 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (brushColorSubStr == "gray")
                     brushColor = Qt::gray;
                 else {
-                    cout << "Brush color not found" << endl;
+                    err.append("Brush color not found.");
+                    throw err;
                 }
-
             }
             else if (paramSubStr == "BrushStyle") {
 
@@ -1381,18 +1415,18 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     brushStyle = Qt::VerPattern;
                 else if (brushStyleSubStr == "NoBrush")
                     brushStyle = Qt::NoBrush;
-                else
-                    cout << "Error: Brush Style not found" << endl;
-
+                else {
+                    err.append("Brush style not found.");
+                    throw err;
+                }
             }
             else {
-                // throw
-                cout << "Error During Read Ellipse Function: Unidentified parameter string" << endl;
-                return;
+                err.append("Unidentified parameter string");
+                throw err;
             }
         } else {
-            cout << "Error During Read Ellipse Function: failed to find \":\" in current string" << endl;
-            return;
+            err.append("Failed to find \":\" in current string");
+            throw err;
         }
     }
 
@@ -1418,12 +1452,12 @@ void readEllipse(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
 
     userShapes.push_back(newEllipse);
 
-    cout << "End of Read Ellipse fcn" << endl;
     return;
 }
 
 void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     string current {};
+    QString err("readCircle: ");
 
     myStd::vector<int> dimensions; //shape dimensions
     Qt::GlobalColor penColor; // shape pen color
@@ -1481,7 +1515,8 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                         else
                             dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
                     } else {
-                        cout << "Error in Read Circle fcn: whitespace for next dimension not found." << endl;
+                        err.append("whitespace for next dimension not found.");
+                        throw err;
                     }
                 }
 
@@ -1514,7 +1549,8 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (colorSubStr == "gray")
                     penColor = Qt::gray;
                 else {
-                    cout << "Pen color not found" << endl;
+                    err.append("Pen color not found.");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenWidth") {
@@ -1539,7 +1575,8 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (penSubStr == "DashDotDotLine")
                     penStyle = Qt::DashDotDotLine;
                 else {
-                    cout << "Error: Pen Style not found" << endl;
+                    err.append("Pen style not found.");
+                    throw err;
                 }
             }
             else if (paramSubStr == "PenCapStyle") {
@@ -1552,8 +1589,10 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penCapStyle = Qt::SquareCap;
                 else if (penCapSubStr == "RoundCap")
                     penCapStyle = Qt::RoundCap;
-                else
-                    cout << "Error: Pen Cap Style Not Found" << endl;
+                else {
+                    err.append("Pen cap style not found.");
+                    throw err;
+                }
 
             }
             else if (paramSubStr == "PenJoinStyle") {
@@ -1566,9 +1605,10 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     penJoinStyle = Qt::BevelJoin;
                 else if (penJoinSubStr == "RoundJoin")
                     penJoinStyle = Qt::RoundJoin;
-                else
-                    cout << "Error: Pen Join Style not found" << endl;
-
+                else {
+                    err.append("Pen join style not found.");
+                    throw err;
+                }
             }
             else if (paramSubStr == "BrushColor") {
 
@@ -1593,7 +1633,8 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (brushColorSubStr == "gray")
                     brushColor = Qt::gray;
                 else {
-                    cout << "Brush color not found" << endl;
+                    err.append("Brush color not found.");
+                    throw err;
                 }
 
             }
@@ -1609,18 +1650,18 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     brushStyle = Qt::VerPattern;
                 else if (brushStyleSubStr == "NoBrush")
                     brushStyle = Qt::NoBrush;
-                else
-                    cout << "Error: Brush Style not found" << endl;
-
+                else {
+                    err.append("Brush style not found.");
+                    throw err;
+                }
             }
             else {
-                // throw
-                cout << "Error During Read Circle Function: Unidentified parameter string" << endl;
-                return;
+                err.append("Unidentified parameter string");
+                throw err;
             }
         } else {
-            cout << "Error During Read Circle Function: failed to find \":\" in current string" << endl;
-            return;
+            err.append("failed to find \":\" in current string");
+            throw err;
         }
     }
 
@@ -1636,8 +1677,6 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
     brush.setStyle(brushStyle);
 
     int sides = points[1].x();
-    //QRect boundingRect(points[0].x(), points[0].y(), sides, sides);
-    //circle* newCircle = new circle(boundingRect);
     circle* newCircle = new circle(points[0].x(), points[0].y(), sides);
 
     pen.setBrush(brush);
@@ -1645,11 +1684,11 @@ void readCircle(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
 
     userShapes.push_back(newCircle);
 
-    cout << "End of Read Circle fcn" << endl;
     return;
 }
 
 void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
+    QString err("readText: ");
 
     myStd::vector<int> dimensions;
     // text string
@@ -1715,7 +1754,8 @@ void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                         else
                             dimensionsSubStr = dimensionsSubStr.substr(rBoundPosition + 1);
                     } else {
-                        cout << "Error in Read Text fcn: whitespace for next dimension not found." << endl;
+                        err.append("whitespace for next dimension not found.");
+                        throw err;
                     }
                 }
 
@@ -1752,7 +1792,8 @@ void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (textColorSubStr == "gray")
                     textColor = Qt::gray;
                 else {
-                    cout << "Text color not found" << endl;
+                    err.append("Text color not found.");
+                    throw err;
                 }
             }
 
@@ -1770,7 +1811,8 @@ void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (textAlignSubStr == "AlignCenter")
                     textAlignment = Qt::AlignCenter;
                 else {
-                    cout << "Error: Text Alignment Style not found" << endl;
+                    err.append("Text alignment style not found.");
+                    throw err;
                 }
             }
 
@@ -1791,9 +1833,10 @@ void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     textFontFamily = "Helvetica";
                 else if (textFontFamilySubStr == "Times")
                     textFontFamily = "Times";
-                else
-                    cout << "Error: Text Font Family Not Found" << endl;
-
+                else {
+                    err.append("Text Font Family Not Found");
+                    throw err;
+                }
             }
 
             else if (paramSubStr == "TextFontStyle") {
@@ -1805,9 +1848,10 @@ void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                     textFontStyle = QFont::StyleItalic;
                 else if (textFontStyleSubStr == "StyleOblique")
                     textFontStyle = QFont::StyleOblique;
-                else
-                    cout << "Error: Text Font Style not found" << endl;
-
+                else {
+                    err.append("Text Font Style not found");
+                    throw err;
+                }
             }
 
             else if (paramSubStr == "TextFontWeight") {
@@ -1822,22 +1866,21 @@ void readText(fstream& inData, int id, myStd::vector<Shape*>& userShapes) {
                 else if (textFontWeightSubStr == "Bold")
                     textFontWeight = QFont::Bold;
                 else {
-                    cout << "Text Font Weight not found" << endl;
+                    err.append("Text Font Weight not found");
+                    throw err;
                 }
 
             }
             else {
-                // throw
-                cout << "Error During Read Text Function: Unidentified parameter string" << endl;
-                return;
+                err.append("Unidentified parameter string");
+                throw err;
             }
         } else {
-            cout << "Error During Read Text Function: failed to find \":\" in current string" << endl;
-            return;
+            err.append("failed to find \":\" in current string");
+            throw err;
         }
     }
-    cout << "End of Read Text fcn" << endl;
-    //QFont(const QString &family, int pointSize = -1, int weight = -1, bool italic = false)
+
     QRect boundingRect(points[0].x(), points[0].y(), points[1].x(), points[1].y());
     QPen newPen(textColor);
 
