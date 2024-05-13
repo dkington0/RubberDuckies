@@ -2,9 +2,16 @@
 #define SHAPE_EDITOR_H
 
 #include <QDialog>
-#include <QButtonGroup>
+#include <QDialogButtonBox>
+#include <QGridLayout>
+#include <QPalette>
+#include <QLabel>
 #include <QPushButton>
-#include <QHBoxLayout>
+#include <QRadioButton>
+#include <QGroupBox>
+#include <QComboBox>
+#include <QFormLayout>
+#include <QSpinBox>
 //#include "canvas.h"
 
 
@@ -27,31 +34,54 @@ public:
     explicit shape_Editor(QWidget *parent = nullptr);
     ~shape_Editor();
 
-    void uiSetup()
-    {
-        win = new QWidget;
-        QPushButton* lineButton = new QPushButton("Line");
-        QPushButton* polylineButton = new QPushButton("Polyline");
-        QPushButton* polygoneButton = new QPushButton("Polygon");
-        QPushButton* rectangleButton = new QPushButton("Rectangle");
-        QPushButton* squareButton = new QPushButton("Square");
-        QPushButton* ellipseButton = new QPushButton("Ellipse");
-        QPushButton* circleButton = new QPushButton("Circle");
-        QPushButton* textButton = new QPushButton("Text");
+    void createTypeGroupBox(QDialog* dia);
+    void createHintsGroupBox(QDialog* dia);
+    void flagCheck();
+    QRadioButton* createRadioButton(const QString &text);
+    QComboBox* createComboBox(QGroupBox* box);
+    void createShapeBox(QGroupBox* box);
 
-        layout = new QHBoxLayout(win);
-        layout->addWidget(lineButton);
-        layout->addWidget(polylineButton);
-        layout->addWidget(polygoneButton);
-        layout->addWidget(rectangleButton);
-        layout->addWidget(squareButton);
-        layout->addWidget(ellipseButton);
-        layout->addWidget(circleButton);
-        layout->addWidget(textButton);
+    void uiSetup(QDialog *Menu)
+    {
+        // Menu = new
+        // win = new QWidget;
+        QDialogButtonBox* box = new QDialogButtonBox();
+        box->addButton("Line", QDialogButtonBox::AcceptRole);
+        box->addButton("Polyline", QDialogButtonBox::AcceptRole);
+        box->addButton("Polygon", QDialogButtonBox::AcceptRole);
+        box->addButton("Rectangle", QDialogButtonBox::AcceptRole);
+        box->addButton("Squaree", QDialogButtonBox::AcceptRole);
+        box->addButton("Ellipse", QDialogButtonBox::AcceptRole);
+        box->addButton("Circle", QDialogButtonBox::AcceptRole);
+        box->addButton("Text", QDialogButtonBox::AcceptRole);
+        // QPushButton* QDialogButtonBox::addButton("Line", QDialogButtonBox::AcceptRole);
+        // QDialogButtonBox* polylineButton = new QPushButton("Polyline");
+        // QDialogButtonBox* polygoneButton = new QPushButton("Polygon");
+        // QDialogButtonBox* rectangleButton = new QPushButton("Rectangle");
+        // QDialogButtonBox* squareButton = new QPushButton("Square");
+        // QDialogButtonBox* ellipseButton = new QPushButton("Ellipse");
+        // QDialogButtonBox* circleButton = new QPushButton("Circle");
+        // QDialogButtonBox* textButton = new QPushButton("Text");
+
+        // layout = new QHBoxLayout(win);
+        // layout->addWidget(lineButton);
+        // layout->addWidget(polylineButton);
+        // layout->addWidget(polygoneButton);
+        // layout->addWidget(rectangleButton);
+        // layout->addWidget(squareButton);
+        // layout->addWidget(ellipseButton);
+        // layout->addWidget(circleButton);
+        // layout->addWidget(textButton);
 
     }
 
+public slots:
+    void shape_editor_clicked();
+
 private slots:
+
+
+
     void on_push_Text_Button_clicked(); //Text Editor
 
 
@@ -71,9 +101,26 @@ private slots:
 
 private:
     Ui::shape_Editor *ui;
-    QWidget* win;
-    QHBoxLayout* layout;
 
+    QGroupBox *typeGroupBox;
+    QGroupBox *hintsGroupBox;
+    QDialogButtonBox* utilityButton;
+    QComboBox* penColorBox;
+    QComboBox* penStyleBox;
+    QComboBox* penCapStyleBox;
+    QComboBox* penJointStyleBox;
+    QComboBox* brushColorBox;
+    QComboBox* brushStyleBox;
+    QSpinBox* penWidthBox;
+
+    QRadioButton *lineButton;
+    QRadioButton *polylineButton;
+    QRadioButton *polygonButton;
+    QRadioButton *rectangleButton;
+    QRadioButton *squareButton;
+    QRadioButton *ellipseButton;
+    QRadioButton *circleButton;
+    QRadioButton *textButton;
 
     add_Text *text_Editor;
     add_CircElip *AddCircElip;

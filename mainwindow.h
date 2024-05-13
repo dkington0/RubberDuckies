@@ -28,6 +28,7 @@ public:
      */
     MainWindow(QWidget *parent = nullptr);
 
+
     /**
      * @brief MainWindow default destructor
      */

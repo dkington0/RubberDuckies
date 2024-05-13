@@ -82,8 +82,7 @@ void MainWindow::on_contactUsButton_clicked()
 void MainWindow::on_shape_editor_Button_clicked()
 {
     Shape_Editor = new shape_Editor(this);
-    Shape_Editor->show();
-
+    Shape_Editor->shape_editor_clicked();
 }
 
 
