@@ -15,7 +15,7 @@
 #include "Text.h"
 #include "circle.h"
 #include "serializer.h"
-// #include "canvas.h"
+#include "canvas.h"
 
 //template <class Type>
 int main(int argc, char *argv[])
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    QPoint point(460, 90);
+    /*QPoint point(460, 90);
     QPoint point1(470, 20);
     QPoint point2(530, 40);
     QPoint point3(540, 80);
@@ -72,13 +72,13 @@ int main(int argc, char *argv[])
     container.push_back(Ellipse);
     container.push_back(Circle);
     container.push_back(Text);
-
+    */
     // // Trying to draw shapes (draws in individual windows currently)
-    // QRect widgetRegion {0, 0, 1200, 1200};
-    // QPaintEvent *paintTest = new QPaintEvent{widgetRegion};
-    // container[0]->drawShapes(container, paintTest);
+     QRect widgetRegion {0, 0, 1200, 12000000};
+     QPaintEvent *paintTest = new QPaintEvent{widgetRegion};
 
-    // Canvas canvas(container);
+    Canvas canvas(container);
+     canvas.drawShape(paintTest);
 
     // MainWindow w;
     // w.show();
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     // Line* line = ;
     // Line fakeLine;
     // QObject::connect(&line, SIGNAL(w.shapeValue()), SLOT(w.setValue()));
-    if (container.size() > 0)
-        serialize(directory_path, container);
+   // if (container.size() > 0)
+     //   serialize(directory_path, container);
     return a.exec();
 }

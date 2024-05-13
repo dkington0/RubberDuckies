@@ -13,7 +13,7 @@
 class Canvas: public QWidget
 {
 private:
-    myStd::vector<Shape>* passedShape; //vector initialized by pass from main
+    myStd::vector<Shape*> passedShapes; //vector initialized by pass from main
 
 public:
     /**
@@ -27,7 +27,7 @@ public:
      * @param src : Vector holding shape and vector to copy to
      * @return returns copied vector
      */
-    Canvas(myStd::vector<Shape>* passedVector); // copy constructor
+    Canvas(myStd::vector<Shape*> passedVector); // copy constructor
 
     /**
      * @brief : Move constructor
@@ -40,7 +40,7 @@ public:
      * @brief : Default destructor
      * @param src : Vector to be destructed
      */
-    ~Canvas(); // default destructor
+    ~Canvas(){}; // default destructor
 
     /**
      * @brief : overloaded assignment operation
@@ -52,7 +52,7 @@ public:
     /**
      * @brief : Function to draw shapes on canvas
      */
-    void drawShape(); //draws shape based on passed shape. myStd is a horrible name btw&
+    void drawShape(QPaintEvent* t); //draws shape based on passed shape. myStd is a horrible name btw&
 
     void configureShape();
 };

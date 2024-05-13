@@ -6,9 +6,9 @@ Canvas::Canvas() {} // default constructor
 
  //vector initialized by pass from main
 
-    Canvas::Canvas(myStd::vector<Shape>* passedVector ) //initializing
+    Canvas::Canvas(myStd::vector<Shape*> passedVector ) //initializing
     {
-      passedShape = passedVector; //error here. other errors inside file parser are from the test case
+      passedShapes = passedVector; //error here. other errors inside file parser are from the test case
     }
 
     void Canvas::configureShape()
@@ -21,7 +21,12 @@ Canvas::Canvas() {} // default constructor
         //passedShape = std::move(passedVector); // move operation
     }
 
-    Canvas::~Canvas() {} //destructor
+    void Canvas::drawShape(QPaintEvent* eventThing) //draws shape based on passed shape.
+    {
+        passedShapes[0]->drawShapes(passedShapes, eventThing);
+
+    }
+    //destructor
 
 /*    Canvas & Canvas::operator=(Canvas && other) // move assignment
     {
@@ -31,14 +36,4 @@ Canvas::Canvas() {} // default constructor
         }
         return *this;
     }
-
-    void Canvas::drawShape() //draws shape based on passed shape. myStd is a horrible name btw
-    {
-
-        for (Shape &tempShape : *passedShape )
-        {
-            this->drawShape();
-
-        }
-    }*/
-
+*/

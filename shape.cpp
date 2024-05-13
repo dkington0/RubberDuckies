@@ -49,7 +49,7 @@ QPen& Shape::getPen()
 
 void Shape::drawShapes(myStd::vector<Shape*> container, QPaintEvent *event)
 {
-    // Iterates through the caontainer calling the paint
+    // Iterates through the container calling the paint
     // event for each shape.
 
     for (int i = 0; i < container.size(); i++)
