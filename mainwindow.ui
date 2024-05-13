@@ -103,6 +103,29 @@
      <string>Remove Shape</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="sortShapes">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>330</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sort Shapes</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="list">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>581</width>
+      <height>421</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -110,7 +133,7 @@
      <x>0</x>
      <y>0</y>
      <width>1973</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

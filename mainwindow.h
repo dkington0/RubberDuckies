@@ -68,9 +68,20 @@ private slots:
      */
     void on_contactUsButton_clicked();
 
+
     void on_shape_editor_Button_clicked();
 
 
+    /**
+     * @brief When the button is clicked pass the vector to the according sorting functions and write to a file
+     */
+    void on_sortShapes_clicked();
+
+
+    /**
+     * @brief display the text file
+     */
+    void displayText(const QString & filename);
 
 public slots:
     /**

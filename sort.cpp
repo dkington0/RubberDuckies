@@ -57,7 +57,7 @@ void sort::sortPerimeter(myStd::vector<Shape*> & shapes)
 // }
 
 
-void sort::write(const myStd::vector<Shape> & shapes, const std::string & filename)
+void sort::write(const myStd::vector<Shape*> & shapes, const std::string & filename)
 {
     std::ofstream outFile(filename);
     if(!outFile.is_open())
@@ -68,9 +68,9 @@ void sort::write(const myStd::vector<Shape> & shapes, const std::string & filena
 
     for(const auto& shape : shapes)
     {
-        // outFile << "ID: " << shape.getID() << std::endl;
-        outFile << "Area: " << shape.getArea() << std::endl;
-        outFile << "Perimeter: " << shape.getPerimeter() << std::endl;
+        outFile << "ID: " << shape->getId() << std::endl;
+        outFile << "Area: " << shape->getArea() << std::endl;
+        outFile << "Perimeter: " << shape->getPerimeter() << std::endl;
         outFile << std::endl;
     }
     outFile.close();

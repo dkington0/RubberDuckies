@@ -36,7 +36,7 @@ public:
      * @param shapes : the vector of Shape objects to be written to a report file
      * @param filename : the filepath of the external file to be output
      */
-    static void write(const myStd::vector<Shape> & shapes, const std::string & filename); // write to file
+    static void write(const myStd::vector<Shape*> & shapes, const std::string & filename); // write to file
 
     // void customSwap(Shape *& shape, Shape *& other);
 

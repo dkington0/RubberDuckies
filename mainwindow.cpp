@@ -3,7 +3,8 @@
 #include "QMessageBox"
 #include "QGroupBox"
 #include "contact_us.h"
-
+#include "vector.h"
+#include "sort.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -70,6 +71,8 @@ void MainWindow::setValue(int value)
     }
 }
 
+
+
 void MainWindow::on_contactUsButton_clicked()
 {
     (new ContactUs(this))->show();
@@ -80,6 +83,39 @@ void MainWindow::on_shape_editor_Button_clicked()
 {
     Shape_Editor = new shape_Editor(this);
     Shape_Editor->show();
+
 }
 
+
+
+void MainWindow::on_sortShapes_clicked()
+{
+    myStd::vector<Shape*> shapes; // create vector
+    sort::sortID(shapes); // sort id
+    sort::sortArea(shapes); // sort area
+    sort::sortPerimeter(shapes); // sort perimeter
+
+    QString filename = "sorted_shapes.txt"; // assign QString file name
+
+    sort::write(shapes, "sorted_shapes.txt"); // write to file
+
+    displayText(filename); // call displayText with file
+}
+
+
+void MainWindow::displayText(const QString &filename)
+{
+    QFile file(filename); // open file
+    if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
+        QMessageBox::warning(this, "Error", "Could not open file: " + filename); // check to open file
+        return;
+    }
+    QTextStream in(&file); // create text stream object
+
+    ui->list->setPlainText(in.readAll()); // read in entire file
+
+    ui->list->setReadOnly(true); // prevent user from typing
+    file.close();
+}
 
