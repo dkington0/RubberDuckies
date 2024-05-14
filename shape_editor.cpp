@@ -49,6 +49,9 @@ void shape_Editor::shape_editor_clicked()
     mainLayout->addLayout(bottomLayout);
     dialog->setLayout(mainLayout);
 
+
+
+
     typeGroupBox->show();
 
     dialog->exec();
@@ -392,6 +395,8 @@ QComboBox* shape_Editor::createComboBox()
     return comboBox;
 }
 
+// Selecting the shape on the left updates the boxes on the right to
+// the correct parameters
 void shape_Editor::updateDimeBox()
 {
     if (lineButton->isChecked())
