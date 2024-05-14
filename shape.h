@@ -79,7 +79,7 @@ class Shape : public MainWindow
          * @brief : paintEvent to be called upon a QPaintEvent, such as update()
          * @param : QPaintEvent being called
          */
-        virtual void paintEvent(QPaintEvent* event)=0;
+        virtual void draw(QPainter* draw)=0;
 
         /**
          * @brief : Shape copy constructor, disabled and marked for deletion

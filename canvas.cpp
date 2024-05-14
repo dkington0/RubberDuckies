@@ -1,7 +1,8 @@
 #include "canvas.h"
+#include "ui_canvas.h"
 
 
-Canvas::Canvas() {} // default constructor
+//Canvas::Canvas() {} // default constructor
 
 
  //vector initialized by pass from main
@@ -24,11 +25,16 @@ Canvas::Canvas() {} // default constructor
     void Canvas::drawShape(QPaintEvent* eventThing) //draws shape based on passed shape.
     {    // Iterates through the container calling the paint
         // event for each shape.
+        QPainter bob_Ross(this);
+        this->setGeometry(0,0,1000,500);
+        QRect rect = geometry();
 
+        bob_Ross.setViewport(rect);
         for (int i = 0; i < passedShapes.size(); i++)
         {
-            passedShapes[i]->paintEvent(eventThing);
+            passedShapes[i]->draw(&bob_Ross);
         }
+        bob_Ross.end();
 
     }
     //destructor

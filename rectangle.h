@@ -45,7 +45,7 @@ public:
      * @brief : paintEvent to be called upon a QPaintEvent, such as update()
      * @param : QPaintEvent being called
      */
-    void paintEvent(QPaintEvent* event) override;
+    void draw(QPainter* event) override;
 
     /**
      * @brief calculates area for shape, multiplies length and width

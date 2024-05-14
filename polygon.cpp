@@ -3,9 +3,9 @@
 polygon::~polygon() {}
 
 
-void polygon::paintEvent(QPaintEvent *event)
+void polygon::draw(QPainter *event)
 {
-    QPainter myPolygon(this); //
+   // QPainter myPolygon(this); //
 
     // Set the pen parameters
     setPen(getPen());
@@ -20,7 +20,7 @@ void polygon::paintEvent(QPaintEvent *event)
     }
 
     // Draw the polygon in the window
-    myPolygon.drawPolygon(pointsStatic, points.size());
+    event->drawPolygon(pointsStatic, points.size());
 
     //QPainter painter(this);
     // show();

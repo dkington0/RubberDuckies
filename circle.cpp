@@ -3,17 +3,17 @@
 circle::~circle() {}
 
 // paintEvent
-void circle::paintEvent(QPaintEvent* event)
+void circle::draw(QPainter* event)
 {
-    QPainter *myCircle = new QPainter(this);
+   // QPainter *myCircle = new QPainter(this);
 
     setPen(getPen());
 
     // Draws the circle withing the defined dimensions
-    myCircle->drawEllipse(rect);
+    event->drawEllipse(rect);
 
     show();
-    delete myCircle; // Clean up memory to prevent leaks
+   // delete myCircle; // Clean up memory to prevent leaks
 }
 
 double circle::calculateArea() const

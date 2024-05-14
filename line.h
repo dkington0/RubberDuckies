@@ -44,8 +44,7 @@ private:
      * @brief : paintEvent to be called upon a QPaintEvent, such as update()
      * @param : QPaintEvent being called
      */
-    void paintEvent(QPaintEvent *event) override;
-
+    void draw(QPainter* event) override;
     /**
      * @brief getId will return the derived shape's unique ID
      * @return : returns the derived shape's unique ID

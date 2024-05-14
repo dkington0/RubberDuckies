@@ -4,17 +4,17 @@
 rectangle::~rectangle() {}
 
 // paintevent()
-void rectangle::paintEvent(QPaintEvent* event)
+void rectangle::draw(QPainter* event)
 {
-    QPainter *myRect = new QPainter(this);
+  //  QPainter *myRect = new QPainter(this);
 
     setPen(getPen());
 
     // Draws the circle withing the defined dimensions
-    myRect->drawRect(rect);
+    event->drawRect(rect);
 
     show();
-    delete myRect; // Clean up memory to prevent leaks
+   // delete myRect; // Clean up memory to prevent leaks
 }
 
 double rectangle::calculateArea() const
