@@ -3,17 +3,17 @@
 ellipse::~ellipse() {}
 
 // paintEvent
-void ellipse::paintEvent(QPaintEvent* event)
+void ellipse::draw(QPainter* event)
 {
-    QPainter *myEllipse = new QPainter(this);
+    //QPainter *myEllipse = new QPainter(this);
 
     setPen(getPen());
 
     // Draws the circle withing the defined dimensions
-    myEllipse->drawEllipse(rect);
+    event->drawEllipse(rect);
 
     show();
-    delete myEllipse; // Clean up memory to prevent leaks
+ //   delete myEllipse; // Clean up memory to prevent leaks
 }
 
 double ellipse::calculateArea() const

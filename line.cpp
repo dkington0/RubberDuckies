@@ -16,13 +16,13 @@ Line::~Line() {}
 
 // }
 
-void Line::paintEvent(QPaintEvent *event)
+void Line::draw(QPainter *event)
 {
-    QPainter myline(this); // in render return this pointer
+    //QPainter* myline = new QPainter(event); // in render return this pointer
 
     setPen(getPen());    // Will be set in Canvas
 
-    myline.drawLine(line);  // Initialize line in Canvas
+    event->drawLine(line);  // Initialize line in Canvas
 
     show();
 }

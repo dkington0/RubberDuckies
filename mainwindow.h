@@ -51,6 +51,11 @@ public:
      * @return integer value stored at m_value
      */
     int shapeValue() const { return m_value; }
+    /**
+     * @brief : paintEvent to be called upon a QPaintEvent, such as update()
+     * @param : QPaintEvent being called
+     */
+    void paintEvent(QPaintEvent *event);
 
 private slots:
     /**
@@ -58,11 +63,6 @@ private slots:
      */
     void on_login_clicked();
 
-    /**
-     * @brief : paintEvent to be called upon a QPaintEvent, such as update()
-     * @param : QPaintEvent being called
-     */
-    virtual void paintEvent(QPaintEvent *event);
 
     /**
      * @brief on_contactUsButton_clicked will open a window which contains the information of the RubberDuckies development group.
@@ -93,6 +93,7 @@ public slots:
      * @param value interger passed to be stored at m_value
      */
     void setValue(int value);
+
 
 signals:
     /**

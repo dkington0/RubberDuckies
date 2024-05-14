@@ -1,15 +1,15 @@
-#include "text.h"
+#include "Text.h"
 
 text::~text() {}
 
-void text::paintEvent(QPaintEvent *event)
+void text::draw(QPainter *event)
 {
-    QPainter mytext(this);
+   // QPainter mytext(this);
 
     setPen(getPen());
-    mytext.setFont(font);
+   event->setFont(font);
 
-    mytext.drawText(rect, flags, strtext);
+    event->drawText(rect, flags, strtext);
 
 }
 /*

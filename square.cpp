@@ -3,17 +3,17 @@
 square::~square() {}
 
 // paintevent()
-void square::paintEvent(QPaintEvent* event)
+void square::draw(QPainter* event)
 {
-    QPainter *mySquare = new QPainter(this);
+    //QPainter *mySquare = new QPainter(this);
 
     setPen(getPen());
 
     // Draws the circle withing the defined dimensions
-    mySquare->drawRect(rect);
+    event->drawRect(rect);
 
     show();
-    delete mySquare; // Clean up memory to prevent leaks
+    //delete mySquare; // Clean up memory to prevent leaks
 }
 
 double square::calculateArea() const

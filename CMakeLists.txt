@@ -58,6 +58,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         add_text.h add_text.cpp add_text.ui
         serializer.h
         serializer.cpp
+        canvas.ui
 
 
 

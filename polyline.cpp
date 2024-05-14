@@ -2,9 +2,9 @@
 
 polyline::~polyline() {}
 
-void polyline::paintEvent(QPaintEvent *event)
+void polyline::draw(QPainter *event)
 {
-    QPainter myPolyline(this); //
+   // QPainter myPolyline(this); //
 
     // Set the pen parameters
     setPen(getPen());
@@ -21,7 +21,7 @@ void polyline::paintEvent(QPaintEvent *event)
     }
 
     // Draw the polygon in the window
-    myPolyline.drawPolyline(pointsStatic, points.size());
+    event->drawPolyline(pointsStatic, points.size());
 
     // Free up memory used to create instance of the shape
     // delete myPolyline;
