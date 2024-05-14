@@ -13,7 +13,6 @@
 #include <QFormLayout>
 #include <QSpinBox>
 #include <QTimer>
-// #include "canvas.h"
 
 
 namespace Ui {
@@ -36,8 +35,12 @@ public:
 
     QFormLayout* changeDimeBox();
 
-    QRadioButton* createRadioButton(const QString &text);
-    QComboBox* createComboBox();
+    QRadioButton* createShapeButton(const QString &text);
+    QComboBox* createPenComboBox();
+    QComboBox* createDimeComboBox();
+    QSpinBox* createDimeSpinBox();
+    QSpinBox* createPenWidthSpinBox();
+    QLineEdit* createDimeLineEdit();
 
 public slots:
     void shape_editor_clicked();
