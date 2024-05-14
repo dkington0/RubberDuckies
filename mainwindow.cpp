@@ -90,19 +90,29 @@ void MainWindow::on_shape_editor_Button_clicked()
 void MainWindow::on_sortShapes_clicked()
 {
     myStd::vector<Shape*> shapes; // create vector
-    sort::sortID(shapes); // sort id
-    sort::sortArea(shapes); // sort area
-    sort::sortPerimeter(shapes); // sort perimeter
+    // Sort by ID and write to file
+    sort::sortID(shapes);
+    sort::write(shapes, "sorted_shapes_id.txt");
 
-    QString filename = "sorted_shapes.txt"; // assign QString file name
+    // Sort by Area and write to file
+    sort::sortArea(shapes);
+    sort::write(shapes, "sorted_shapes_area.txt");
 
-    sort::write(shapes, "sorted_shapes.txt"); // write to file
+    // Sort by Perimeter and write to file
+    sort::sortPerimeter(shapes);
+    sort::write(shapes, "sorted_shapes_perimeter.txt");
 
-    displayText(filename); // call displayText with file
+    // Clear the text box before displaying new content
+    ui->list->clear();
+
+    // Display each sorted list
+    displayText("sorted_shapes_id.txt", "Sorted by ID:");
+    displayText("sorted_shapes_area.txt", "Sorted by Area:");
+    displayText("sorted_shapes_perimeter.txt", "Sorted by Perimeter:");
 }
 
 
-void MainWindow::displayText(const QString &filename)
+void MainWindow::displayText(const QString &filename, const QString &title)
 {
     QFile file(filename); // open file
     if (!file.open(QFile::ReadOnly | QFile::Text))
@@ -111,10 +121,10 @@ void MainWindow::displayText(const QString &filename)
         return;
     }
     QTextStream in(&file); // create text stream object
+    QString content = in.readAll(); // read whole file
 
-    ui->list->setPlainText(in.readAll()); // read in entire file
-
-    ui->list->setReadOnly(true); // prevent user from typing
-    file.close();
+    // output
+    ui->list->appendPlainText(title + "\n" + content + "\n");
+    ui->list->setReadOnly(true);
 }
 

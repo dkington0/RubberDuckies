@@ -82,7 +82,7 @@ private slots:
     /**
      * @brief display the text file
      */
-    void displayText(const QString & filename);
+    void displayText(const QString & filename, const QString & title);
 
 public slots:
     /**
