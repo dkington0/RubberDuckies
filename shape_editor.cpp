@@ -15,18 +15,17 @@ shape_Editor::~shape_Editor()
 
 void shape_Editor::shape_editor_clicked()
 {
-    // const QSize btnSize = QSize(50, 50);
-
     QDialog* dialog = new QDialog();
-    dialog->setMinimumWidth(650);
+    dialog->setMinimumWidth(680);
     dialog->setMinimumHeight(290);
-    dialog->setMaximumWidth(650);
+    dialog->setMaximumWidth(680);
     dialog->setMaximumHeight(290);
 
     dialog->setWindowTitle("Shape Editor");
 
     createTypeGroupBox(dialog);
     createHintsGroupBox(dialog);
+    createDimeGroupBox(dialog);
 
     utilityButton = new QDialogButtonBox(QDialogButtonBox::Apply | QDialogButtonBox::Discard | QDialogButtonBox::Cancel);
 
@@ -89,6 +88,10 @@ void shape_Editor::createTypeGroupBox(QDialog* dia)
     layout->addWidget(circleButton, 2, 1);
     layout->addWidget(textButton, 3, 1);
     typeGroupBox->setLayout(layout);
+
+    QTimer *timer = new QTimer(typeGroupBox);
+    // connect(timer, &QTimer::timeout, typeGroupBox, QOverload<>::of(&flagCheck()));
+    timer->start(1000);
 }
 
 void shape_Editor::createHintsGroupBox(QDialog* dia)
@@ -97,8 +100,8 @@ void shape_Editor::createHintsGroupBox(QDialog* dia)
     hintsGroupBox->setTitle("Shape Hints");
     hintsGroupBox->move(220, 0);
     hintsGroupBox->setMinimumHeight(250);
-    hintsGroupBox->setMinimumWidth(420);
-    hintsGroupBox->setMaximumWidth(420);
+    hintsGroupBox->setMinimumWidth(220);
+    hintsGroupBox->setMaximumWidth(220);
     hintsGroupBox->setMaximumHeight(250);
     hintsGroupBox->setAlignment(Qt::AlignLeft);
 
@@ -160,66 +163,75 @@ void shape_Editor::createHintsGroupBox(QDialog* dia)
     layout->addRow(new QLabel(tr("Brush Style:")), brushStyleBox);
     layout->addRow(new QLabel(tr("Pen Width:")), penWidthBox);
     layout->setHorizontalSpacing(10);
-    layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+
+    // layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
+    // layout->setAlignment(Qt::Align);
+    //layout->addWidget(penColorBox);
+    // layout->setFormAlignment(Qt::AlignLeft);
 
     hintsGroupBox->setLayout(layout);
 }
 
-void shape_Editor::createShapeBox(QGroupBox* box)
+void shape_Editor::createDimeGroupBox(QDialog* dia)
 {
-    QGroupBox* innerBox = new QGroupBox(box);
-    hintsGroupBox->setTitle("Shape Dimensions");
-    hintsGroupBox->move(420, 0);
-    hintsGroupBox->setMinimumHeight(100);
-    hintsGroupBox->setMinimumWidth(100);
-    hintsGroupBox->setMaximumWidth(100);
-    hintsGroupBox->setMaximumHeight(100);
-    hintsGroupBox->setAlignment(Qt::AlignRight);
+    dimeGroupBox = new QGroupBox(dia);
+    dimeGroupBox->setTitle("Shape Dimensions");
+    dimeGroupBox->move(450, 0);
+    dimeGroupBox->setMinimumHeight(250);
+    dimeGroupBox->setMinimumWidth(200);
+    dimeGroupBox->setMaximumWidth(200);
+    dimeGroupBox->setMaximumHeight(250);
+    dimeGroupBox->setAlignment(Qt::AlignLeft);
 
-    if (lineButton->isChecked())
-    {
-        QSpinBox* posX1 = new QSpinBox(box);
-        QSpinBox* posY1 = new QSpinBox(box);
-        QSpinBox* posX2 = new QSpinBox(box);
-        QSpinBox* posY2 = new QSpinBox(box);
+    QFormLayout *layout = new QFormLayout(dimeGroupBox);
 
-        QVBoxLayout *bottomLayout = new QVBoxLayout(box);
-        bottomLayout->addWidget(posX1);
-        bottomLayout->addWidget(posY1);
-        bottomLayout->addWidget(posX2);
-        bottomLayout->addWidget(posY2);
-        bottomLayout->setAlignment(Qt::AlignRight);
-        innerBox->setLayout(bottomLayout);
-    }
-    else if (polylineButton->isChecked())
+    if (LineType == flag)
     {
+        QSpinBox* posX1 = new QSpinBox(dia);
+        QSpinBox* posY1 = new QSpinBox(dia);
+        QSpinBox* posX2 = new QSpinBox(dia);
+        QSpinBox* posY2 = new QSpinBox(dia);
+
+        layout->addRow(new QLabel(tr("Position X1:")), posX1);
+        layout->addRow(new QLabel(tr("Position Y1:")), posY1);
+        layout->addRow(new QLabel(tr("Position X2:")), posX2);
+        layout->addRow(new QLabel(tr("Position Y2:")), posY2);
 
     }
-    else if (polygonButton->isChecked())
+    else if (PolylineType == flag)
     {
+        QSpinBox* numPoints = new QSpinBox(dia);
+
+        layout->addRow(new QLabel(tr("Number of Points:")), numPoints);
 
     }
-    else if (rectangleButton->isChecked())
-    {
-
-    }
-    else if (squareButton->isChecked())
+    else if (PolygonType == flag)
     {
 
     }
-    else if (ellipseButton->isChecked())
+    else if (RectangleType == flag)
     {
 
     }
-    else if (circleButton->isChecked())
+    else if (SquareType == flag)
     {
 
     }
-    else if (textButton->isChecked())
+    else if (EllipseType == flag)
+    {
+
+    }
+    else if (CircleType == flag)
+    {
+
+    }
+    else if (TextType == flag)
     {
 
     }
 
+    layout->setAlignment(Qt::AlignLeft);
+    dimeGroupBox->setLayout(layout);
 }
 
 QComboBox* shape_Editor::createComboBox(QGroupBox* box)
@@ -229,60 +241,24 @@ QComboBox* shape_Editor::createComboBox(QGroupBox* box)
     return comboBox;
 }
 
-void shape_Editor::on_push_Text_Button_clicked()//open text adder
+void shape_Editor::signalCheck()
 {
-    text_Editor = new add_Text(this);
-    text_Editor->show();
+    if (lineButton->isChecked())
+        flag = LineType;
+    else if (polylineButton->isChecked())
+        flag = PolylineType;
+    else if (polygonButton->isChecked())
+        flag = PolygonType;
+    else if (rectangleButton->isChecked())
+        flag = RectangleType;
+    else if (squareButton->isChecked())
+        flag = SquareType;
+    else if (ellipseButton->isChecked())
+        flag = EllipseType;
+    else if (circleButton->isChecked())
+        flag = CircleType;
+    else if (textButton->isChecked())
+        flag = TextType;
+
+    // emit flag;
 }
-
-
-void shape_Editor::on_push_Polygon_Button_clicked()
-{
-    AddPolygon = new add_Polygon(this);
-    AddPolygon->show();
-}
-
-
-void shape_Editor::on_push_Elipse_Button_clicked()
-{
-    AddCircElip = new add_CircElip(this);
-    AddCircElip->show();
-}
-
-
-
-
-void shape_Editor::on_push_Circ_Button_clicked()
-{
-    AddCircElip = new add_CircElip(this);
-    AddCircElip->show();
-}
-
-
-void shape_Editor::on_push_Rec_Button_clicked()
-{
-    AddSquRec = new add_SquRec(this);
-    AddSquRec->show();
-}
-
-
-void shape_Editor::on_push_Squ_Button_clicked()
-{
-    AddSquRec = new add_SquRec(this);
-    AddSquRec->show();
-}
-
-
-void shape_Editor::on_push_Polyline_Button_clicked()
-{
-    AddLinePoly = new add_LinePoly(this);
-    AddLinePoly->show();
-}
-
-
-void shape_Editor::on_push_Line_Button_clicked()
-{
-    AddLinePoly = new add_LinePoly(this);
-    AddLinePoly->show();
-}
-
