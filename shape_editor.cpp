@@ -54,7 +54,7 @@ void shape_Editor::shape_editor_clicked()
     dialog->exec();
 }
 
-QRadioButton* shape_Editor::createRadioButton(const QString &text)
+QRadioButton* shape_Editor::createShapeButton(const QString &text)
 {
     QRadioButton *button = new QRadioButton(text);
 
@@ -74,17 +74,17 @@ void shape_Editor::createTypeGroupBox()
     typeGroupBox->setMaximumHeight(250);
     typeGroupBox->setAlignment(Qt::AlignLeft);
 
-    lineButton = createRadioButton("Line");
-    polylineButton = createRadioButton(tr("Polyline"));
-    polygonButton = createRadioButton(tr("Polygon"));
-    rectangleButton = createRadioButton(tr("Rectangle"));
-    squareButton = createRadioButton(tr("Square"));
-    ellipseButton = createRadioButton(tr("Ellipse"));
-    circleButton = createRadioButton(tr("Circle"));
-    textButton = createRadioButton(tr("Text"));
+    lineButton = createShapeButton("Line");
+    polylineButton = createShapeButton(tr("Polyline"));
+    polygonButton = createShapeButton(tr("Polygon"));
+    rectangleButton = createShapeButton(tr("Rectangle"));
+    squareButton = createShapeButton(tr("Square"));
+    ellipseButton = createShapeButton(tr("Ellipse"));
+    circleButton = createShapeButton(tr("Circle"));
+    textButton = createShapeButton(tr("Text"));
     lineButton->setChecked(true);
 
-    QGridLayout *layout = new QGridLayout(dialog);
+    QGridLayout *layout = new QGridLayout(typeGroupBox);
     layout->addWidget(lineButton, 0, 0);
     layout->addWidget(polylineButton, 1, 0);
     layout->addWidget(polygonButton, 2, 0);
@@ -108,13 +108,13 @@ void shape_Editor::createHintsGroupBox()
     hintsGroupBox->setMaximumHeight(250);
     hintsGroupBox->setAlignment(Qt::AlignLeft);
 
-    penColorBox = createComboBox();
-    penStyleBox = createComboBox();
-    penCapStyleBox = createComboBox();
-    penJointStyleBox = createComboBox();
-    brushColorBox = createComboBox();
-    brushStyleBox = createComboBox();
-    penWidthBox = new QSpinBox();
+    penColorBox = createPenComboBox();
+    penStyleBox = createPenComboBox();
+    penCapStyleBox = createPenComboBox();
+    penJointStyleBox = createPenComboBox();
+    brushColorBox = createPenComboBox();
+    brushStyleBox = createPenComboBox();
+    penWidthBox = createPenWidthSpinBox();
 
     penColorBox->addItem("White");
     penColorBox->addItem("Black");
@@ -162,12 +162,6 @@ void shape_Editor::createHintsGroupBox()
     layout->addRow(new QLabel(tr("Brush Color:")), brushColorBox);
     layout->addRow(new QLabel(tr("Brush Style:")), brushStyleBox);
     layout->addRow(new QLabel(tr("Pen Width:")), penWidthBox);
-    // layout->setHorizontalSpacing(5);
-
-    // layout->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
-    // layout->setAlignment(Qt::Align);
-    //layout->addWidget(penColorBox);
-    // layout->setFormAlignment(Qt::AlignLeft);
 
     hintsGroupBox->setLayout(layout);
 }
@@ -191,10 +185,10 @@ QFormLayout* shape_Editor::changeDimeBox()
 {
     if (LineType == flag)
     {
-        QSpinBox* posX1 = new QSpinBox(dialog);
-        QSpinBox* posY1 = new QSpinBox(dialog);
-        QSpinBox* posX2 = new QSpinBox(dialog);
-        QSpinBox* posY2 = new QSpinBox(dialog);
+        QSpinBox* posX1 = createDimeSpinBox();
+        QSpinBox* posY1 = createDimeSpinBox();
+        QSpinBox* posX2 = createDimeSpinBox();
+        QSpinBox* posY2 = createDimeSpinBox();
 
         QFormLayout* layout = new QFormLayout(dimeGroupBox);
 
@@ -207,14 +201,14 @@ QFormLayout* shape_Editor::changeDimeBox()
     }
     else if (PolylineType == flag)
     {
-        QSpinBox* pointX1 = new QSpinBox(dialog);
-        QSpinBox* pointY1 = new QSpinBox(dialog);
-        QSpinBox* pointX2 = new QSpinBox(dialog);
-        QSpinBox* pointY2 = new QSpinBox(dialog);
-        QSpinBox* pointX3 = new QSpinBox(dialog);
-        QSpinBox* pointY3 = new QSpinBox(dialog);
-        QSpinBox* pointX4 = new QSpinBox(dialog);
-        QSpinBox* pointY4 = new QSpinBox(dialog);
+        QSpinBox* pointX1 = createDimeSpinBox();
+        QSpinBox* pointY1 = createDimeSpinBox();
+        QSpinBox* pointX2 = createDimeSpinBox();
+        QSpinBox* pointY2 = createDimeSpinBox();
+        QSpinBox* pointX3 = createDimeSpinBox();
+        QSpinBox* pointY3 = createDimeSpinBox();
+        QSpinBox* pointX4 = createDimeSpinBox();
+        QSpinBox* pointY4 = createDimeSpinBox();
 
         QFormLayout* layout = new QFormLayout(dimeGroupBox);
 
@@ -231,14 +225,14 @@ QFormLayout* shape_Editor::changeDimeBox()
     }
     else if (PolygonType == flag)
     {
-        QSpinBox* pointX1 = new QSpinBox(dialog);
-        QSpinBox* pointY1 = new QSpinBox(dialog);
-        QSpinBox* pointX2 = new QSpinBox(dialog);
-        QSpinBox* pointY2 = new QSpinBox(dialog);
-        QSpinBox* pointX3 = new QSpinBox(dialog);
-        QSpinBox* pointY3 = new QSpinBox(dialog);
-        QSpinBox* pointX4 = new QSpinBox(dialog);
-        QSpinBox* pointY4 = new QSpinBox(dialog);
+        QSpinBox* pointX1 = createDimeSpinBox();
+        QSpinBox* pointY1 = createDimeSpinBox();
+        QSpinBox* pointX2 = createDimeSpinBox();
+        QSpinBox* pointY2 = createDimeSpinBox();
+        QSpinBox* pointX3 = createDimeSpinBox();
+        QSpinBox* pointY3 = createDimeSpinBox();
+        QSpinBox* pointX4 = createDimeSpinBox();
+        QSpinBox* pointY4 = createDimeSpinBox();
 
         QFormLayout* layout = new QFormLayout(dimeGroupBox);
 
@@ -255,10 +249,10 @@ QFormLayout* shape_Editor::changeDimeBox()
     }
     else if (RectangleType == flag)
     {
-        QSpinBox* x = new QSpinBox(dialog);
-        QSpinBox* y = new QSpinBox(dialog);
-        QSpinBox* width = new QSpinBox(dialog);
-        QSpinBox* height = new QSpinBox(dialog);
+        QSpinBox* x = createDimeSpinBox();
+        QSpinBox* y = createDimeSpinBox();
+        QSpinBox* width = createDimeSpinBox();
+        QSpinBox* height = createDimeSpinBox();
 
         QFormLayout* layout = new QFormLayout(dimeGroupBox);
 
@@ -271,9 +265,9 @@ QFormLayout* shape_Editor::changeDimeBox()
     }
     else if (SquareType == flag)
     {
-        QSpinBox* x = new QSpinBox(dialog);
-        QSpinBox* y = new QSpinBox(dialog);
-        QSpinBox* sides = new QSpinBox(dialog);
+        QSpinBox* x = createDimeSpinBox();
+        QSpinBox* y = createDimeSpinBox();
+        QSpinBox* sides = createDimeSpinBox();
 
         QFormLayout* layout = new QFormLayout(dimeGroupBox);
 
@@ -285,10 +279,10 @@ QFormLayout* shape_Editor::changeDimeBox()
     }
     else if (EllipseType == flag)
     {
-        QSpinBox* x = new QSpinBox(dialog);
-        QSpinBox* y = new QSpinBox(dialog);
-        QSpinBox* width = new QSpinBox(dialog);
-        QSpinBox* height = new QSpinBox(dialog);
+        QSpinBox* x = createDimeSpinBox();
+        QSpinBox* y = createDimeSpinBox();
+        QSpinBox* width = createDimeSpinBox();
+        QSpinBox* height = createDimeSpinBox();
 
         QFormLayout* layout = new QFormLayout(dimeGroupBox);
 
@@ -301,9 +295,9 @@ QFormLayout* shape_Editor::changeDimeBox()
     }
     else if (CircleType == flag)
     {
-        QSpinBox* x = new QSpinBox(dialog);
-        QSpinBox* y = new QSpinBox(dialog);
-        QSpinBox* sides = new QSpinBox(dialog);
+        QSpinBox* x = createDimeSpinBox();
+        QSpinBox* y = createDimeSpinBox();
+        QSpinBox* sides = createDimeSpinBox();
 
         QFormLayout* layout = new QFormLayout(dimeGroupBox);
 
@@ -315,17 +309,17 @@ QFormLayout* shape_Editor::changeDimeBox()
     }
     else if (TextType == flag)
     {
-        QSpinBox* x = new QSpinBox(dialog);
-        QSpinBox* y = new QSpinBox(dialog);
-        QSpinBox* width = new QSpinBox(dialog);
-        QSpinBox* height = new QSpinBox(dialog);
+        QSpinBox* x = createDimeSpinBox();
+        QSpinBox* y = createDimeSpinBox();
+        QSpinBox* width = createDimeSpinBox();
+        QSpinBox* height = createDimeSpinBox();
         QLineEdit* text = new QLineEdit(dialog);
-        QComboBox* textColor = new QComboBox(dialog);
-        QComboBox* alignment = new QComboBox(dialog);
-        QSpinBox* pointSize = new QSpinBox(dialog);
-        QComboBox* font = new QComboBox(dialog);
-        QComboBox* fontStyle = new QComboBox(dialog);
-        QComboBox* fontWeight = new QComboBox(dialog);
+        QComboBox* textColor = createDimeComboBox();
+        QComboBox* alignment = createDimeComboBox();
+        QSpinBox* pointSize = createDimeSpinBox();
+        QComboBox* font = createDimeComboBox();
+        QComboBox* fontStyle = createDimeComboBox();
+        QComboBox* fontWeight = createDimeComboBox();
 
         textColor->addItem("White");
         textColor->addItem("Black");
@@ -385,11 +379,39 @@ QFormLayout* shape_Editor::changeDimeBox()
     return nullptr;
 }
 
-QComboBox* shape_Editor::createComboBox()
+QComboBox* shape_Editor::createPenComboBox()
 {
     QComboBox *comboBox = new QComboBox(hintsGroupBox);
     // connect(comboBox, &QComboBox::clicked, hintsGroupBox, &shape_Editor::updateDimeBox);
     return comboBox;
+}
+
+QSpinBox* shape_Editor::createPenWidthSpinBox()
+{
+    QSpinBox *penwidth = new QSpinBox(hintsGroupBox);
+    // connect(comboBox, &QComboBox::clicked, hintsGroupBox, &shape_Editor::updateDimeBox);
+    return penwidth;
+}
+
+QComboBox* shape_Editor::createDimeComboBox()
+{
+    QComboBox *comboBox = new QComboBox(dimeGroupBox);
+    // connect(comboBox, &QComboBox::clicked, hintsGroupBox, &shape_Editor::updateDimeBox);
+    return comboBox;
+}
+
+QSpinBox* shape_Editor::createDimeSpinBox()
+{
+    QSpinBox *spinBox = new QSpinBox(dimeGroupBox);
+    // connect(comboBox, &QComboBox::clicked, hintsGroupBox, &shape_Editor::updateDimeBox);
+    return spinBox;
+}
+
+QLineEdit* shape_Editor::createDimeLineEdit()
+{
+    QLineEdit *edit = new QLineEdit(dimeGroupBox);
+    // connect(comboBox, &QComboBox::clicked, hintsGroupBox, &shape_Editor::updateDimeBox);
+    return edit;
 }
 
 void shape_Editor::updateDimeBox()
