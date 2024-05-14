@@ -74,12 +74,12 @@ Shape::ShapeType Shape::getShapeTypeFlag() const {
 }*/
 
 
-double Shape::getArea() const
+double Shape::calculateArea() const
 {
     return 0; // Default implementation: 0 area for all shapes
 }
 
-double Shape::getPerimeter() const
+double Shape::calculatePerimeter() const
 {
     return 0; // Default implementation: 0 perimeter for all shapes
 }
@@ -89,6 +89,21 @@ int Shape::getId() const
     return id;
 }
 
+std::string Shape::shapeType(Shape::ShapeType type)
+{
+    switch (type)
+    {
+    case Shape::LineType: return "Line";
+    case Shape::PolylineType: return "Polyline";
+    case Shape::PolygonType: return "Polygon";
+    case Shape::RectangleType: return "Rectangle";
+    case Shape::SquareType: return "Square";
+    case Shape::EllipseType: return "Ellipse";
+    case Shape::CircleType: return "Circle";
+    case Shape::TextType: return "Text";
+    default: return "Unknown";
+    }
+}
 
 void Shape::setId(int i)
 {

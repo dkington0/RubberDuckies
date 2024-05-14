@@ -58,13 +58,13 @@ public:
     * @brief calculates area for shape
     * @param takes length and width and multiples them
     */
-    double calculateArea() const;
+    double calculateArea() const override;
 
     /**
     * @brief calculates perimeter for shape
     * @param takes length and width, adds them and multiplies by two
     */
-    double calculatePerimeter() const;
+    double calculatePerimeter() const override;
 
     /**
      * @brief getId will return the derived shape's unique ID

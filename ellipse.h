@@ -49,13 +49,13 @@ public:
      * @brief calculates area for ellipse
      * @param PI times major axis times minor axis
      */
-    double calculateArea() const;
+    double calculateArea() const override;
 
     /**
      * @brief calculates perimeter for ellipse
      * @param Perimeter of Ellipse Ramanujan's second approximation for the perimeter of an ellipse is P7(h) = π(a + b)(1 + 3h/10 + 4 - 3h)
      */
-    double calculatePerimeter() const;
+    double calculatePerimeter() const override;
 
     /**
      * @brief getId will return the derived shape's unique ID

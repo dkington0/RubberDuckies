@@ -55,13 +55,13 @@ public:
      * @brief calculates area for circle
      * @param PI times width squared divided by 4
      */
-    double calculateArea() const;
+    double calculateArea() const override;
 
     /**
      * @brief calculates perimeter  for circle
      *@param takes length and width and multiples them
      */
-    double calculatePerimeter() const;
+    double calculatePerimeter() const override;
 
 
     /**

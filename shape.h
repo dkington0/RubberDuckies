@@ -136,11 +136,42 @@ class Shape : public MainWindow
          */
         ShapeType getShapeTypeFlag() const;
 
+
+        /**
+         * @brief drawShapes draws shapes
+         * @param vector of shapes
+         */
         void drawShapes(myStd::vector<Shape*>, QPaintEvent*);
 
-        virtual double getArea() const; // Default implementation for getArea()
+        /**
+         * @brief calculates Area
+         * @return returns area
+         */
+        virtual double calculateArea() const; // Default implementation for calculateArea()
 
-        virtual double getPerimeter() const; // Default implementation for getPerimeter()
+        /**
+         * @brief calculates perimeter
+         * @return returns perimeter
+         */
+        virtual double calculatePerimeter() const; // Default implementation for calculatePerimeter()
+
+        /**
+         * @brief returns true or false Area
+         * @return returns true if > 0
+         */
+        virtual bool validArea() const {return calculateArea() > 0;}
+
+        /**
+         * @brief returns true or false Perimeter
+         * @return returns true if > 0
+         */
+        virtual bool validPerimeter() const {return calculatePerimeter() > 0;}
+
+        /**
+         * @brief returns shape type
+         * @return returns shape type based on enum
+         */
+        static std::string shapeType(ShapeType type);
 
         int getId() const; // get id
 

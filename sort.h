@@ -46,7 +46,7 @@ struct sortPerimeter
 {
     bool operator()(const Shape * shape, const Shape * other)
     {
-        return shape->getPerimeter() < other->getPerimeter();
+        return shape->calculatePerimeter() < other->calculatePerimeter();
     }
 };
 
@@ -54,7 +54,7 @@ struct sortArea
 {
     bool operator()(const Shape * shape, const Shape * other)
     {
-        return shape->getArea() < other->getArea();
+        return shape->calculateArea() < other->calculateArea();
     }
 };
 
