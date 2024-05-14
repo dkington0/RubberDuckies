@@ -115,6 +115,8 @@ private:
     int m_value;
     shape_Editor *Shape_Editor;
 
+    QLabel *testimonial1;// = nullptr;
+    QLabel *testimonial2;// = nullptr;
 };
 
 

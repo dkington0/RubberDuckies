@@ -17,13 +17,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->shape_editor_Button->hide();
     ui->sortShapes->hide();
     ui->list->hide();
-
-    QLabel *testimonial1 = new QLabel(this);
-    testimonial1->setText("Rubber Duckies is the best company ever! ~User230725");
-    testimonial1->setGeometry(10,-60,400,200);
-    QLabel *testimonial2 = new QLabel(this);
-    testimonial2->setText("Great customization options! Good job Rubber Duckies! ~User493683");
-    testimonial2->setGeometry(10,-40,450,200);
+    if (!ui->groupBox->isHidden()) {
+        testimonial1 = new QLabel(this);
+        testimonial1->setText("Rubber Duckies is the best company ever! ~User230725");
+        testimonial1->setGeometry(10,-60,400,200);
+        testimonial2 = new QLabel(this);
+        testimonial2->setText("Great customization options! Good job Rubber Duckies! ~User493683");
+        testimonial2->setGeometry(10,-40,450,200);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -63,6 +64,10 @@ void MainWindow::on_login_clicked()
         ui->shape_editor_Button->show();
         ui->sortShapes->show();
         ui->list->show();
+
+        testimonial1->close();
+        testimonial2->close();
+
     }
     /*
     else if (username == "user" && password == "password"){
