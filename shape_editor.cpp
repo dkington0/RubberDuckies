@@ -422,3 +422,43 @@ void shape_Editor::updateDimeBox()
     QFormLayout* layout = changeDimeBox();
     dimeGroupBox->setLayout(layout);
 }
+
+
+//// QSpinBoxes ////
+
+
+QComboBox* shape_Editor::createPenComboBox()
+{
+    QComboBox *comboBox = new QComboBox(hintsGroupBox);
+    //connect(comboBox, &QComboBox::clicked, hintsGroupBox, updateDimeBox());
+    return comboBox;
+}
+
+QSpinBox* shape_Editor::createPenWidthSpinBox()
+{
+    QSpinBox *penWidth = new QSpinBox;
+    //connect(comboBox, &QComboBox::clicked, hintsGroupBox, updateDimeBox());
+    return penWidth;
+}
+
+QComboBox* shape_Editor::createDimeComboBox()
+{
+    QComboBox *comboBox = new QComboBox(dimeGroupBox);
+    //connect(comboBox, &QComboBox::clicked, hintsGroupBox, updateDimeBox());
+    return comboBox;
+}
+
+QSpinBox* shape_Editor::createDimeSpinBoxBox()
+{
+    QSpinBox *spinBox = new QSpinBox;
+    //connect(comboBox, &QComboBox::clicked, hintsGroupBox, updateDimeBox());
+    return spinBox;
+}
+
+QLineEdit* shape_Editor::createDimeLineEdit()
+{
+    QLineEdit *edit = new QLineEdit(dimeGroupBox);
+    // connect(comboBox, &QComboBox::clicked, hintsGroupBox, &shape_Editor::updateDimeBox);
+    return edit;
+}
+

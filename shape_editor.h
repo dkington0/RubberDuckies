@@ -43,6 +43,12 @@ public slots:
     void shape_editor_clicked();
     void updateDimeBox();
 
+    QComboBox* createPenComboBox();
+    QSpinBox* createPenWidthSpinBox();
+    QComboBox* createDimeComboBox();
+    QSpinBox* createDimeSpinBoxBox();
+    QLineEdit* createDimeLineEdit();
+
 private:
     Ui::shape_Editor *ui;
 
