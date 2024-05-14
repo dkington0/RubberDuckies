@@ -3,6 +3,7 @@
 #include "QMessageBox"
 #include "QGroupBox"
 #include "contact_us.h"
+#include "file_parser.h"
 #include "vector.h"
 #include "sort.h"
 
@@ -96,27 +97,32 @@ void MainWindow::on_shape_editor_Button_clicked()
 
 void MainWindow::on_sortShapes_clicked()
 {
+    QString directory_path = QApplication::applicationDirPath();
     myStd::vector<Shape*> shapes; // create vector
+
+    read_file(directory_path.toStdString(), shapes);
+
     // Sort by ID and write to file
     sort::sortID(shapes);
-    sort::write(shapes, "sorted_shapes_id.txt");
+    sort::write(shapes, (directory_path + "/sorted_shapes_id.txt").toStdString());
 
     // Sort by Area and write to file
     sort::sortArea(shapes);
-    sort::write(shapes, "sorted_shapes_area.txt");
+    sort::write(shapes, (directory_path + "/sorted_shapes_area.txt").toStdString());
 
     // Sort by Perimeter and write to file
     sort::sortPerimeter(shapes);
-    sort::write(shapes, "sorted_shapes_perimeter.txt");
+    sort::write(shapes, (directory_path + "/sorted_shapes_perimeter.txt").toStdString());
 
     // Clear the text box before displaying new content
     ui->list->clear();
 
     // Display each sorted list
-    displayText("sorted_shapes_id.txt", "Sorted by ID:");
-    displayText("sorted_shapes_area.txt", "Sorted by Area:");
-    displayText("sorted_shapes_perimeter.txt", "Sorted by Perimeter:");
+    displayText(directory_path + "/sorted_shapes_id.txt", "Sorted by ID:");
+    displayText(directory_path + "/sorted_shapes_area.txt", "Sorted by Area:");
+    displayText(directory_path + "/sorted_shapes_perimeter.txt", "Sorted by Perimeter:");
 }
+
 
 
 void MainWindow::displayText(const QString &filename, const QString &title)
