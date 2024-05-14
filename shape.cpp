@@ -47,16 +47,6 @@ QPen& Shape::getPen()
     return pen;
 }
 
-void Shape::drawShapes(myStd::vector<Shape*> container, QPaintEvent *event)
-{
-    // Iterates through the container calling the paint
-    // event for each shape.
-
-    for (int i = 0; i < container.size(); i++)
-    {
-        container[i]->paintEvent(event);
-    }
-}
 
 void Shape::setShapeTypeFlag(ShapeType flag) {
     shapeTypeFlag = flag;

@@ -22,8 +22,13 @@ Canvas::Canvas() {} // default constructor
     }
 
     void Canvas::drawShape(QPaintEvent* eventThing) //draws shape based on passed shape.
-    {
-        passedShapes[0]->drawShapes(passedShapes, eventThing);
+    {    // Iterates through the container calling the paint
+        // event for each shape.
+
+        for (int i = 0; i < passedShapes.size(); i++)
+        {
+            passedShapes[i]->paintEvent(eventThing);
+        }
 
     }
     //destructor
