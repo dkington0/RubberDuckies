@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1973</width>
-    <height>1161</height>
+    <width>1200</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>210</y>
+      <x>470</x>
+      <y>240</y>
       <width>196</width>
       <height>161</height>
      </rect>
@@ -51,7 +51,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_pass"/>
+        <widget class="QLineEdit" name="lineEdit_pass">
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -67,8 +71,8 @@
    <widget class="QPushButton" name="contactUsButton">
     <property name="geometry">
      <rect>
-      <x>1950</x>
-      <y>0</y>
+      <x>1170</x>
+      <y>10</y>
       <width>21</width>
       <height>21</height>
      </rect>
@@ -78,6 +82,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="shape_editor_Button">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -91,6 +98,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_7">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -121,8 +131,8 @@
      <rect>
       <x>10</x>
       <y>390</y>
-      <width>581</width>
-      <height>421</height>
+      <width>431</width>
+      <height>361</height>
      </rect>
     </property>
    </widget>
@@ -132,7 +142,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1973</width>
+     <width>1200</width>
      <height>21</height>
     </rect>
    </property>

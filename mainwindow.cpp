@@ -13,12 +13,17 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->pushButton_7->hide();
+    ui->shape_editor_Button->hide();
+    ui->sortShapes->hide();
+    ui->list->hide();
+
     QLabel *testimonial1 = new QLabel(this);
     testimonial1->setText("Rubber Duckies is the best company ever! ~User230725");
-    testimonial1->setGeometry(1300,100,400,200);
+    testimonial1->setGeometry(10,-60,400,200);
     QLabel *testimonial2 = new QLabel(this);
     testimonial2->setText("Great customization options! Good job Rubber Duckies! ~User493683");
-    testimonial2->setGeometry(1300,125,450,200);
+    testimonial2->setGeometry(10,-40,450,200);
 }
 
 MainWindow::~MainWindow()
@@ -28,8 +33,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {
-    QPainter myText(this);
-    myText.drawText(QPoint(20, 30), "Test text sample");
+    //QPainter myText(this);
+    //myText.drawText(QPoint(20, 30), "Test text sample");
     // myText.set = "";
 
 }
@@ -44,19 +49,29 @@ void MainWindow::on_login_clicked()
     QString username = ui->lineEdit_user->text();
     QString password = ui->lineEdit_pass->text();
 
-    if (username == "admin" && password == "password"){
+    if (((username == "admin") && (password == "password"))||((username == "user") && (password == "password")))  {
         QMessageBox::information(this,"Login", "validated successfully");
-        ui->shape_editor_Button->setEnabled(true);
+        if ((username == "admin") && (password == "password")) {
+            ui->shape_editor_Button->setEnabled(true);
+            ui->pushButton_7->setEnabled(true);
+        }
         loginSet(true);
         ui->groupBox->close();
         setValue(true);
+
+        ui->pushButton_7->show();
+        ui->shape_editor_Button->show();
+        ui->sortShapes->show();
+        ui->list->show();
     }
+    /*
     else if (username == "user" && password == "password"){
         QMessageBox::information(this,"Login", "validated successfully");
         loginSet(true);
         ui->groupBox->close();
         setValue(true);
     }
+    */
     else
     {
         loginSet(false);
@@ -64,6 +79,7 @@ void MainWindow::on_login_clicked()
         //QMessageBox::warning(this, "Login", "Username and password incorrect");
         //return false;
     }
+
 }
 
 bool MainWindow::loginGet()
