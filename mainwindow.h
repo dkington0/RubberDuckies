@@ -69,7 +69,9 @@ private slots:
      */
     void on_contactUsButton_clicked();
 
-
+    /**
+     * @brief on_shape_editor_Button_clicked will open a dialog to add shapes
+     */
     void on_shape_editor_Button_clicked();
 
 
@@ -83,6 +85,7 @@ private slots:
      * @brief display the text file
      */
     void displayText(const QString & filename, const QString & title);
+
 
 public slots:
     /**

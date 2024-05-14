@@ -13,7 +13,7 @@
 #include <QFormLayout>
 #include <QSpinBox>
 #include <QTimer>
-//#include "canvas.h"
+// #include "canvas.h"
 
 
 namespace Ui {
@@ -30,22 +30,25 @@ public:
 
     enum shapeType{ LineType, PolylineType, PolygonType, RectangleType, SquareType, EllipseType, CircleType, TextType };
 
-    void createTypeGroupBox(QDialog* dia);
-    void createHintsGroupBox(QDialog* dia);
-    void createDimeGroupBox(QDialog* dia);
+    void createTypeGroupBox();
+    void createHintsGroupBox();
+    void createDimeGroupBox();
+
+    QFormLayout* changeDimeBox();
 
     QRadioButton* createRadioButton(const QString &text);
-    QComboBox* createComboBox(QGroupBox* box);
-
-    void signalCheck();
+    QComboBox* createComboBox();
 
 public slots:
     void shape_editor_clicked();
+    void updateDimeBox();
 
 private:
     Ui::shape_Editor *ui;
 
     int flag;
+
+    QDialog* dialog;
 
     QGroupBox* typeGroupBox;
     QGroupBox* hintsGroupBox;
