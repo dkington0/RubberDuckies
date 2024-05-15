@@ -1,33 +1,4 @@
-#include "vector.h"
-using namespace myStd;
-
-#include <iostream>
-
-using std::cout;
-using std::endl;
-
-using std::find;
-using std::sort;
-
-template <typename Iterator>
-Iterator low(Iterator first, Iterator last);
-
-template <typename Iterator>
-void selection_sort(Iterator first, Iterator last);
-
-template <typename T> // Updated to accept a template vector class
-void print_vector(const vector<T>& v);
-
-template <typename Iterator>
-Iterator low(Iterator first, Iterator last)
-// Return an iterator to the element in [first:last) that has the lowest value
-{
-    Iterator low = first;
-    for (Iterator p = first; p != last; ++p)
-        if (*low > *p)
-            low = p;
-    return low;
-}
+/*
 
 template <typename Iterator>
 void selection_sort(Iterator first, Iterator last)
@@ -50,11 +21,4 @@ void selection_sort(Iterator first, Iterator last)
         *(first + index_of_min) = temp;
     }
 }
-
-template <typename T>
-void print_vector(const vector<T>& v)
-{
-    for (int i = 0; i < v.size(); i++)
-        cout << v[i] << " ";
-    cout << endl;
-}
+*/
