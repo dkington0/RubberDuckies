@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
     // Line* line = ;
     // Line fakeLine;
     // QObject::connect(&line, SIGNAL(w.shapeValue()), SLOT(w.setValue()));
-   // if (container.size() > 0)
-     //   serialize(directory_path, container);
+    if (container.size() > 0)
+       serialize(directory_path, container);
     return a.exec();
 }
